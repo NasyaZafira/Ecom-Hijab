@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data
+package com.fitri.jilbab.data.model
 
 data class Data(
     val address: Any,

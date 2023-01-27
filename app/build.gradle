@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace 'com.fitri.jilbab'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.fitri.jilbab"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -35,6 +35,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'

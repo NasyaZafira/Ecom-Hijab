@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data
+package com.fitri.jilbab.data.model
 
 data class LoginResponse(
     val access_token: String,
