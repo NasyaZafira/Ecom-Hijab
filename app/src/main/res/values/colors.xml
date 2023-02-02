@@ -7,6 +7,6 @@
     <color name="colorGreen">#1ABC9C</color>
     <color name="colorBase">#FFFFFF</color>
     <color name="colorCardPhoto">#F0F0F0</color>
-    <color name="colorLine">#eeeeee</color>
+    <color name="colorLine">#FAFAFC</color>
 
 </resources>
