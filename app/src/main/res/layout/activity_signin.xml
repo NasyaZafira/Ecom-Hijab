@@ -1,63 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="24dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="26dp"
     android:background="#FFF"
-    android:orientation="vertical"
-    android:paddingLeft="24dp"
-    android:paddingTop="26dp"
-    android:paddingRight="24dp">
+    android:orientation="vertical">
 
     <TextView
-        style="@style/TextView.PoppinsNormal16sp020202"
+        android:id="@+id/txtSignIn"
+        style="@style/TextView.PoppinsNormal22sp020202"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email Address" />
+        android:layout_marginHorizontal="20dp"
+        android:text="Sign In"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etEmail"
+    <TextView
+        android:id="@+id/txtDesc"
         style="@style/EditText.PoppinsNormal14sp8D92A3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/shape_rectangle_outline_8_020202"
-        android:hint="Type your email address"
-        android:padding="10dp" />
+        android:layout_marginHorizontal="20dp"
+        android:text="Find your best hijab product"
+        app:layout_constraintTop_toBottomOf="@id/txtSignIn" />
+
+    <View
+        android:id="@+id/view01"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="26dp"
+        android:background="@color/colorLine"
+        app:layout_constraintTop_toBottomOf="@id/txtDesc" />
+
 
     <TextView
+        android:id="@+id/txtEmail"
         style="@style/TextView.PoppinsNormal16sp020202"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
-        android:text="Password" />
+        android:text="Email Address"
+        app:layout_constraintTop_toBottomOf="@id/view01" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        style="@style/EditText.PoppinsNormal14sp8D92A3"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/boxMail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_rectangle_outline_8_020202"
-        android:hint="Type your password"
-        android:inputType="textPassword"
-        android:padding="10dp" />
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:endIconMode="custom"
+        app:hintEnabled="false"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/colorError"
+        app:layout_constraintTop_toBottomOf="@id/txtEmail">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="enter your email here"
+            android:inputType="text"
+            android:paddingVertical="9dp"
+            android:paddingStart="13dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtPassword"
+        style="@style/TextView.PoppinsNormal16sp020202"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Password"
+        app:layout_constraintTop_toBottomOf="@id/boxMail" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/boxPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/colorPrimaryDark"
+        app:endIconMode="password_toggle"
+        app:hintEnabled="false"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/colorError"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPssword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="enter your password here"
+            android:inputType="textPassword"
+            android:paddingVertical="9dp"
+            android:paddingStart="13dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignin"
         style="@style/Button.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="24dp"
         android:text="Sign In"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/boxPassword" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignup"
         style="@style/Button.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="12dp"
         android:text="Create New Account"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/warningError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorError"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Can't login, incorrect email or password "
+        android:textColor="@color/colorBase"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

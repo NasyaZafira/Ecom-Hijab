@@ -1,0 +1,16 @@
+package com.fitri.jilbab.data.model.login
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Data(
+    val address: String,
+    val created_at: String,
+    val email: String,
+    val email_verified_at: Int,
+    val id_user: Int,
+    val name: String,
+    val role: String,
+    val updated_at: String
+): Parcelable
