@@ -14,17 +14,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.commer.app.base.BaseViewModel
+import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
+import com.fitri.jilbab.data.model.login.LoginBody
 import com.fitri.jilbab.databinding.ActivitySigninBinding
+import com.fitri.jilbab.ui.singup.SignUpActivity
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySigninBinding
     private val viewModel: LoginViewModel by viewModels()
@@ -33,6 +35,34 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnSignup.setOnClickListener {
+            val i = Intent(this, SignUpActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
+
+        binding.etEmail.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> {
+                    binding.boxMail.error = "Email required"
+                }
+//                !Patterns.EMAIL_ADDRESS.matcher(text ?: "").matches() ->
+//                    binding.textField.error = "Format email tidak valid"
+                else -> binding.boxMail.error = null
+            }
+            validateButton()
+        }
+        binding.etPssword.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> {
+                    binding.boxPassword.error = "Password required"
+                }
+                else -> binding.boxPassword.error = null
+            }
+            validateButton()
+        }
 
         binding.btnSignin.setOnClickListener {
             lifecycleScope.launch {
@@ -43,12 +73,19 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         setupObserver()
+
     }
 
-    private fun setupObserver() {
-        val loading = CustomLoadingDialog(this)
+    private fun validateButton() {
+        val emailOK = binding.boxMail.error == null
+        val passOK = binding.boxPassword.error == null
+        binding.btnSignin.isEnabled = emailOK && passOK
+    }
+
+    override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
         viewModel.loading.observe(this) {
-            if (it) loading.show() else loading.dismiss()
+            if (it) showLoading() else hideLoading()
         }
         viewModel.succesData.observe(this) {
             Toast.makeText(this@LoginActivity, "Berhasil masuk", Toast.LENGTH_SHORT).show()

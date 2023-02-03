@@ -64,6 +64,8 @@
             app:boxCornerRadiusTopStart="8dp"
             app:boxStrokeColor="@color/colorPrimaryDark"
             app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/txtName">
 
@@ -105,6 +107,8 @@
             app:boxCornerRadiusTopStart="8dp"
             app:boxStrokeColor="@color/colorPrimaryDark"
             app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/txtEmail">
 
@@ -146,6 +150,8 @@
             app:boxCornerRadiusTopStart="8dp"
             app:boxStrokeColor="@color/colorPrimaryDark"
             app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/txtPassword">
 

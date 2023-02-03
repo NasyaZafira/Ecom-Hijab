@@ -15,7 +15,7 @@ class LoginViewModel @Inject constructor(
     var succesData = MutableLiveData<String>()
     var errorLog = MutableLiveData<String>()
 
-    suspend fun login(username: String, password: String) {
+    suspend fun login(email: String, password: String) {
         loginRepository.loginAuth(
             onStart = {
                 _loading.postValue(true) },
@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
             onError = {
                 errorLog.postValue(it)
             },
-            username = username,
+            email = email,
             password = password
         ).collect {
             succesData.postValue("SUKSES LOGIN")

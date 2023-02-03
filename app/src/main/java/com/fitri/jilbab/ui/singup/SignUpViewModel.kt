@@ -15,7 +15,7 @@ class SignUpViewModel @Inject constructor(
 
     val signUpResponse = MutableLiveData<SignUpResponse>()
 
-    suspend fun postSignUpToServer(
+    suspend fun signUp(
         body: SignUpBody
     ) {
         mainRepository.postSignUpAndGetResult(

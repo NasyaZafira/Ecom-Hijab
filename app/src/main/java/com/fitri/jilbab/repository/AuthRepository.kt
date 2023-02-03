@@ -22,10 +22,10 @@ class AuthRepository @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String) -> Unit,
-        username: String,
+        email: String,
         password: String
     ) = flow {
-        val response = apiService.login(username, password)
+        val response = apiService.login(email, password)
         response.suspendOnSuccess {
             emit(this.data)
         }.onError {
