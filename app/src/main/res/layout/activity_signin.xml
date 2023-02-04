@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/txtSignIn"
-        style="@style/TextView.PoppinsNormal22sp020202"
+        style="@style/TextView.Medium22Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/txtDesc"
-        style="@style/EditText.PoppinsNormal14sp8D92A3"
+        style="@style/TextView.Normal14Grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/txtEmail"
-        style="@style/TextView.PoppinsNormal16sp020202"
+        style="@style/TextView.Normal16Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -81,7 +81,7 @@
 
     <TextView
         android:id="@+id/txtPassword"
-        style="@style/TextView.PoppinsNormal16sp020202"
+        style="@style/TextView.Normal16Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"

@@ -14,10 +14,16 @@ class SignUpViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val signUpResponse = MutableLiveData<SignUpResponse>()
+    var errorLog = MutableLiveData<String>()
+
 
     suspend fun signUp(
-        body: SignUpBody
+        email: String,
+        name: String,
+        password: String,
+        role: String
     ) {
+        val body = SignUpBody(email, name, password, role)
         mainRepository.postSignUpAndGetResult(
             onStart = {
                 _loading.postValue(true) },

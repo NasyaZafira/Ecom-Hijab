@@ -3,14 +3,20 @@ package com.fitri.jilbab.ui.singup
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
+import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.databinding.ActivitySignupBinding
 import com.fitri.jilbab.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
 @AndroidEntryPoint
@@ -57,6 +63,16 @@ class SignUpActivity : BaseActivity() {
             validateButton()
         }
 
+        binding.btnContinue.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.signUp(
+                    email = binding.etEmail.text.toString(),
+                    name = binding.etName.text.toString(),
+                    password = binding.etPssword.text.toString(),
+                    role = "user"
+                )
+            }
+        }
 
         setupObserver()
     }
@@ -67,8 +83,9 @@ class SignUpActivity : BaseActivity() {
         val passOK = binding.boxPassword.error == null
 
         binding.btnContinue.isEnabled =
-            nameOK && emailOK  && passOK
+            nameOK && emailOK && passOK
     }
+
     private fun isPasswordValid(password: String): Boolean {
         val passwordPattern = "^(?=.*[0-9])(?=.*[a-z]).{8,}$"
         val pattern = Pattern.compile(passwordPattern)
@@ -83,15 +100,21 @@ class SignUpActivity : BaseActivity() {
             if (it) showLoading() else hideLoading()
         }
 
-        viewModel.signUpResponse.observe(this){
+        viewModel.signUpResponse.observe(this) {
             if (it.success) {
                 Toast.makeText(this, "Successful Registration", Toast.LENGTH_LONG).show()
                 val i = Intent(this, LoginActivity::class.java)
                 startActivity(i)
                 finish()
             } else {
-                Toast.makeText(this, "Gagal Registrasi, Cek kembali data anda", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Gagal Registrasi, Cek kembali data anda", Toast.LENGTH_LONG)
+                    .show()
             }
         }
+        viewModel.errorLog.observe(this) {
+            binding.warningError.visibility = View.VISIBLE
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.colorError)
+
         }
     }
+}
