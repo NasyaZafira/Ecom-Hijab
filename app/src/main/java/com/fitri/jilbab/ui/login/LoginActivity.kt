@@ -89,6 +89,7 @@ class LoginActivity : BaseActivity() {
         }
         viewModel.succesData.observe(this) {
             Toast.makeText(this@LoginActivity, "Berhasil masuk", Toast.LENGTH_SHORT).show()
+
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finishAffinity()

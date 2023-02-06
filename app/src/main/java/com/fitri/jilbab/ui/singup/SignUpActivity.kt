@@ -72,6 +72,8 @@ class SignUpActivity : BaseActivity() {
                     role = "user"
                 )
             }
+            val i = Intent(this, VerifyActivity::class.java)
+            startActivity(i)
         }
 
         setupObserver()
