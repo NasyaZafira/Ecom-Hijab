@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivitySplashBinding
+import com.fitri.jilbab.ui.login.LoginActivity
 import com.fitri.jilbab.ui.singup.VerifyActivity
 
 class Splash : AppCompatActivity() {
@@ -29,7 +30,7 @@ class Splash : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                val intent = Intent(this, VerifyActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
 

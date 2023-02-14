@@ -72,7 +72,7 @@ class SignUpActivity : BaseActivity() {
                     role = "user"
                 )
             }
-            val i = Intent(this, VerifyActivity::class.java)
+            val i = Intent(this, LoginActivity::class.java)
             startActivity(i)
         }
 

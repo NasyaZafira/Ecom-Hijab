@@ -21,6 +21,9 @@
             android:name=".ui.login.LoginActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.singup.SignUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity

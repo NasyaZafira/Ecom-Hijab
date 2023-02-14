@@ -14,7 +14,7 @@ class ApiClient @Inject constructor(
     fun instance() : ApiServices {
         val retrofit = Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://localhost:8000/")
+            .baseUrl("https://ecom-mobile.spdev.my.id/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
             .build()
