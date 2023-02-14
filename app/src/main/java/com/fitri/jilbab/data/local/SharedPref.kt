@@ -4,16 +4,18 @@ import android.app.Application
 import com.orhanobut.hawk.Hawk
 
 object SharedPref {
-    private const val USER_TOKEN    = "userToken"
+    private const val USER_TOKEN = "userToken"
     private const val USER_ID = "userId"
     private const val USER_EMAIL = "userEmail"
     private const val IS_LOGIN = "isLogin"
     private const val NAME = "nameUser"
     private const val ROLE = "userROLE"
+    private const val ID_NAV = "nav"
 
-    fun appInit(application: Application){
+    fun appInit(application: Application) {
         Hawk.init(application).build()
     }
+
     var userToken: String? = null
         get() = Hawk.get(USER_TOKEN)
         set(value) {
@@ -55,6 +57,13 @@ object SharedPref {
             Hawk.put(ROLE, value)
             field = value
         }
+    var idNav: Int = 1
+        get() = Hawk.get(ID_NAV, 1)
+        set(value) {
+            Hawk.put(ID_NAV, value)
+            field = value
+        }
+
     fun clear() {
         Hawk.deleteAll()
     }
