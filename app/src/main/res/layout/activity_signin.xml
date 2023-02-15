@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="Sign In"
+        android:text="Masuk"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="Find your best hijab product"
+        android:text="Temukan produk hijab terbaikmu"
         app:layout_constraintTop_toBottomOf="@id/txtSignIn" />
 
     <View
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
-        android:text="Email Address"
+        android:text="Alamat Email"
         app:layout_constraintTop_toBottomOf="@id/view01" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:hint="enter your email here"
+            android:hint="masukan email"
             android:inputType="text"
             android:paddingVertical="9dp"
             android:paddingStart="13dp"
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
-        android:text="Password"
+        android:text="Kata Sandi"
         app:layout_constraintTop_toBottomOf="@id/boxMail" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:hint="enter your password here"
+            android:hint="masukan kata sandi"
             android:inputType="textPassword"
             android:paddingVertical="9dp"
             android:paddingStart="13dp"
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="24dp"
-        android:text="Sign In"
+        android:text="Masuk"
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@id/boxPassword" />
 
@@ -140,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="12dp"
-        android:text="Create New Account"
+        android:text="Buat akun baru"
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
 

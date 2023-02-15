@@ -8,5 +8,6 @@
     <color name="colorBase">#FFFFFF</color>
     <color name="colorCardPhoto">#F0F0F0</color>
     <color name="colorLine">#FAFAFC</color>
+    <color name="grey_inactive">#F5F5F5</color>
 
 </resources>

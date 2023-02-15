@@ -1,9 +1,14 @@
 package com.fitri.jilbab.ui.singup
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -15,6 +20,7 @@ import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.databinding.ActivitySignupBinding
 import com.fitri.jilbab.ui.login.LoginActivity
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -33,7 +39,7 @@ class SignUpActivity : BaseActivity() {
         binding.etName.doOnTextChanged { text, _, _, _ ->
             when {
                 text.toString().isEmpty() ->
-                    binding.boxName.error = "Name cannot be empty"
+                    binding.boxName.error = "Nama tidak boleh kosong"
                 else -> binding.boxName.error = null
             }
             validateButton()
@@ -41,7 +47,7 @@ class SignUpActivity : BaseActivity() {
         binding.etEmail.doOnTextChanged { text, _, _, _ ->
             when {
                 text.isNullOrEmpty() ->
-                    binding.boxMail.error = "Email cannot be empty"
+                    binding.boxMail.error = "Alamat email tidak boleh kosong"
                 !Patterns.EMAIL_ADDRESS.matcher(text ?: "").matches() ->
                     binding.boxMail.error = "Invalid e-mail format"
                 else -> binding.boxMail.error = null
@@ -49,18 +55,19 @@ class SignUpActivity : BaseActivity() {
             validateButton()
         }
         binding.etPssword.doOnTextChanged { text, _, _, _ ->
-            val txt = text.toString().trim()
             when {
-                txt.isEmpty() ->
-                    binding.txtPassword.error = "Password cannot be empty"
-                !isPasswordValid(txt) ->
-                    binding.txtPassword.error =
-                        "The password must be at least 8 characters with a combination of letters, numbers and one capital letter"
-                else -> {
-                    binding.txtPassword.error = null
+                text.toString().isEmpty() -> {
+                    binding.boxPassword.error = "Kata sandi tidak boleh kosong"
                 }
+                else -> binding.boxPassword.error = null
             }
             validateButton()
+        }
+
+        binding.txtLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.btnContinue.setOnClickListener {
@@ -104,12 +111,12 @@ class SignUpActivity : BaseActivity() {
 
         viewModel.signUpResponse.observe(this) {
             if (it.success) {
-                Toast.makeText(this, "Successful Registration", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Berhasil mendaftar", Toast.LENGTH_LONG).show()
                 val i = Intent(this, LoginActivity::class.java)
                 startActivity(i)
                 finish()
             } else {
-                Toast.makeText(this, "Gagal Registrasi, Cek kembali data anda", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Gagal mendaftar, cek kembali data anda", Toast.LENGTH_LONG)
                     .show()
             }
         }
@@ -118,5 +125,31 @@ class SignUpActivity : BaseActivity() {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.colorError)
 
         }
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is TextInputEditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    Log.e("focus", "touchevent")
+                    v.clearFocus()
+                    val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+                }
+            }
+            if (v is AutoCompleteTextView) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    Log.e("focus", "touchevent")
+                    v.clearFocus()
+                    val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

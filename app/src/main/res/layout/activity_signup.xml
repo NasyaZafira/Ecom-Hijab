@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
-            android:text="Sign Up"
+            android:text="Daftar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="Register your self"
+            android:text="Buat akun baru dan daftarkan dirimu"
             app:layout_constraintTop_toBottomOf="@id/txtSignUp" />
 
         <View
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:text="Name"
+            android:text="Nama"
             app:layout_constraintTop_toBottomOf="@id/layoutOne" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="enter your name here"
+                android:hint="Masukan nama"
                 android:inputType="text"
                 android:paddingVertical="9dp"
                 android:paddingStart="13dp"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:text="Email Address"
+            android:text="Alamat Email"
             app:layout_constraintTop_toBottomOf="@id/boxName" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="enter your email here"
+                android:hint="Masukan alamat email"
                 android:inputType="text"
                 android:paddingVertical="9dp"
                 android:paddingStart="13dp"
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="16dp"
-            android:text="Password"
+            android:text="Kata Sandi"
             app:layout_constraintTop_toBottomOf="@id/boxMail" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -152,9 +152,9 @@
             app:boxCornerRadiusTopStart="8dp"
             app:boxStrokeColor="@color/colorPrimaryDark"
             app:endIconMode="password_toggle"
+            app:hintEnabled="false"
             app:errorEnabled="true"
             app:errorTextColor="@color/colorError"
-            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/txtPassword">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="enter your password here"
+                android:hint="masukan kata sandi"
                 android:inputType="textPassword"
                 android:paddingVertical="9dp"
                 android:paddingStart="13dp"
@@ -179,9 +179,38 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="24dp"
-            android:text="Continue"
+            android:text="Lanjutkan"
             android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@id/boxPassword" />
+
+        <TextView
+            android:id="@+id/txtAlreadyAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Sudah punya akun ?"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txtLogin"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Masuk"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/warningError"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtAlreadyAccount" />
 
         <TextView
             android:id="@+id/warningError"
@@ -191,13 +220,15 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:paddingVertical="10dp"
-            android:text="Can't login, incorrect email or password "
+            android:text="Gagal masuk, email atau kata sandi salah "
             android:textColor="@color/colorBase"
             android:textSize="16sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

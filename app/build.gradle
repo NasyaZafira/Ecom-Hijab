@@ -106,6 +106,7 @@ dependencies {
 
     // ui
     implementation 'com.github.skydoves:sandwich:1.2.3'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //lottie
     implementation 'com.airbnb.android:lottie:5.2.0'

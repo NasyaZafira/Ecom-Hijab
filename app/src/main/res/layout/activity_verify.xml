@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/verifyAcc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintBottom_toTopOf="@id/layoutOne"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/TextView.Medium22Black"
+        style="@style/TextView.Normal20Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -32,7 +32,7 @@
         android:id="@+id/layoutOne"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:background="@color/colorLine"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
         style="@style/TextView.Normal18Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:text="Check your e-mail"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
