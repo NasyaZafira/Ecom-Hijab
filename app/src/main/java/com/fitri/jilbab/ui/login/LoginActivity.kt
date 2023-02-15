@@ -46,7 +46,7 @@ class LoginActivity : BaseActivity() {
         binding.etEmail.doOnTextChanged { text, _, _, _ ->
             when {
                 text.toString().isEmpty() -> {
-                    binding.boxMail.error = "Email required"
+                    binding.boxMail.error = "Alamat email tidak boleh kosong"
                 }
 //                !Patterns.EMAIL_ADDRESS.matcher(text ?: "").matches() ->
 //                    binding.textField.error = "Format email tidak valid"
@@ -57,7 +57,7 @@ class LoginActivity : BaseActivity() {
         binding.etPssword.doOnTextChanged { text, _, _, _ ->
             when {
                 text.toString().isEmpty() -> {
-                    binding.boxPassword.error = "Password required"
+                    binding.boxPassword.error = "Kata sandi tidak boleh kosong"
                 }
                 else -> binding.boxPassword.error = null
             }
