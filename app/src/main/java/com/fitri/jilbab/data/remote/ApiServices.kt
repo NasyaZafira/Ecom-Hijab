@@ -2,6 +2,8 @@ package com.fitri.jilbab.data.remote
 
 import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
+import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
+import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.skydoves.sandwich.ApiResponse
@@ -27,5 +29,10 @@ interface ApiServices {
     @POST("profile/detail")
     suspend fun detailUser(
     ): ApiResponse<DetailProfileResponse>
+
+    @POST("profile/update")
+    suspend fun editProfile(
+        @Body body: EditProfileBody
+    ): ApiResponse<EditProfileResponse>
 
 }

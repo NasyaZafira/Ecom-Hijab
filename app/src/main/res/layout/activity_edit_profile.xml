@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBase"
+    tools:context=".ui.profile.edit.EditProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/verifyAcc"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toTopOf="@id/layoutOne"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextView.Normal20Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Informasi akun"
+            app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+            app:layout_constraintStart_toEndOf="@id/verifyAcc"
+            app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+        <View
+            android:id="@+id/layoutOne"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="70dp"
+            android:background="@color/colorLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_circle_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/layoutOne"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/white_image"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+            app:layout_constraintEnd_toEndOf="@+id/imageView17"
+            app:layout_constraintStart_toStartOf="@+id/imageView17"
+            app:layout_constraintTop_toTopOf="@+id/imageView17"
+            app:riv_corner_radius="1000dp" />
+
+        <ImageView
+            android:id="@+id/btnPic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_circle_grey"
+            android:src="@drawable/baseline_cloud_upload_24"
+            app:layout_constraintBottom_toBottomOf="@id/imageView17"
+            app:layout_constraintEnd_toEndOf="@id/imageView17" />
+
+
+        <TextView
+            android:id="@+id/txtFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Nama"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView17" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputFullName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtFullName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan nama disini"
+                android:inputType="text"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txtPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Nomor Telepon"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txtFullName"
+            app:layout_constraintTop_toBottomOf="@id/inputFullName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputPhoneNumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtPhoneNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan nomor telepon disini"
+                android:inputType="number"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtErrorHandlingDomicile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:lineSpacingExtra="4sp"
+            android:text=""
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/inputPhoneNumber" />
+
+        <TextView
+            android:id="@+id/txtGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Jenis Kelamin"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txtFullName"
+            app:layout_constraintTop_toBottomOf="@+id/txtErrorHandlingDomicile" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputGender"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconTint="@color/colorAccent"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtGender">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTxtGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Pilih jenis kelamin"
+                android:inputType="none"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Tanggal Lahir"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txtFullName"
+            app:layout_constraintTop_toBottomOf="@id/inputGender" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputBirth"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtBirth">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan tanggal lahir"
+                android:inputType="number"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Alamat"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/txtFullName"
+            app:layout_constraintTop_toBottomOf="@id/inputBirth" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputAdress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="29dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtAdress">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan nomor telepon disini"
+                android:inputType="number"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSave"
+            style="@style/Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Simpan"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/inputAdress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
