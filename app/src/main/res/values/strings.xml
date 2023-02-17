@@ -2,7 +2,7 @@
     <string name="app_name">Fitri-Jilbab</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="gender">
-        <item>Laki-Laki</item>
-        <item>Perempuan</item>
+        <item>L</item>
+        <item>P</item>
     </string-array>
 </resources>

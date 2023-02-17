@@ -22,11 +22,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/TextView.Normal20Black"
+            style="@style/TextView.Medium22Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="Informasi akun"
+            android:id="@+id/txtTittle"
             app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
             app:layout_constraintStart_toEndOf="@id/verifyAcc"
             app:layout_constraintTop_toTopOf="@id/verifyAcc" />
@@ -35,9 +36,9 @@
             android:id="@+id/layoutOne"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="20dp"
             android:background="@color/colorLine"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/txtTittle" />
 
         <ImageView
             android:id="@+id/imageView17"
@@ -47,7 +48,7 @@
             android:background="@drawable/bg_circle_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/layoutOne"/>
+            app:layout_constraintTop_toBottomOf="@id/layoutOne" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imgProfile"
@@ -302,18 +303,30 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChange"
+            style="@style/Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="Ubah kata sandi"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSave"
             style="@style/Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Simpan"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="30dp"
             android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@id/inputAdress" />
+            app:layout_constraintTop_toBottomOf="@id/btnChange" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
