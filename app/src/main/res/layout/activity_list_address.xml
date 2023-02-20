@@ -14,63 +14,75 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/verifyAcc"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="30dp"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintBottom_toTopOf="@id/layoutOne"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/TextView.Medium22Black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="Alamat Saya"
-            android:id="@+id/txtTittle"
-            app:layout_constraintBottom_toTopOf="@id/txtDetail"
-            app:layout_constraintStart_toEndOf="@id/verifyAcc"
-            app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+            <ImageView
+                android:id="@+id/verifyAcc"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toTopOf="@id/layoutOne"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/TextView.Normal14Grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:id="@+id/txtDetail"
-            android:text="Kelola alamat untuk pengiriman barang"
-            app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
-            app:layout_constraintStart_toEndOf="@id/verifyAcc"
-            app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+            <TextView
+                android:id="@+id/txtTittle"
+                style="@style/TextView.Medium22Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Alamat Saya"
+                app:layout_constraintBottom_toTopOf="@id/txtDetail"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toTopOf="@id/verifyAcc" />
 
-        <View
-            android:id="@+id/layoutOne"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorLine"
-            app:layout_constraintTop_toBottomOf="@id/txtDetail" />
+            <TextView
+                android:id="@+id/txtDetail"
+                style="@style/TextView.Normal14Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Kelola alamat untuk pengiriman barang"
+                app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtTittle" />
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fbIcon"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--           android:layout_marginBottom="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:elevation="1dp"-->
-<!--            android:src="@drawable/plus"-->
-<!--            app:backgroundTint="@color/colorCardPhoto"-->
-<!--            app:elevation="1dp"-->
-<!--            app:fabSize="normal"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:maxImageSize="40dp" />-->
+            <View
+                android:id="@+id/layoutOne"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorLine"
+                app:layout_constraintTop_toBottomOf="@id/txtDetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcTele"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutOne"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_address" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnBuatKomunitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/colorBase"
+        android:visibility="visible"
+        app:icon="@drawable/plus"
+        app:iconSize="30dp"
+        app:iconTint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
