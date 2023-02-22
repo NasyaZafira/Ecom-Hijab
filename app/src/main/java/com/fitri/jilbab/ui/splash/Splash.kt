@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivitySplashBinding
+import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.login.LoginActivity
 import com.fitri.jilbab.ui.singup.VerifyActivity
 
@@ -27,14 +28,19 @@ class Splash : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
             if (SharedPref.isLoggedIn) {
+                if(SharedPref.userRole == "customer" ) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                } else {
+                    val intent = Intent(this, SuperActivity::class.java)
+                    startActivity(intent)
+                }
             } else {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
 
-//            SharedPref.idNav = 1
+            SharedPref.idNav = 1
 
             finish()
         }, 3500)

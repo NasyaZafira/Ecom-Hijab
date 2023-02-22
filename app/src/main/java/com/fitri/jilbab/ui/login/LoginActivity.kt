@@ -18,8 +18,10 @@ import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
+import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.login.LoginBody
 import com.fitri.jilbab.databinding.ActivitySigninBinding
+import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.singup.SignUpActivity
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,9 +91,16 @@ class LoginActivity : BaseActivity() {
         }
         viewModel.succesData.observe(this) {
             Toast.makeText(this@LoginActivity, "Berhasil masuk", Toast.LENGTH_SHORT).show()
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finishAffinity()
+            Log.e("TAG", "setupObserver: " +  SharedPref.userRole )
+            if (SharedPref.userRole == "customer") {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finishAffinity()
+            } else {
+                val i = Intent(this, SuperActivity::class.java)
+                startActivity(i)
+                finishAffinity()
+            }
         }
         viewModel.errorLog.observe(this) {
             binding.warningError.visibility = View.VISIBLE
