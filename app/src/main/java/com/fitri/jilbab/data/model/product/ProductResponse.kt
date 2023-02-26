@@ -1,13 +1,13 @@
-package com.fitri.jilbab.data.model.profile
+package com.fitri.jilbab.data.model.product
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class DetailProfileResponse(
+data class ProductResponse(
     @SerializedName("data")
-    val `data`: Data?,
-    val message: String?,
-    val success: Boolean?
+    val `data`: List<Data>,
+    val message: String,
+    val success: Boolean
 ): Parcelable

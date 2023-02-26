@@ -1,5 +1,6 @@
 package com.fitri.jilbab.repository
 
+import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
@@ -22,6 +23,24 @@ class ProfileRepository @Inject constructor(
         onError: (String?) -> Unit,
     ) = flow {
         val response = apiService.detailUser()
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+    suspend fun userUpdate(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        body: EditProfileBody
+    ) = flow {
+        val response = apiService.editProfile(body)
         response.suspendOnSuccess {
             emit(data)
         }.onError {

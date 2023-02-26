@@ -1,58 +1,52 @@
-package com.fitri.jilbab
+package com.fitri.jilbab.ui.admin
 
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
-import com.fitri.jilbab.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.fitri.jilbab.databinding.ActivitySuperBinding
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class SuperActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySuperBinding
     private lateinit var navController: NavController
     private lateinit var navGraph: NavGraph
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySuperBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         r_navBottom()
     }
-
     private fun r_navBottom() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_example) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_admin) as NavHostFragment
         navController = navHostFragment.findNavController()
-        binding.bottomNav.setupWithNavController(navController)
+        binding.bottomNavAdmin.setupWithNavController(navController)
 
         val graphInflater = navHostFragment.navController.navInflater
-        navGraph = graphInflater.inflate(R.navigation.mobile_navigation)
+        navGraph = graphInflater.inflate(R.navigation.admin_navigation)
         navController = navHostFragment.navController
 
         if (SharedPref.idNav == 1){
-            navGraph.setStartDestination(R.id.nav_home)
+            navGraph.setStartDestination(R.id.nav_home_admin)
         }else if (SharedPref.idNav == 2){
-            navGraph.setStartDestination(R.id.nav_product)
+            navGraph.setStartDestination(R.id.nav_product_admin)
         }else if (SharedPref.idNav == 3){
-            navGraph.setStartDestination(R.id.nav_profile)
+            navGraph.setStartDestination(R.id.nav_report_admin)
         }
         navController.graph = navGraph
     }
-
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         if (ev.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
