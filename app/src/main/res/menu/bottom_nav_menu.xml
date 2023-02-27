@@ -4,16 +4,16 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/home"
-        android:title="Home"/>
+        android:title="Beranda"/>
 
     <item
         android:id="@+id/nav_product"
         android:icon="@drawable/ic_order_normal"
-        android:title="Order"/>
+        android:title="Pesanan"/>
 
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile_normal"
-        android:title="Profile"/>
+        android:title="Akun"/>
 
 </menu>
