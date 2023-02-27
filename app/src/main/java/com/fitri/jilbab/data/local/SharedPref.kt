@@ -11,6 +11,7 @@ object SharedPref {
     private const val NAME = "nameUser"
     private const val ROLE = "userROLE"
     private const val ID_NAV = "nav"
+    private const val NAV_ADMIN = "adminNav"
 
     fun appInit(application: Application) {
         Hawk.init(application).build()
@@ -61,6 +62,12 @@ object SharedPref {
         get() = Hawk.get(ID_NAV, 1)
         set(value) {
             Hawk.put(ID_NAV, value)
+            field = value
+        }
+    var navAdmin: Int = 1
+        get() = Hawk.get(NAV_ADMIN, 1)
+        set(value) {
+            Hawk.put(NAV_ADMIN, value)
             field = value
         }
 
