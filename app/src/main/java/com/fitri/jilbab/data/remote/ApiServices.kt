@@ -1,6 +1,7 @@
 package com.fitri.jilbab.data.remote
 
 import com.fitri.jilbab.data.model.login.LoginResponse
+import com.fitri.jilbab.data.model.product.ListProductResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
@@ -34,5 +35,9 @@ interface ApiServices {
     suspend fun editProfile(
         @Body body: EditProfileBody
     ): ApiResponse<EditProfileResponse>
+
+    @POST("product")
+    suspend fun listProduct(
+    ): ApiResponse<ListProductResponse>
 
 }
