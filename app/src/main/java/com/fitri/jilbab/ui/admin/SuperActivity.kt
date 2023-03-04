@@ -16,7 +16,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivitySuperBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SuperActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuperBinding
@@ -38,11 +40,11 @@ class SuperActivity : AppCompatActivity() {
         navGraph = graphInflater.inflate(R.navigation.admin_navigation)
         navController = navHostFragment.navController
 
-        if (SharedPref.idNav == 1){
+        if (SharedPref.navAdmin == 1){
             navGraph.setStartDestination(R.id.nav_home_admin)
-        }else if (SharedPref.idNav == 2){
+        }else if (SharedPref.navAdmin == 2){
             navGraph.setStartDestination(R.id.nav_product_admin)
-        }else if (SharedPref.idNav == 3){
+        }else if (SharedPref.navAdmin == 3){
             navGraph.setStartDestination(R.id.nav_report_admin)
         }
         navController.graph = navGraph

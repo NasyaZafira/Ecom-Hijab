@@ -14,9 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="15dp"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,8 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Salmaa H"
+            android:text="Pashmina"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/imgProduct"
@@ -59,6 +59,30 @@
             app:layout_constraintEnd_toEndOf="@+id/imgProduct"
             app:layout_constraintStart_toStartOf="@+id/isName"
             app:layout_constraintTop_toBottomOf="@id/isName" />
+
+        <TextView
+            android:id="@+id/isStock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="left"
+            android:text="Sisa stok :  20"
+            android:textColor="@color/colorAccent"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/imgProduct"
+            app:layout_constraintStart_toStartOf="@+id/isName"
+            app:layout_constraintTop_toBottomOf="@id/isPrice" />
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_2"
+            app:layout_constraintTop_toBottomOf="@id/isStock"
+            app:layout_constraintBottom_toBottomOf="@id/isStock"
+            app:layout_constraintEnd_toEndOf="@id/imgProduct"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
