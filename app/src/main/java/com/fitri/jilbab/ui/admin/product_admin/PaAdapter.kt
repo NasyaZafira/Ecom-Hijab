@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.productAdm.list.Data
+import com.fitri.jilbab.data.model.admin.list.Data
 import com.fitri.jilbab.databinding.ItemProductadmBinding
 
 class PaAdapter(

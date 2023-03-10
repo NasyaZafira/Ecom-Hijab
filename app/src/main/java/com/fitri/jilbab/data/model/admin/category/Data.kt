@@ -1,10 +1,11 @@
-package com.fitri.jilbab.data.model.productAdm.list
+package com.fitri.jilbab.data.model.admin.category
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Category(
+data class Data(
+    val category_image: String,
     val category_name: String,
     val created_at: String,
     val id_category: Int,

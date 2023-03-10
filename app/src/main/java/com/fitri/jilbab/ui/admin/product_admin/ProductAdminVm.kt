@@ -2,8 +2,8 @@ package com.fitri.jilbab.ui.admin.product_admin
 
 import androidx.lifecycle.MutableLiveData
 import com.commer.app.base.BaseViewModel
-import com.fitri.jilbab.data.model.admin.CategoryListResponse
-import com.fitri.jilbab.data.model.productAdm.list.ListProductResponse
+import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
+import com.fitri.jilbab.data.model.admin.list.ListProductResponse
 import com.fitri.jilbab.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

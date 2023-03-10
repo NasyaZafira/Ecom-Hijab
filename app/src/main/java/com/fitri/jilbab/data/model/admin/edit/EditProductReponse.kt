@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data.model.productAdm.edit
+package com.fitri.jilbab.data.model.admin.edit
 
 data class EditProductReponse(
     val `data`: Data,

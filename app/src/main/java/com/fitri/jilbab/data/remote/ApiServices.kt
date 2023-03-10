@@ -1,17 +1,15 @@
 package com.fitri.jilbab.data.remote
 
+import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.login.LoginResponse
-import com.fitri.jilbab.data.model.productAdm.list.ListProductResponse
+import com.fitri.jilbab.data.model.admin.list.ListProductResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.skydoves.sandwich.ApiResponse
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiServices {
 
@@ -36,8 +34,12 @@ interface ApiServices {
         @Body body: EditProfileBody
     ): ApiResponse<EditProfileResponse>
 
-    @POST("product")
+    @GET("product")
     suspend fun listProduct(
     ): ApiResponse<ListProductResponse>
+
+    @GET("product-category")
+    suspend fun lisCategory(
+    ): ApiResponse<CategoryListResponse>
 
 }
