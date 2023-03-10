@@ -53,14 +53,53 @@
                 android:background="@color/colorLine"
                 app:layout_constraintTop_toBottomOf="@id/txtDetail" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/colorBase"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutOne">
+
+                <EditText
+                    android:id="@+id/editSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="55dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Search history"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="14sp"
+                    tools:ignore="LabelFor" />
+
+                <ImageButton
+                    android:id="@+id/imgBtnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_search_v2" />
+
+            </androidx.cardview.widget.CardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcTele"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/layoutOne"
+                app:layout_constraintTop_toBottomOf="@id/cardSearch"
                 app:spanCount="2"
                 tools:itemCount="8"
                 tools:listitem="@layout/item_product" />
