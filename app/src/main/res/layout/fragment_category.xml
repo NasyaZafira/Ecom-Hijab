@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBase">
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
@@ -18,7 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingBottom="30dp">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -42,8 +41,8 @@
         android:backgroundTint="@color/colorBase"
         android:visibility="visible"
         app:icon="@drawable/plus"
-        app:iconSize="30dp"
         app:iconTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:iconSize="30dp"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

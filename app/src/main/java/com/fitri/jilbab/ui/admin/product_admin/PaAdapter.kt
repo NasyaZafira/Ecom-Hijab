@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.list.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.ItemProductadmBinding
 
 class PaAdapter(
@@ -19,10 +19,11 @@ class PaAdapter(
             val isProduct = proAdmin[adapterPosition]
             val pict = isProduct.pictures[adapterPosition]
 
+            if (pict.is_main == 1 ) {
             Glide.with(binding.imgProduct.context)
                 .load("https://ecom-mobile.spdev.my.id/api/img/products/" + pict.picture)
                 .error(R.drawable.white_image)
-                .into(binding.imgProduct)
+                .into(binding.imgProduct) }
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
             binding.isStock.text = "Sisa stok : " + isProduct.stock

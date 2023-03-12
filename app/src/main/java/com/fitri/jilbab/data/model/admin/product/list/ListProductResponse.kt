@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data.model.admin.list
+package com.fitri.jilbab.data.model.admin.product.list
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

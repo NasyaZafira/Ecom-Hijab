@@ -1,17 +1,15 @@
-package com.fitri.jilbab.data.model.admin.list
+package com.fitri.jilbab.data.model.admin.product.add
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Data(
-    val category: Category,
     val created_at: String,
     val discount: String,
     val id_category: String,
     val id_product: Int,
     val is_active: String,
-    val pictures: List<Picture>,
     val price: String,
     val product_description: String,
     val product_detail_info: String,

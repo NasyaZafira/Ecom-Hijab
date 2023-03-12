@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
-class ProductRepository @Inject constructor(
+class AdminRepository @Inject constructor(
     private val apiService: ApiServices,
     private val ioDispatcher: CoroutineDispatcher
 ) {
