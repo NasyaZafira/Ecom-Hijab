@@ -49,10 +49,10 @@ interface ApiServices {
     @POST("product/add")
     suspend fun addProduct(
         @Part thumbnail : MultipartBody.Part,
-        @Part productimage1 : MultipartBody.Part,
-        @Part productimage2 : MultipartBody.Part,
-        @Part productimage3 : MultipartBody.Part,
-        @Part productimage4 : MultipartBody.Part,
+        @Part productimage1 : MultipartBody.Part?,
+        @Part productimage2 : MultipartBody.Part?,
+        @Part productimage3 : MultipartBody.Part?,
+        @Part productimage4 : MultipartBody.Part?,
         @Part nama_produk : RequestBody,
         @Part harga_produk : RequestBody,
         @Part diskon_produk : RequestBody,
@@ -60,6 +60,6 @@ interface ApiServices {
         @Part berat_produk : RequestBody,
         @Part stock_default : RequestBody,
         @Part deskripsi_produk : RequestBody,
-        @Part detail_info : RequestBody
+        @Part detail_info : RequestBody?
         ): ApiResponse<AddProductResponse>
 }
