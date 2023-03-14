@@ -1,5 +1,6 @@
 package com.fitri.jilbab.data.remote
 
+import com.fitri.jilbab.data.model.address.ListAddressResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.login.LoginResponse
@@ -62,4 +63,8 @@ interface ApiServices {
         @Part deskripsi_produk : RequestBody,
         @Part detail_info : RequestBody?
         ): ApiResponse<AddProductResponse>
+
+    @GET("shipping-address")
+    suspend fun listAddress(
+    ): ApiResponse<ListAddressResponse>
 }

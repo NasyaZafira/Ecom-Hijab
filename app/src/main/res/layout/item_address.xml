@@ -87,7 +87,7 @@
             android:padding="5dp"
             android:text="Utama"
             android:textSize="10sp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/isName"
             app:layout_constraintTop_toBottomOf="@id/isDetailAddress" />
 
