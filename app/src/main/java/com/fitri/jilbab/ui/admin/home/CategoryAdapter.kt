@@ -19,7 +19,7 @@ class CategoryAdapter(
             val isCategory = category[adapterPosition]
 
             Glide.with(binding.imgProduct.context)
-                .load("https://ecom-mobile.spdev.my.id/api//img/category/" + isCategory.category_image)
+                .load("https://ecom-mobile.spdev.my.id/img/category/" + isCategory.category_image)
                 .error(R.drawable.white_image)
                 .into(binding.imgProduct)
             binding.isName.text = isCategory.category_name

@@ -17,13 +17,13 @@ class PaAdapter(
             proAdmin : List<Data>,
         ) {
             val isProduct = proAdmin[adapterPosition]
-            val pict = isProduct.pictures[adapterPosition]
 
-            if (pict.is_main == 1 ) {
+            if (isProduct.is_main == 1 ) {
             Glide.with(binding.imgProduct.context)
-                .load("https://ecom-mobile.spdev.my.id/api/img/products/" + pict.picture)
+                .load("https://ecom-mobile.spdev.my.id/img/products/" + isProduct.picture )
                 .error(R.drawable.white_image)
-                .into(binding.imgProduct) }
+                .into(binding.imgProduct)
+            }
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
             binding.isStock.text = "Sisa stok : " + isProduct.stock

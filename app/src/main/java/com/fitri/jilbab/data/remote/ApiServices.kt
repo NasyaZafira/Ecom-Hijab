@@ -3,8 +3,8 @@ package com.fitri.jilbab.data.remote
 import com.fitri.jilbab.data.model.address.ListAddressResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
-import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.admin.product.list.ListProductResponse
+import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
