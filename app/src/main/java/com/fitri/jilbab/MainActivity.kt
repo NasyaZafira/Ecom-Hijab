@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         if (SharedPref.idNav == 1){
             navGraph.setStartDestination(R.id.nav_home)
         }else if (SharedPref.idNav == 2){
-            navGraph.setStartDestination(R.id.nav_product)
+            navGraph.setStartDestination(R.id.nav_order)
         }else if (SharedPref.idNav == 3){
             navGraph.setStartDestination(R.id.nav_profile)
         }

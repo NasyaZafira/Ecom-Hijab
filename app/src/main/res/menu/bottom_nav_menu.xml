@@ -7,7 +7,7 @@
         android:title="Beranda"/>
 
     <item
-        android:id="@+id/nav_product"
+        android:id="@+id/nav_order"
         android:icon="@drawable/ic_order_normal"
         android:title="Pesanan"/>
 

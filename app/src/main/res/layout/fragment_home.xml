@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBase">
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
@@ -21,7 +20,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="30dp">
 
-
             <TextView
                 android:id="@+id/txtTittle"
                 style="@style/TextView.Medium22Black"
@@ -29,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Selamat Datang"
+                android:text="Hallo, Salma !"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toTopOf="@id/txtDetail"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,18 +38,10 @@
                 style="@style/TextView.Normal14Grey"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Daftar produk"
+                android:text="Cari produk favoritmu"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/txtTittle"
                 app:layout_constraintTop_toBottomOf="@id/txtTittle" />
-
-            <View
-                android:id="@+id/layoutOne"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorLine"
-                app:layout_constraintTop_toBottomOf="@id/txtDetail" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardSearch"
@@ -61,7 +51,7 @@
                 android:layout_marginTop="16dp"
                 app:cardBackgroundColor="@color/colorBase"
                 app:cardCornerRadius="8dp"
-                app:layout_constraintTop_toBottomOf="@id/layoutOne">
+                app:layout_constraintTop_toBottomOf="@id/txtDetail">
 
                 <EditText
                     android:id="@+id/editSearch"
@@ -70,7 +60,7 @@
                     android:layout_marginEnd="55dp"
                     android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Search history"
+                    android:hint="Cari produk"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
                     android:inputType="text"
@@ -92,17 +82,68 @@
 
             </androidx.cardview.widget.CardView>
 
+            <View
+                android:id="@+id/layoutOne"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorLine"
+                app:layout_constraintTop_toBottomOf="@id/cardSearch" />
+
+            <TextView
+                android:id="@+id/txtNew"
+                style="@style/TextView.Medium16Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Produk Baru"
+                app:layout_constraintBottom_toBottomOf="@id/layoutOne"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/txtTittle"
+                app:layout_constraintTop_toTopOf="@id/layoutOne" />
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProductadm"
+                android:id="@+id/rvListNew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/layoutOne"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_latestproduct" />
+
+            <View
+                android:id="@+id/layoutTwo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:background="@color/colorLine"
+                app:layout_constraintTop_toBottomOf="@id/rvListNew" />
+
+            <TextView
+                android:id="@+id/txtProduct"
+                style="@style/TextView.Medium16Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Semua Produk"
+                app:layout_constraintBottom_toBottomOf="@id/layoutTwo"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/txtTittle"
+                app:layout_constraintTop_toTopOf="@id/layoutTwo" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProductuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/cardSearch"
+                app:layout_constraintTop_toBottomOf="@id/layoutTwo"
                 app:spanCount="2"
                 tools:itemCount="8"
-                tools:listitem="@layout/item_productadm" />
+                tools:listitem="@layout/item_productusr" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
