@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.product_admin.AddProductActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp">
+
+
+            <ImageView
+                android:id="@+id/verifyAcc"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toTopOf="@id/layoutOne"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTittle"
+                style="@style/TextView.Medium22Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Tambah Produk"
+                app:layout_constraintBottom_toTopOf="@id/txtDetail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+            <TextView
+                android:id="@+id/txtDetail"
+                style="@style/TextView.Normal14Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Luncurkan produk barumu"
+                app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+
+            <View
+                android:id="@+id/layoutOne"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorLine"
+                app:layout_constraintTop_toBottomOf="@id/txtDetail" />
+
+            <TextView
+                android:id="@+id/nameProduct"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Nama Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/layoutOne" />
+
+            <EditText
+                android:id="@+id/edtNmProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edttext"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/nameProduct" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Harga Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtNmProduct" />
+
+            <EditText
+                android:id="@+id/editPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edttext"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtPrice" />
+
+            <TextView
+                android:id="@+id/txtDiskon"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Diskon Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/editPrice" />
+
+            <EditText
+                android:id="@+id/edtDiskon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/bg_edttext"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtDiskon" />
+
+            <TextView
+                android:id="@+id/txtKategori"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Kategori Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtDiskon" />
+
+            <EditText
+                android:id="@+id/edtKategori"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/bg_edttext"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtKategori" />
+
+            <TextView
+                android:id="@+id/txtBerat"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Berat Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtKategori" />
+
+            <EditText
+                android:id="@+id/edtBerat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/bg_edttext"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtBerat" />
+
+            <TextView
+                android:id="@+id/txtStock"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Stok Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtBerat" />
+
+            <EditText
+                android:id="@+id/edtStock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edttext"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtStock" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContinue"
+                style="@style/Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"
+                android:text="Tambahkan"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBase"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtStock">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fixaddreport_image1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_roundyellowt"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="4dp" />
+
+                    <TextView
+                        android:id="@+id/fixaddreport_txt_1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/background_about_logo"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image1"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image1"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_image1"
+                        app:layout_constraintTop_toTopOf="@+id/fixaddreport_image1" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Thumbnail Foto Produk"
+                        android:textColor="@color/colorBase"
+                        android:textSize="8sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_1"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_1"
+                        app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_1" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fixaddreport_image2"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="180"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_roundyellowt"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:id="@+id/fixaddreport_txt_2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/background_about_logo"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image2"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image2"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_image2"
+                        app:layout_constraintTop_toTopOf="@+id/fixaddreport_image2" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Tambah Foto Produk"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_2"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_2"
+                        app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_2" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fixaddreport_image3"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="90"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_roundyellowt"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:id="@+id/fixaddreport_txt_3"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/background_about_logo"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image3"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image3"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_image3"
+                        app:layout_constraintTop_toTopOf="@+id/fixaddreport_image3" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Tambah Foto Produk"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_3"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_3"
+                        app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_3" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fixaddreport_image4"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="270"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_roundyellowt"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:id="@+id/fixaddreport_txt_4"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/background_about_logo"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image4"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image4"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_image4"
+                        app:layout_constraintTop_toTopOf="@+id/fixaddreport_image4" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Tambah Foto Produk"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_4"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_4"
+                        app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_4" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fixaddreport_image5"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_roundyellowt"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:id="@+id/fixaddreport_txt_5"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/background_about_logo"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image5"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image5"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_image5"
+                        app:layout_constraintTop_toTopOf="@+id/fixaddreport_image5" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Tambah Foto Produk"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_5"
+                        app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_5"
+                        app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
