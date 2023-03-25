@@ -1,5 +1,6 @@
 package com.fitri.jilbab.ui.admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.databinding.FragmentProductAdminBinding
+import com.fitri.jilbab.ui.admin.product_admin.AddProductActivity
 import com.fitri.jilbab.ui.admin.product_admin.PaAdapter
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +40,11 @@ class ProductAdmin : Fragment() {
 
         lifecycleScope.launch {
             viewModel.theList()
+        }
+        binding.btnPLus.setOnClickListener {
+            val i = Intent(requireContext(), AddProductActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
         }
 
         setupObserver()

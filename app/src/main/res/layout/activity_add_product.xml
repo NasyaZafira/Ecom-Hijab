@@ -83,6 +83,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/nameProduct" />
 
@@ -123,11 +124,11 @@
                 android:id="@+id/edtDiskon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/colorAccent"
                 android:background="@drawable/bg_edttext"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/txtDiskon" />
@@ -142,18 +143,38 @@
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/edtDiskon" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edtKategori"
-                android:layout_width="0dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/bg_edttext"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:boxStrokeWidth="2dp"
+                app:endIconTint="@color/colorAccent"
+                app:hintEnabled="false"
+                android:layout_marginHorizontal="20dp"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtKategori" />
+                app:layout_constraintTop_toBottomOf="@id/txtKategori">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTxtKategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Pilih jenis kelamin"
+                    android:inputType="none"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtBerat"
@@ -169,11 +190,11 @@
                 android:id="@+id/edtBerat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="12sp"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/colorAccent"
                 android:background="@drawable/bg_edttext"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/txtBerat" />

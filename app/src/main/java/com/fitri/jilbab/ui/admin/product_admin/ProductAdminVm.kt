@@ -59,12 +59,12 @@ class ProductAdminVm @Inject constructor(
     }
 
     suspend fun addProduct(
-        thumbnail: File,
-        productimage1: File,
-        productimage2: File,
-        productimage3: File,
-        productimage4: File,
-        nama_produk: String,
+        thumbnail       : File,
+        productimage1   : File,
+        productimage2   : File,
+        productimage3   : File,
+        productimage4   : File,
+        nama_produk     : String,
         harga_produk: String,
         diskon_produk: String,
         kategori_produk: String,
@@ -113,14 +113,14 @@ class ProductAdminVm @Inject constructor(
             "productimage4",
             productimage4.name, image4
         )
-        val namaBody = nama_produk.toRequestBody("text/plain".toMediaType())
-        val hargaBody = harga_produk.toRequestBody("text/plain".toMediaType())
-        val diskonBody = diskon_produk.toRequestBody("text/plain".toMediaType())
-        val kategoriBody = kategori_produk.toRequestBody("text/plain".toMediaType())
-        val beratBody = berat_produk.toRequestBody("text/plain".toMediaType())
-        val stokBody = stock_default.toRequestBody("text/plain".toMediaType())
-        val descBody = deskripsi_produk.toRequestBody("text/plain".toMediaType())
-        val detailBody = detail_info.toRequestBody("text/plain".toMediaType())
+        val namaBody        = nama_produk.toRequestBody("text/plain".toMediaType())
+        val hargaBody       = harga_produk.toRequestBody("text/plain".toMediaType())
+        val diskonBody      = diskon_produk.toRequestBody("text/plain".toMediaType())
+        val kategoriBody    = kategori_produk.toRequestBody("text/plain".toMediaType())
+        val beratBody       = berat_produk.toRequestBody("text/plain".toMediaType())
+        val stokBody        = stock_default.toRequestBody("text/plain".toMediaType())
+        val descBody        = deskripsi_produk.toRequestBody("text/plain".toMediaType())
+        val detailBody      = detail_info.toRequestBody("text/plain".toMediaType())
         productRepository.addProductAd(
             onStart = { _loading.postValue(true) },
             onComplete = { _loading.postValue(false) },
