@@ -86,10 +86,14 @@ class AddProductActivity : BaseActivity() {
     private fun f_continue() {
         binding.btnContinue.setOnClickListener {
             lifecycleScope.launch {
-                val name        = binding.edtNmProduct.text.toString().trim()
+                val name        = binding.etNameProduct.text.toString().trim()
                 val harga       = binding.editPrice.text.toString().trim()
-                val diskon      = binding.edtDiskon.text.toString().trim()
+                val diskon      = binding.editDiskon.text.toString().trim()
                 val category    = idValue //binding.autoCompleteTxtKategori.text.toString().trim()
+                val berat       = binding.editBerat.text.toString().trim()
+                val stok        = binding.editStock.text.toString().trim()
+                val desc        = binding.editDesc.text.toString().trim()
+                val info        = binding.editDescInfo.text.toString().trim()
             }
         }
     }
