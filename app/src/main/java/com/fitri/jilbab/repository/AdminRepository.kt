@@ -60,11 +60,11 @@ class AdminRepository @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit,
-        thumbnail: MultipartBody.Part,
-        productimage1: MultipartBody.Part,
-        productimage2: MultipartBody.Part,
-        productimage3: MultipartBody.Part,
-        productimage4: MultipartBody.Part,
+        thumbnail: MultipartBody.Part?,
+        productimage1: MultipartBody.Part?,
+        productimage2: MultipartBody.Part?,
+        productimage3: MultipartBody.Part?,
+        productimage4: MultipartBody.Part?,
         nama_produk: RequestBody,
         harga_produk: RequestBody,
         diskon_produk: RequestBody,
@@ -72,10 +72,10 @@ class AdminRepository @Inject constructor(
         berat_produk: RequestBody,
         stock_default: RequestBody,
         deskripsi_produk: RequestBody,
-        detail_info: RequestBody
+        detail_info: RequestBody?
     ) = flow {
         val response = apiService.addProduct(
-            thumbnail,
+            thumbnail!!,
             productimage1,
             productimage2,
             productimage3,
