@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.DetailProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.admin.product_admin.AddProductActivity"
             android:exported="false" />
         <activity

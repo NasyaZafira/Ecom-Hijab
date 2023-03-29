@@ -10,12 +10,14 @@ import com.fitri.jilbab.databinding.ItemProductadmBinding
 import com.fitri.jilbab.databinding.ItemProductusrBinding
 
 class PuAdapter (
-    var prUser: MutableList<Data>
+    var prUser: MutableList<Data>,
+    private val onDetailCLick: (Data, Int) -> Unit
 ): RecyclerView.Adapter<PuAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductusrBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             proUser : List<Data>,
+            onDetailCLick: (Data, Int) -> Unit
         ) {
             val isProduct = proUser[adapterPosition]
 
@@ -27,6 +29,9 @@ class PuAdapter (
             }
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
+            binding.itemProductUser.setOnClickListener {
+                onDetailCLick(isProduct, adapterPosition)
+            }
         }
     }
 
@@ -37,7 +42,7 @@ class PuAdapter (
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(prUser)
+        holder.bind(prUser, onDetailCLick)
     }
     override fun getItemCount() = prUser.size
 }

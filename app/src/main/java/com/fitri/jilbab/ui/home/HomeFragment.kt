@@ -1,5 +1,6 @@
 package com.fitri.jilbab.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.FragmentHomeBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(){
+class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductAdminVm by viewModels()
-    private var adapterUsr = PuAdapter(mutableListOf())
+    private var adapterUsr = PuAdapter(mutableListOf(), onDetailCLick = { data, pos -> intentToDetail(data, pos) })
+    private var targetPosition = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,14 @@ class HomeFragment : Fragment(){
         setupObserver()
 
     }
+
+    private fun intentToDetail(content: Data, pos: Int) {
+        targetPosition = pos
+        val i = Intent(requireContext(), DetailProductActivity::class.java)
+        i.putExtra("product", content)
+        startActivity(i)
+    }
+
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -63,7 +74,7 @@ class HomeFragment : Fragment(){
                 adapter = adapterUsr
             }
         }
-        viewModel.list.observe(viewLifecycleOwner){
+        viewModel.list.observe(viewLifecycleOwner) {
             adapterUsr.prUser.clear()
             adapterUsr.prUser.addAll(it.data)
             adapterUsr.notifyDataSetChanged()

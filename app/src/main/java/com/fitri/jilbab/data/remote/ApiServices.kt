@@ -10,6 +10,7 @@ import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
+import com.fitri.jilbab.data.model.user.DetailProductResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -67,4 +68,9 @@ interface ApiServices {
     @GET("shipping-address")
     suspend fun listAddress(
     ): ApiResponse<ListAddressResponse>
+
+    @GET("product/detail/{id_product}")
+    suspend fun detailProduct(
+        @Path("id_product") id_product: Int
+    ): ApiResponse<DetailProductResponse>
 }

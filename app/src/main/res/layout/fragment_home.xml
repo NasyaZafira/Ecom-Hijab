@@ -108,8 +108,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutOne"
                 tools:itemCount="6"
                 tools:listitem="@layout/item_latestproduct" />
@@ -118,7 +118,6 @@
                 android:id="@+id/layoutTwo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-
                 android:background="@color/colorLine"
                 app:layout_constraintTop_toBottomOf="@id/rvListNew" />
 
@@ -139,9 +138,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutTwo"
                 app:spanCount="2"
                 tools:itemCount="8"
