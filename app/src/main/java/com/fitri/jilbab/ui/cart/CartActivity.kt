@@ -1,7 +1,6 @@
 package com.fitri.jilbab.ui.cart
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -11,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
-import com.fitri.jilbab.data.model.user.cart.Data
+import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.databinding.ActivityCartBinding
-import com.fitri.jilbab.databinding.ActivitySigninBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -37,7 +35,7 @@ class CartActivity : BaseActivity() {
 
     }
 
-    private fun removeCart(content: Data, position: Int){
+    private fun removeCart(content: Cart, position: Int){
         lifecycleScope.launch {
             viewModel.removeCart(content.id_cart)
         }
@@ -51,7 +49,7 @@ class CartActivity : BaseActivity() {
         viewModel.cart.observe(this){
             Log.e("TAG", "setupObserver: " + it )
             adapterCart.cart.clear()
-            adapterCart.cart.addAll(it.data)
+            adapterCart.cart.addAll(it.data.cart)
             adapterCart.notifyDataSetChanged()
             binding.rvCart.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)

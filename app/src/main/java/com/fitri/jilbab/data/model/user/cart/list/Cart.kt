@@ -1,10 +1,10 @@
-package com.fitri.jilbab.data.model.user.cart
+package com.fitri.jilbab.data.model.user.cart.list
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Data(
+data class Cart(
     val created_at: String,
     val id_cart: Int,
     val id_product: String,

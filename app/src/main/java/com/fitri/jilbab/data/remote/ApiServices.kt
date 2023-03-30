@@ -11,9 +11,9 @@ import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
-import com.fitri.jilbab.data.model.user.cart.CartResponse
 import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
+import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody

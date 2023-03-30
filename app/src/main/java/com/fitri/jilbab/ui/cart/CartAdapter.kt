@@ -4,18 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.user.cart.Data
+import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.databinding.ItemCartBinding
 
 class CartAdapter(
-    var cart                : MutableList<Data>,
-    private val onRemove    : (Data, Int) -> Unit
+    var cart                : MutableList<Cart>,
+    private val onRemove    : (Cart, Int) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            userCart : List<Data>,
-            onRemove    : (Data, Int) -> Unit
+            userCart : List<Cart>,
+            onRemove    : (Cart, Int) -> Unit
         ){
             val isCart = userCart[absoluteAdapterPosition]
 

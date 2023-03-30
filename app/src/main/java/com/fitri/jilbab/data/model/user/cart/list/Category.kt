@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data.model.user.cart
+package com.fitri.jilbab.data.model.user.cart.list
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

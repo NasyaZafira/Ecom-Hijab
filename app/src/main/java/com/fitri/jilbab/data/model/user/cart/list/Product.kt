@@ -1,4 +1,4 @@
-package com.fitri.jilbab.data.model.user.cart
+package com.fitri.jilbab.data.model.user.cart.list
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -11,6 +11,7 @@ data class Product(
     val id_category: String,
     val id_product: Int,
     val is_active: String,
+    val mainpicture: Mainpicture,
     val pictures: List<Picture>,
     val price: String,
     val product_description: String,
