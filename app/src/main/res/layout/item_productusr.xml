@@ -38,7 +38,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="5dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_regular"
             android:text="Pashmina"
             android:ellipsize="end"
             android:maxLines="2"

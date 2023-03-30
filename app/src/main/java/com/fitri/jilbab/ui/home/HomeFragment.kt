@@ -17,6 +17,7 @@ import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.FragmentHomeBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
+import com.fitri.jilbab.ui.cart.CartActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -45,8 +46,16 @@ class HomeFragment : Fragment() {
             viewModel.theList()
         }
 
+        binding.btnCart.setOnClickListener {
+            val i = Intent(requireContext(), CartActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+
         binding.txtTittle.text = "Halo, " + SharedPref.nameUser
         setupObserver()
+
+
 
     }
 

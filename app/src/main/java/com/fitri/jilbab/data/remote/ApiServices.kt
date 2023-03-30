@@ -11,6 +11,10 @@ import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
+import com.fitri.jilbab.data.model.user.cart.CartResponse
+import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
+import com.fitri.jilbab.data.model.user.cart.add.BodyCart
+import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -73,4 +77,18 @@ interface ApiServices {
     suspend fun detailProduct(
         @Path("id_product") id_product: Int
     ): ApiResponse<DetailProductResponse>
+
+    @GET("cart/list")
+    suspend fun cartProduct(
+    ): ApiResponse<CartResponse>
+
+    @POST("cart/remove-item/{id_cart}")
+    suspend fun removeCart(
+        @Path("id_cart") id_cart: Int
+    ): ApiResponse<RemoveResponse>
+
+    @POST("cart/add")
+    suspend fun addCart(
+        @Body body: BodyCart
+    ): ApiResponse<AddCartResponse>
 }
