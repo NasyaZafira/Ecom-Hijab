@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txtDetail" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcTele"
+                android:id="@+id/rcAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
