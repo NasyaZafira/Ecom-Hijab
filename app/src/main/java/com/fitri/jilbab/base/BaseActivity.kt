@@ -45,5 +45,4 @@ abstract class BaseActivity : AppCompatActivity() {
 //    }
 
     protected abstract fun setupObserver()
-
 }

@@ -1,6 +1,7 @@
 package com.fitri.jilbab.repository
 
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
+import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
@@ -74,13 +75,32 @@ class UserRepository @Inject constructor(
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 
-    suspend fun removeCart(
+    suspend fun addCart(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit,
         body: BodyCart
     ) = flow {
         val response = apiServices.addCart(body)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
+    suspend fun checkout(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        body: BodyCheckout
+    ) = flow {
+        val response = apiServices.checkout(body)
         response.suspendOnSuccess {
             emit(data)
         }.onError {

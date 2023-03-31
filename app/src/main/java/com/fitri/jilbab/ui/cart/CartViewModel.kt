@@ -6,6 +6,8 @@ import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
+import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
+import com.fitri.jilbab.data.model.user.checkout.CheckoutResponse
 import com.fitri.jilbab.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,6 +20,7 @@ class CartViewModel @Inject constructor(
     val succesLoad = MutableLiveData<String>()
     val remove = MutableLiveData<RemoveResponse>()
     val add = MutableLiveData<AddCartResponse>()
+    val pay = MutableLiveData<CheckoutResponse>()
 
 
     suspend fun cartList() {
@@ -62,7 +65,7 @@ class CartViewModel @Inject constructor(
         qty: String
     ) {
         val body = BodyCart(id_product, qty)
-        repository.removeCart(
+        repository.addCart(
             onStart = {
                 _loading.postValue(true)
             },
@@ -75,6 +78,27 @@ class CartViewModel @Inject constructor(
             body
         ).collect {
             add.postValue(it)
+            succesLoad.postValue("200")
+        }
+    }
+
+    suspend fun checkout(
+        id_shipp_address: String
+    ) {
+        val body = BodyCheckout(id_shipp_address)
+        repository.checkout(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            body
+        ).collect {
+            pay.postValue(it)
             succesLoad.postValue("200")
         }
     }
