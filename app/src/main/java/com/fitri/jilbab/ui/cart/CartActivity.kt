@@ -14,6 +14,7 @@ import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.data.model.user.checkout.Data
 import com.fitri.jilbab.databinding.ActivityCartBinding
 import com.fitri.jilbab.ui.checkout.CheckoutActivity
+import com.fitri.jilbab.ui.midtrans.MidtransActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -73,7 +74,9 @@ class CartActivity : BaseActivity() {
                 adapter = adapterCart
             }
 
-            id_example = it.data.shipping_address[0].id_ship_address.toString()
+            if (it.data.shipping_address.isNotEmpty()) {
+                id_example = it.data.shipping_address[0].id_ship_address.toString()
+            }
         }
         viewModel.pay.observe(this){
             Log.e("TAG", "\n INI CHECKOUT: " + it)
@@ -85,9 +88,11 @@ class CartActivity : BaseActivity() {
 
     private fun button() {
         binding.btnCheckout.setOnClickListener {
-            val i = Intent(this, CheckoutActivity::class.java)
-            i.putExtra("data", id_example)
+            val i = Intent(this, MidtransActivity::class.java)
             startActivity(i)
+//            val i = Intent(this, CheckoutActivity::class.java)
+//            i.putExtra("data", id_example)
+//            startActivity(i)
             finish()
 //            lifecycleScope.launch{
 //                viewModel.checkout(id_example)

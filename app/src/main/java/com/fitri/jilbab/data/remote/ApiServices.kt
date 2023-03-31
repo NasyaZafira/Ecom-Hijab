@@ -17,6 +17,8 @@ import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
 import com.fitri.jilbab.data.model.user.checkout.CheckoutResponse
+import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
+import com.fitri.jilbab.data.model.user.order.OrderResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -98,4 +100,9 @@ interface ApiServices {
     suspend fun checkout(
         @Body body : BodyCheckout
     ): ApiResponse<CheckoutResponse>
+
+    @POST("order/place-order")
+    suspend fun placeOrder(
+        @Body body: BodyPlaceOrder
+    ): ApiResponse<OrderResponse>
 }
