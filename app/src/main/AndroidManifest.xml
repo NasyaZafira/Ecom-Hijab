@@ -22,9 +22,9 @@
         <activity
             android:name=".ui.midtrans.MidtransActivity"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".ShippingActivity" -->
-        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".ui.checkout.ShippingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.checkout.CheckoutActivity"
             android:exported="false" />

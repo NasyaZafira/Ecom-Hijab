@@ -2,6 +2,7 @@ package com.fitri.jilbab.repository
 
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
+import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
@@ -99,7 +100,7 @@ class UserRepository @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit,
-        body: BodyCheckout
+        body: CoBody
     ) = flow {
         val response = apiServices.checkout(body)
         response.suspendOnSuccess {

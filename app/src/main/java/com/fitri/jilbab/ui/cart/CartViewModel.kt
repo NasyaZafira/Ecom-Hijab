@@ -8,6 +8,8 @@ import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
 import com.fitri.jilbab.data.model.user.checkout.CheckoutResponse
+import com.fitri.jilbab.data.model.user.co.CoBody
+import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.model.user.order.OrderResponse
 import com.fitri.jilbab.repository.UserRepository
@@ -22,7 +24,7 @@ class CartViewModel @Inject constructor(
     val succesLoad = MutableLiveData<String>()
     val remove = MutableLiveData<RemoveResponse>()
     val add = MutableLiveData<AddCartResponse>()
-    val pay = MutableLiveData<CheckoutResponse>()
+    val pay = MutableLiveData<CoResponse>()
     val placeOrder = MutableLiveData<OrderResponse>()
 
 
@@ -88,7 +90,7 @@ class CartViewModel @Inject constructor(
     suspend fun checkout(
         id_ship_address: String
     ) {
-        val body = BodyCheckout(id_ship_address)
+        val body = CoBody(id_ship_address)
         repository.checkout(
             onStart = {
                 _loading.postValue(true)

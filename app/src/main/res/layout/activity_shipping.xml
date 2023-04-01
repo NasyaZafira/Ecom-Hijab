@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,219 +10,219 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutOne"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <ImageView
-            android:id="@+id/verifyAcc"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="30dp"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtTittle"
-            style="@style/TextView.Medium22Black"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutOne"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:text="Pilih Pengiriman"
-            app:layout_constraintBottom_toTopOf="@id/txtDetail"
-            app:layout_constraintStart_toEndOf="@id/verifyAcc"
-            app:layout_constraintTop_toTopOf="@id/verifyAcc" />
-
-        <TextView
-            android:id="@+id/txtDetail"
-            style="@style/TextView.Normal14Grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="pilih ekspedisi kepercayaanmu"
-            app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
-            app:layout_constraintStart_toEndOf="@id/verifyAcc"
-            app:layout_constraintTop_toBottomOf="@id/txtTittle" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutTwo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorBase"
-        app:layout_constraintTop_toBottomOf="@id/layoutOne">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/ivPoster"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:src="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="8dp" />
-
-        <TextView
-            android:id="@+id/txtName"
-            style="@style/TextView.Medium16Black"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Ekspedisi"
+            android:background="@color/colorBase"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivPoster"
-            app:layout_constraintTop_toTopOf="@id/ivPoster" />
-
-        <RadioGroup
-            android:id="@+id/radio_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:padding="15dp"
-            app:layout_constraintStart_toEndOf="@id/ivPoster"
-            app:layout_constraintTop_toBottomOf="@id/txtName">
-
-
-            <RadioButton
-                android:id="@+id/one"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
-
-            <RadioButton
-                android:id="@+id/two"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
-
-            <RadioButton
-                android:id="@+id/three"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
-
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutThree"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorBase"
-        app:layout_constraintTop_toBottomOf="@id/layoutTwo">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/ivPoster2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:src="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="8dp" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtName2"
-            style="@style/TextView.Medium16Black"
-            android:layout_width="0dp"
+
+            <ImageView
+                android:id="@+id/verifyAcc"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTittle"
+                style="@style/TextView.Medium22Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Pilih Pengiriman"
+                app:layout_constraintBottom_toTopOf="@id/txtDetail"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+            <TextView
+                android:id="@+id/txtDetail"
+                style="@style/TextView.Normal14Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="pilih ekspedisi kepercayaanmu"
+                app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTwo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Ekspedisi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivPoster2"
-            app:layout_constraintTop_toTopOf="@id/ivPoster2" />
+            android:layout_marginTop="24dp"
+            android:background="@color/colorBase"
+            app:layout_constraintTop_toBottomOf="@id/layoutOne">
 
-        <RadioGroup
-            android:id="@+id/radio_group2"
-            android:layout_width="wrap_content"
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivPoster"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:src="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="8dp" />
+
+            <TextView
+                android:id="@+id/txtName"
+                style="@style/TextView.Medium16Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Ekspedisi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPoster"
+                app:layout_constraintTop_toTopOf="@id/ivPoster" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:padding="15dp"
+                app:layout_constraintStart_toEndOf="@id/ivPoster"
+                app:layout_constraintTop_toBottomOf="@id/txtName">
+
+
+                <RadioButton
+                    android:id="@+id/one"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
+
+                <RadioButton
+                    android:id="@+id/two"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
+
+                <RadioButton
+                    android:id="@+id/three"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
+
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutThree"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:padding="15dp"
-            app:layout_constraintStart_toEndOf="@id/ivPoster2"
-            app:layout_constraintTop_toBottomOf="@id/txtName2">
+            android:layout_marginTop="24dp"
+            android:background="@color/colorBase"
+            app:layout_constraintTop_toBottomOf="@id/layoutTwo">
 
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivPoster2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:src="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="8dp" />
 
-            <RadioButton
-                android:id="@+id/one2"
-                style="@style/TextView.Normal14Grey"
+            <TextView
+                android:id="@+id/txtName2"
+                style="@style/TextView.Medium16Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Ekspedisi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPoster2"
+                app:layout_constraintTop_toTopOf="@id/ivPoster2" />
+
+            <RadioGroup
+                android:id="@+id/radio_group2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+                android:layout_marginStart="10dp"
+                android:padding="15dp"
+                app:layout_constraintStart_toEndOf="@id/ivPoster2"
+                app:layout_constraintTop_toBottomOf="@id/txtName2">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
 
-            <RadioButton
-                android:id="@+id/two2"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
+                <RadioButton
+                    android:id="@+id/one2"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
 
-            <RadioButton
-                android:id="@+id/three2"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+                <RadioButton
+                    android:id="@+id/two2"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
 
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/three2"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary" />
+
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutFour"
             android:layout_width="match_parent"
@@ -309,7 +309,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btnCheckout"
+            android:id="@+id/btnOk"
             style="@style/Button.Primary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -324,5 +324,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
