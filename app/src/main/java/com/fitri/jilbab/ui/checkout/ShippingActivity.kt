@@ -15,14 +15,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ShippingActivity : AppCompatActivity() {
 
-    private lateinit var    binding         : ActivityShippingBinding
-    private lateinit var    radioGroup      : RadioGroup
-    private lateinit var    kurir           : String
-    private lateinit var    service         : String
-    private lateinit var    price           : String
-    private lateinit var    courier         : Courier
-
-
+    private lateinit var binding: ActivityShippingBinding
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var kurir: String
+    private lateinit var service: String
+    private lateinit var price: String
+    private lateinit var courier: Courier
+    private lateinit var radioTiki: RadioGroup
+    private lateinit var radioPos : RadioGroup
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,15 +40,34 @@ class ShippingActivity : AppCompatActivity() {
     private fun r_intent() {
         intent.extras!!.getParcelable<Courier>("shipping").let {
             Log.e("TAG", "r_intent: " + it!!)
-                courier = it
-                //binding.one.text = it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
-                binding.two.text = it.jne[0].code + it.jne[0].costs[1].service + it.jne[0].costs[1].cost[0].value
-                //binding.three.text = it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
+            courier = it
+            binding.one.text =
+                it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
+            binding.two.text =
+                it.jne[0].code + it.jne[0].costs[1].service + it.jne[0].costs[1].cost[0].value
+            binding.three.text =
+                it.jne[0].code + it.jne[0].costs[2].service + it.jne[0].costs[2].cost[0].value
+
+            binding.one2.text =
+                it.tiki[0].code + it.tiki[0].costs[0].service + it.tiki[0].costs[0].cost[0].value
+            binding.two2.text =
+                it.tiki[0].code + it.tiki[0].costs[1].service + it.tiki[0].costs[1].cost[0].value
+            binding.three2.text =
+                it.tiki[0].code + it.tiki[0].costs[2].service + it.tiki[0].costs[2].cost[0].value
+
+            binding.one3.text =
+                it.pos[0].code + it.pos[0].costs[0].service + it.pos[0].costs[0].cost[0].value
+            binding.two3.text =
+                it.pos[0].code + it.pos[0].costs[1].service + it.pos[0].costs[1].cost[0].value
+            binding.three3.text =
+                it.pos[0].code + it.pos[0].costs[2].service + it.pos[0].costs[2].cost[0].value
         }
     }
 
     private fun r_initiation() {
         radioGroup = binding.radioGroup
+        radioTiki = binding.radioGroup2
+        radioPos = binding.radioGroup3
     }
 
     private fun r_radioGroup() {
@@ -57,27 +76,45 @@ class ShippingActivity : AppCompatActivity() {
             //Log.e("TAG", "r_radioGroup: JNE -> " + radioButton.text )
             r_jne(checkedId)
         }
-    }
-
-    private fun r_jne(id : Int){
-        Log.e("TAG", "r_radioGroup: ID -> " + id  )
-        if (id.equals(2131362261)){
+        radioTiki.setOnCheckedChangeListener { group, checkedId ->
 
         }
-        else if (id.equals(2131362463)){
-            kurir   = courier.jne[0].code
-            price   = courier.jne[0].costs[1].cost[0].value.toString()
+        radioPos.setOnCheckedChangeListener { group, chechkedId ->  }
+
+    }
+
+    private fun r_jne(id: Int) {
+        Log.e("TAG", "r_radioGroup: ID -> " + id)
+        if (id.equals(2131362261)) {
+            kurir = courier.jne[0].code
+            price = courier.jne[0].costs[0].cost[0].value.toString()
+            service = courier.jne[0].costs[0].service
+        } else if (id.equals(2131362463)) {
+            kurir = courier.jne[0].code
+            price = courier.jne[0].costs[1].cost[0].value.toString()
             service = courier.jne[0].costs[1].service
-        }
-        else if (id.equals(2131362428)){
-            kurir   = "JNE"
-            price   = "5000"
-            service = "YES"
+        } else if (id.equals(2131362428)) {
+            kurir = courier.jne[0].code
+            price = courier.jne[0].costs[2].cost[0].value.toString()
+            service = courier.jne[0].costs[2].service
         }
     }
 
-    private fun r_tiki(id: Int){
-
+    private fun r_tiki(id: Int) {
+        Log.e("TAG", "r_radioGroup: ID -> " + id)
+        if (id.equals(2131362261)) {
+            kurir = courier.tiki[0].code
+            price = courier.tiki[0].costs[0].cost[0].value.toString()
+            service = courier.tiki[0].costs[0].service
+        } else if (id.equals(2131362463)) {
+            kurir = courier.tiki[0].code
+            price = courier.tiki[0].costs[1].cost[0].value.toString()
+            service = courier.jne[0].costs[1].service
+        } else if (id.equals(2131362428)) {
+            kurir = courier.tiki[0].code
+            price = courier.tiki[0].costs[2].cost[0].value.toString()
+            service = courier.tiki[0].costs[2].service
+        }
     }
 
     private fun r_button() {
@@ -88,9 +125,9 @@ class ShippingActivity : AppCompatActivity() {
 
     private fun r_send() {
         val i = Intent()
-        i.putExtra("kurir",     kurir)
-        i.putExtra("service",   service)
-        i.putExtra("price",     price)
+        i.putExtra("kurir", kurir)
+        i.putExtra("service", service)
+        i.putExtra("price", price)
         setResult(Activity.RESULT_OK, i)
         finish()
     }
