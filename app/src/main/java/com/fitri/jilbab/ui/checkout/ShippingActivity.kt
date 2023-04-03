@@ -71,6 +71,8 @@ class ShippingActivity : BaseActivity() {
         intent.extras!!.getParcelable<Courier>("shipping").let {
             Log.e("TAG", "r_intent: " + it!!)
             courier = it
+            binding.txtName.text = it.jne[0].code
+            binding.txtName2.text = it.tiki[0].code
             binding.one.text =
                 it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
             binding.two.text =
