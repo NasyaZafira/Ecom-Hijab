@@ -6,14 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.co.Courier
 import com.fitri.jilbab.data.model.user.co.Data
 import com.fitri.jilbab.databinding.ActivityShippingBinding
+import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ShippingActivity : AppCompatActivity() {
+class ShippingActivity : BaseActivity() {
 
     private lateinit var binding: ActivityShippingBinding
     private lateinit var radioGroup: RadioGroup
@@ -23,6 +29,8 @@ class ShippingActivity : AppCompatActivity() {
     private lateinit var courier: Courier
     private lateinit var radioTiki: RadioGroup
     private lateinit var radioPos : RadioGroup
+    private val viewModel: CartViewModel by viewModels()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +42,29 @@ class ShippingActivity : AppCompatActivity() {
         r_initiation()
         r_radioGroup()
         r_button()
+        setupObserver()
 
+
+    }
+
+    override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
+
+        Glide.with(binding.ivPoster.context)
+            .load("https://ecom-mobile.spdev.my.id/assets/img/jne.png")
+            .error(R.drawable.white_image)
+            .into(binding.ivPoster)
+        Glide.with(binding.ivPoster2.context)
+            .load("https://ecom-mobile.spdev.my.id/assets/img/tiki.png")
+            .error(R.drawable.white_image)
+            .into(binding.ivPoster2)
+        Glide.with(binding.ivPoster3.context)
+            .load("https://ecom-mobile.spdev.my.id/assets/img/pos.png")
+            .error(R.drawable.white_image)
+            .into(binding.ivPoster3)
     }
 
     private fun r_intent() {
@@ -52,15 +82,11 @@ class ShippingActivity : AppCompatActivity() {
                 it.tiki[0].code + it.tiki[0].costs[0].service + it.tiki[0].costs[0].cost[0].value
             binding.two2.text =
                 it.tiki[0].code + it.tiki[0].costs[1].service + it.tiki[0].costs[1].cost[0].value
-            binding.three2.text =
-                it.tiki[0].code + it.tiki[0].costs[2].service + it.tiki[0].costs[2].cost[0].value
 
             binding.one3.text =
                 it.pos[0].code + it.pos[0].costs[0].service + it.pos[0].costs[0].cost[0].value
             binding.two3.text =
                 it.pos[0].code + it.pos[0].costs[1].service + it.pos[0].costs[1].cost[0].value
-            binding.three3.text =
-                it.pos[0].code + it.pos[0].costs[2].service + it.pos[0].costs[2].cost[0].value
         }
     }
 
@@ -72,14 +98,20 @@ class ShippingActivity : AppCompatActivity() {
 
     private fun r_radioGroup() {
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            val radioButton = group.findViewById(checkedId) as RadioButton
+//            val radioButton = group.findViewById(checkedId) as RadioButton
             //Log.e("TAG", "r_radioGroup: JNE -> " + radioButton.text )
             r_jne(checkedId)
         }
         radioTiki.setOnCheckedChangeListener { group, checkedId ->
-
+//            val radioButton = group.findViewById(checkedId) as RadioButton
+//            Log.e("TAG", "r_radioGroup: JNE -> " + radioButton.id )
+            r_tiki(checkedId)
         }
-        radioPos.setOnCheckedChangeListener { group, chechkedId ->  }
+        radioPos.setOnCheckedChangeListener { group, chechkedId ->
+//            val radioButton = group.findViewById(chechkedId) as RadioButton
+//            Log.e("TAG", "r_radioGroup: JNE -> " + radioButton.id )
+            pos(chechkedId)
+        }
 
     }
 
@@ -102,22 +134,33 @@ class ShippingActivity : AppCompatActivity() {
 
     private fun r_tiki(id: Int) {
         Log.e("TAG", "r_radioGroup: ID -> " + id)
-        if (id.equals(2131362261)) {
+        if (id.equals(2131362262)) {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[0].cost[0].value.toString()
             service = courier.tiki[0].costs[0].service
-        } else if (id.equals(2131362463)) {
+        } else if (id.equals(2131362464)) {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[1].cost[0].value.toString()
-            service = courier.jne[0].costs[1].service
-        } else if (id.equals(2131362428)) {
-            kurir = courier.tiki[0].code
-            price = courier.tiki[0].costs[2].cost[0].value.toString()
-            service = courier.tiki[0].costs[2].service
+            service = courier.tiki[0].costs[1].service
+        }
+    }
+
+    private fun pos(id: Int){
+        if(id.equals(2131362263)){
+            kurir = courier.pos[0].code
+            price = courier.pos[0].costs[0].cost[0].value.toString()
+            service = courier.pos[0].costs[0].service
+        } else if (id.equals(2131362465)) {
+            kurir = courier.pos[0].code
+            price = courier.pos[0].costs[1].cost[0].value.toString()
+            service = courier.pos[0].costs[1].service
         }
     }
 
     private fun r_button() {
+        binding.verifyAcc.setOnClickListener {
+            finish()
+        }
         binding.btnOk.setOnClickListener {
             r_send()
         }
@@ -129,6 +172,11 @@ class ShippingActivity : AppCompatActivity() {
         i.putExtra("service", service)
         i.putExtra("price", price)
         setResult(Activity.RESULT_OK, i)
+        finish()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
         finish()
     }
 

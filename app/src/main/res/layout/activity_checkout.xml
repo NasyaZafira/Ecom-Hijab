@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="6dp"
-                android:text="JNE"
+                android:text="Harap pilih pengiriman"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
-                android:text="IDR 18.000"
+                android:text="IDR =0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvNameItem"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -177,7 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="IDR 18.000"
+                android:text="IDR 0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView11" />
 
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
-                android:text="IDR 20.000"
+                android:text="IDR 0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTax" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -269,7 +269,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="right"
-                android:text="Angga Risky"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -283,7 +283,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="right"
-                android:text="0857 5814 5632"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textView20"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
@@ -297,7 +296,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="right"
-                android:text="jalan Pinang"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textView21"
                 app:layout_constraintTop_toBottomOf="@+id/tvPhoneNo" />
@@ -311,7 +309,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:gravity="right"
-                android:text="Bandung"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textView22"
                 app:layout_constraintTop_toBottomOf="@+id/tvAddress" />

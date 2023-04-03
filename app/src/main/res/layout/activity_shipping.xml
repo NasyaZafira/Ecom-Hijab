@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorLine"
     tools:context=".ui.checkout.ShippingActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,7 +66,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -88,10 +89,12 @@
 
             <RadioGroup
                 android:id="@+id/radio_group"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:padding="15dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster"
                 app:layout_constraintTop_toBottomOf="@id/txtName">
 
@@ -139,6 +142,7 @@
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutThree"
             android:layout_width="match_parent"
@@ -149,7 +153,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster2"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -172,10 +176,12 @@
 
             <RadioGroup
                 android:id="@+id/radio_group2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:padding="15dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster2"
                 app:layout_constraintTop_toBottomOf="@id/txtName2">
 
@@ -206,23 +212,9 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/colorPrimary" />
-
-                <RadioButton
-                    android:id="@+id/three2"
-                    style="@style/TextView.Normal14Grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/colorPrimary" />
-
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutFour"
             android:layout_width="match_parent"
@@ -233,7 +225,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster3"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -256,10 +248,12 @@
 
             <RadioGroup
                 android:id="@+id/radio_group3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:padding="15dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster3"
                 app:layout_constraintTop_toBottomOf="@id/txtName3">
 
@@ -291,19 +285,6 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/colorPrimary" />
 
-                <RadioButton
-                    android:id="@+id/three3"
-                    style="@style/TextView.Normal14Grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/colorPrimary" />
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,10 +300,10 @@
             android:layout_marginBottom="24dp"
             android:text="Konfirmasi"
             android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@id/layoutFour"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFour" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.data.model.user.co.Data
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
@@ -40,6 +41,10 @@ class CheckoutActivity : BaseActivity() {
     }
 
     override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
         viewModel.pay.observe(this){
 
             data = it.data
@@ -85,7 +90,7 @@ class CheckoutActivity : BaseActivity() {
                 val price   = data!!.getStringExtra("price")
                 Log.e("TAG", "onActivityResult: " + kurir + " " + service + " " + price)
                 binding.textView11.text = kurir
-                binding.tvTax.text      = price
+                binding.tvTax.formatPrice(price.toString())
 
                 val totalPlusOngkir = p_total + price!!.toInt()
                 binding.tvTotal.formatPrice(totalPlusOngkir.toString())
