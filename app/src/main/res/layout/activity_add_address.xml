@@ -141,60 +141,17 @@
 
 
             <TextView
-                android:id="@+id/txtDiskon"
-                style="@style/TextView.Normal14Black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Diskon Produk"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtPriceProduct" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edtDiskon"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="5dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/colorPrimaryDark"
-                app:endIconMode="custom"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/colorError"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/txtTittle"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtDiskon" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editDiskon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="Diskon Produk"
-                    android:inputType="text"
-                    android:paddingVertical="9dp"
-                    android:paddingStart="13dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"
-                    tools:ignore="RtlSymmetry" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
                 android:id="@+id/txtKategori"
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Kategori Produk"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtDiskon" />
+                app:layout_constraintTop_toBottomOf="@id/edtPriceProduct" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edtKategori"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -204,7 +161,6 @@
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusTopStart="8dp"
                 app:boxStrokeColor="@color/colorPrimaryDark"
-                app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:errorTextColor="@color/colorError"
                 app:hintEnabled="false"
@@ -312,91 +268,7 @@
                     tools:ignore="RtlSymmetry" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/txtDesc"
-                style="@style/TextView.Normal14Black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Deskripsi Produk"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtStock" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edtDesc"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="5dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/colorPrimaryDark"
-                app:endIconMode="custom"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/colorError"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/txtTittle"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtDesc" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="Deskripsi Produk"
-                    android:inputType="text"
-                    android:paddingVertical="9dp"
-                    android:paddingStart="13dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"
-                    tools:ignore="RtlSymmetry" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/txtDescInfo"
-                style="@style/TextView.Normal14Black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Detail Info Produk"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtDesc" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edtDescInfo"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="5dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/colorPrimaryDark"
-                app:endIconMode="custom"
-                app:errorEnabled="true"
-                app:errorTextColor="@color/colorError"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@id/txtTittle"
-                app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtDescInfo" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editDescInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="Detail Info Produk"
-                    android:inputType="text"
-                    android:paddingVertical="9dp"
-                    android:paddingStart="13dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"
-                    tools:ignore="RtlSymmetry" />
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -409,7 +281,7 @@
                 android:text="Simpan"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBase"
-                app:layout_constraintTop_toBottomOf="@id/edtDescInfo" />
+                app:layout_constraintTop_toBottomOf="@id/edtStock" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -436,6 +436,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/layout1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fixaddreport_image1"
                         android:layout_width="100dp"
@@ -478,6 +486,14 @@
                         app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_1"
                         app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_1"
                         app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_1" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout1">
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fixaddreport_image2"
@@ -488,8 +504,8 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/bg_roundyellowt"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image1"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:riv_corner_radius="@dimen/_4sdp" />
 
                     <TextView
@@ -523,6 +539,15 @@
                         app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_2"
                         app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_2"
                         app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout2">
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fixaddreport_image3"
@@ -533,7 +558,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/bg_roundyellowt"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image2"
+                      app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:riv_corner_radius="@dimen/_4sdp" />
 
@@ -568,6 +593,14 @@
                         app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_3"
                         app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_3"
                         app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout3">
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fixaddreport_image4"
@@ -578,7 +611,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/bg_roundyellowt"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image3"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:riv_corner_radius="@dimen/_4sdp" />
 
@@ -613,6 +646,14 @@
                         app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_4"
                         app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_4"
                         app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout4">
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fixaddreport_image5"
@@ -622,7 +663,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/bg_roundyellowt"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/fixaddreport_image4"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:riv_corner_radius="@dimen/_4sdp" />
 
@@ -657,6 +698,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_5"
                         app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_5"
                         app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

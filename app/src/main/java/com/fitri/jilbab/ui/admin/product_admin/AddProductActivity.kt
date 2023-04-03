@@ -54,20 +54,20 @@ class AddProductActivity : BaseActivity() {
         f_runCategory()
         f_listSpinner()
 
-        binding.fixaddreportImage1.setOnClickListener {
+        binding.layout1.setOnClickListener {
             Log.e("TAG", "f_imageUpload: " + it)
-            requestImage1()
+            requestAccessForFile()
         }
-        binding.fixaddreportImage2.setOnClickListener {
+        binding.layout2.setOnClickListener {
             requestImage2()
         }
-        binding.fixaddreportImage3.setOnClickListener {
+        binding.layout3.setOnClickListener {
             requestImage3()
         }
-        binding.fixaddreportImage4.setOnClickListener {
+        binding.layout4.setOnClickListener {
             requestImage4()
         }
-        binding.fixaddreportImage5.setOnClickListener {
+        binding.layout5.setOnClickListener {
             requestImage5()
         }
     }
@@ -147,23 +147,23 @@ class AddProductActivity : BaseActivity() {
         }
     }
 
-    private fun requestImage1() {
+    private fun requestAccessForFile() {
         if (ContextCompat.checkSelfPermission(
-                this,
+                this@AddProductActivity,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
-                this,
+                this@AddProductActivity,
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 777
             )
         } else {
-            selectThumbnail()
+            selectFileUpload()
         }
     }
 
-    private fun selectThumbnail() {
+    private fun selectFileUpload() {
         UwMediaPicker
             .with(this)
             .setLightStatusBar(true)
@@ -401,6 +401,26 @@ class AddProductActivity : BaseActivity() {
                 }
         }
     }
-
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        if (requestCode == 777) {
+//            if (
+//                grantResults.isNotEmpty() && grantResults[0] ==
+//                PackageManager.PERMISSION_GRANTED
+//            ) {
+//                requestImage1()
+//            } else {
+//                Toast.makeText(
+//                    this,
+//                    "Aplikasi ini butuh izin akses",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
+//        }
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//    }
 
 }
