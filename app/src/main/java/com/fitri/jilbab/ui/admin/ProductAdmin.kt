@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.FragmentProductAdminBinding
 import com.fitri.jilbab.ui.admin.product_admin.AddProductActivity
 import com.fitri.jilbab.ui.admin.product_admin.PaAdapter
@@ -46,6 +47,8 @@ class ProductAdmin : Fragment() {
             startActivity(i)
             requireActivity().finish()
         }
+
+        SharedPref.navAdmin = 2
 
         setupObserver()
 

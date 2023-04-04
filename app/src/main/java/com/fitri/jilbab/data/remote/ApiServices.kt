@@ -65,14 +65,14 @@ interface ApiServices {
         @Part productimage2 : MultipartBody.Part?,
         @Part productimage3 : MultipartBody.Part?,
         @Part productimage4 : MultipartBody.Part?,
-        @Part nama_produk : RequestBody,
-        @Part harga_produk : RequestBody,
-        @Part diskon_produk : RequestBody,
-        @Part kategori_produk : RequestBody,
-        @Part berat_produk : RequestBody,
-        @Part stock_default : RequestBody,
-        @Part deskripsi_produk : RequestBody,
-        @Part detail_info : RequestBody?
+        @Part("nama_produk") nama_produk : RequestBody,
+        @Part("harga_produk") harga_produk : RequestBody,
+        @Part("diskon_produk") diskon_produk : RequestBody,
+        @Part("kategori_produk") kategori_produk : RequestBody,
+        @Part("berat_produk") berat_produk : RequestBody,
+        @Part("stock_default") stock_default : RequestBody,
+        @Part("deskripsi_produk") deskripsi_produk : RequestBody,
+        @Part("detail_info") detail_info : RequestBody?
         ): ApiResponse<AddProductResponse>
 
     @GET("shipping-address")

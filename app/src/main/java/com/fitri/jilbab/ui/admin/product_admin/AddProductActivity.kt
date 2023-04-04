@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -17,12 +18,19 @@ import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityAddProductBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.parse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.MultipartBody.Part.Companion.createFormData
+import okhttp3.RequestBody
 import java.io.File
 
 @AndroidEntryPoint
@@ -30,11 +38,11 @@ class AddProductActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAddProductBinding
     private val viewModel: ProductAdminVm by viewModels()
-    private var selectedFiles = mutableListOf<File>()
-    private var selectedFiles1 = mutableListOf<File>()
-    private var selectedFiles2 = mutableListOf<File>()
-    private var selectedFiles3 = mutableListOf<File>()
-    private var selectedFiles4 = mutableListOf<File>()
+    private var selectedFiles: File? = null
+    private var selectedFiles1: File? = null
+    private var selectedFiles2: File? = null
+    private var selectedFiles3: File? = null
+    private var selectedFiles4: File? = null
 
     private val File.size get() = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
@@ -51,6 +59,7 @@ class AddProductActivity : BaseActivity() {
 
         f_back()
         f_continue()
+
         f_runCategory()
         f_listSpinner()
 
@@ -70,6 +79,51 @@ class AddProductActivity : BaseActivity() {
         binding.layout5.setOnClickListener {
             requestImage5()
         }
+        binding.close01.setOnClickListener {
+            binding.fixaddreportImage1.visibility = View.VISIBLE
+            selectedFiles!!.delete()
+            binding.fixaddreportImage1.setImageDrawable(null)
+            binding.close01.visibility = View.INVISIBLE
+            binding.fixaddreportTxt1.visibility = View.VISIBLE
+            binding.textView18.visibility = View.VISIBLE
+        }
+        binding.close02.setOnClickListener {
+            binding.fixaddreportImage2.visibility = View.VISIBLE
+            selectedFiles!!.delete()
+            binding.fixaddreportImage2.setImageDrawable(null)
+            binding.close02.visibility = View.INVISIBLE
+            binding.fixaddreportTxt2.visibility = View.VISIBLE
+            binding.textView12.visibility = View.VISIBLE
+
+        }
+        binding.close03.setOnClickListener {
+            binding.fixaddreportImage3.visibility = View.VISIBLE
+            selectedFiles!!.delete()
+            binding.fixaddreportImage3.setImageDrawable(null)
+            binding.close03.visibility = View.INVISIBLE
+            binding.fixaddreportTxt3.visibility = View.VISIBLE
+            binding.textView13.visibility = View.VISIBLE
+
+        }
+        binding.close04.setOnClickListener {
+            binding.fixaddreportImage4.visibility = View.VISIBLE
+            selectedFiles!!.delete()
+            binding.fixaddreportImage4.setImageDrawable(null)
+            binding.close04.visibility = View.INVISIBLE
+            binding.fixaddreportTxt4.visibility = View.VISIBLE
+            binding.textView14.visibility = View.VISIBLE
+
+        }
+        binding.close05.setOnClickListener {
+            binding.fixaddreportImage5.visibility = View.VISIBLE
+            selectedFiles!!.delete()
+            binding.fixaddreportImage5.setImageDrawable(null)
+            binding.close05.visibility = View.INVISIBLE
+            binding.fixaddreportTxt5.visibility = View.VISIBLE
+            binding.textView15.visibility = View.VISIBLE
+
+        }
+
     }
 
     private fun f_runCategory() {
@@ -80,6 +134,10 @@ class AddProductActivity : BaseActivity() {
     }
 
     override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
         viewModel.category.observe(this) {
             val result = it.data.toMutableList()
             for (i: Int in 0 until result.size) {
@@ -87,7 +145,8 @@ class AddProductActivity : BaseActivity() {
                 listId.add(it.data[i].id_category)
             }
             viewModel.product.observe(this) {
-                val i = Intent(this, MainActivity::class.java)
+                Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
+                val i = Intent(this, SuperActivity::class.java)
                 startActivity(i)
                 finish()
             }
@@ -108,7 +167,6 @@ class AddProductActivity : BaseActivity() {
 
     private fun f_back() {
         binding.verifyAcc.setOnClickListener {
-            Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)
             finish()
@@ -126,23 +184,21 @@ class AddProductActivity : BaseActivity() {
                 val stok = binding.editStock.text.toString().trim()
                 val desc = binding.editDesc.text.toString().trim()
                 val info = binding.editDescInfo.text.toString().trim()
-                if (selectedFiles.isNotEmpty()) {
-                    viewModel.addProduct(
-                        selectedFiles[0],
-                        selectedFiles1[0],
-                        selectedFiles2[0],
-                        selectedFiles3[0],
-                        selectedFiles4[0],
-                        name,
-                        harga,
-                        diskon,
-                        category,
-                        berat,
-                        stok,
-                        desc,
-                        info
-                    )
-                }
+                viewModel.addProduct(
+                    selectedFiles,
+                    selectedFiles1,
+                    selectedFiles2,
+                    selectedFiles3,
+                    selectedFiles4,
+                    name,
+                    harga,
+                    diskon,
+                    category,
+                    berat,
+                    stok,
+                    desc,
+                    info,
+                )
             }
         }
     }
@@ -178,16 +234,18 @@ class AddProductActivity : BaseActivity() {
             .setCompressedFileDestinationPath(this.filesDir.path)
             .launch { f ->
                 f?.let { files ->
-                    selectedFiles.clear()
                     files.forEach {
                         val file = File(it.mediaPath)
                         if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                             if (file.sizeInMb <= 50.0) {
-                                selectedFiles.add(File(it.mediaPath))
+                                selectedFiles = File(it.mediaPath)
                                 Glide
                                     .with(this)
                                     .load(it.mediaPath)
                                     .into(binding.fixaddreportImage1)
+                                binding.fixaddreportTxt1.visibility = View.INVISIBLE
+                                binding.textView18.visibility = View.INVISIBLE
+                                binding.close01.visibility = View.VISIBLE
                             } else {
                                 Toast.makeText(
                                     this,
@@ -228,16 +286,18 @@ class AddProductActivity : BaseActivity() {
                 .setCompressedFileDestinationPath(this.filesDir.path)
                 .launch { f ->
                     f?.let { files ->
-                        selectedFiles1.clear()
                         files.forEach {
                             val file = File(it.mediaPath)
                             if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                                 if (file.sizeInMb <= 50.0) {
-                                    selectedFiles1.add(File(it.mediaPath))
+                                    selectedFiles1 = File(it.mediaPath)
                                     Glide
                                         .with(this)
                                         .load(it.mediaPath)
                                         .into(binding.fixaddreportImage2)
+                                    binding.fixaddreportTxt2.visibility = View.INVISIBLE
+                                    binding.textView12.visibility = View.INVISIBLE
+                                    binding.close02.visibility = View.VISIBLE
                                 } else {
                                     Toast.makeText(
                                         this,
@@ -278,16 +338,18 @@ class AddProductActivity : BaseActivity() {
                 .setCompressedFileDestinationPath(this.filesDir.path)
                 .launch { f ->
                     f?.let { files ->
-                        selectedFiles2.clear()
                         files.forEach {
                             val file = File(it.mediaPath)
                             if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                                 if (file.sizeInMb <= 50.0) {
-                                    selectedFiles2.add(File(it.mediaPath))
+                                    selectedFiles2 = File(it.mediaPath)
                                     Glide
                                         .with(this)
                                         .load(it.mediaPath)
                                         .into(binding.fixaddreportImage3)
+                                    binding.fixaddreportTxt3.visibility = View.INVISIBLE
+                                    binding.close03.visibility = View.VISIBLE
+                                    binding.textView13.visibility = View.INVISIBLE
                                 } else {
                                     Toast.makeText(
                                         this,
@@ -328,16 +390,18 @@ class AddProductActivity : BaseActivity() {
                 .setCompressedFileDestinationPath(this.filesDir.path)
                 .launch { f ->
                     f?.let { files ->
-                        selectedFiles3.clear()
                         files.forEach {
                             val file = File(it.mediaPath)
                             if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                                 if (file.sizeInMb <= 50.0) {
-                                    selectedFiles3.add(File(it.mediaPath))
+                                    selectedFiles3 = File(it.mediaPath)
                                     Glide
                                         .with(this)
                                         .load(it.mediaPath)
                                         .into(binding.fixaddreportImage4)
+                                    binding.fixaddreportTxt4.visibility = View.INVISIBLE
+                                    binding.close04.visibility = View.VISIBLE
+                                    binding.textView14.visibility = View.INVISIBLE
                                 } else {
                                     Toast.makeText(
                                         this,
@@ -378,16 +442,18 @@ class AddProductActivity : BaseActivity() {
                 .setCompressedFileDestinationPath(this.filesDir.path)
                 .launch { f ->
                     f?.let { files ->
-                        selectedFiles4.clear()
                         files.forEach {
                             val file = File(it.mediaPath)
                             if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                                 if (file.sizeInMb <= 50.0) {
-                                    selectedFiles4.add(File(it.mediaPath))
+                                    selectedFiles4 = File(it.mediaPath)
                                     Glide
                                         .with(this)
                                         .load(it.mediaPath)
                                         .into(binding.fixaddreportImage5)
+                                    binding.fixaddreportTxt5.visibility = View.INVISIBLE
+                                    binding.close05.visibility = View.VISIBLE
+                                    binding.textView15.visibility = View.INVISIBLE
                                 } else {
                                     Toast.makeText(
                                         this,

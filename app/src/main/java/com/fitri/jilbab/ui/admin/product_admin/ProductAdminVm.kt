@@ -75,44 +75,54 @@ class ProductAdminVm @Inject constructor(
     ) {
         // thumbnail
         val thumb = thumbnail?.asRequestBody(
-            getMimeType(thumbnail.path)!!.toMediaType()
+            getMimeType(thumbnail.path)?.toMediaType()
         )
-        val isthumbnail = MultipartBody.Part.createFormData(
-            "thumbnail",
-            thumbnail?.name, thumb!!
-        )
+        val isthumbnail = thumb?.let {
+            MultipartBody.Part.createFormData(
+                "thumbnail",
+                thumbnail?.name, it
+            )
+        }
         //productimage1
         val image1 = productimage1?.asRequestBody(
-            getMimeType(productimage1.path)!!.toMediaType()
+            getMimeType(productimage1.path)?.toMediaType()
         )
-        val isImage1 = MultipartBody.Part.createFormData(
-            "productimage1",
-            productimage1?.name, image1!!
-        )
+        val isImage1 = image1?.let {
+            MultipartBody.Part.createFormData(
+                "productimage1",
+                productimage1?.name, it
+            )
+        }
         //productimage2
         val image2 = productimage2?.asRequestBody(
-            getMimeType(productimage2.path)!!.toMediaType()
+            getMimeType(productimage2.path)?.toMediaType()
         )
-        val isImage2 = MultipartBody.Part.createFormData(
-            "productimage2",
-            productimage2?.name, image2!!
-        )
+        val isImage2 = image2?.let {
+            MultipartBody.Part.createFormData(
+                "productimage2",
+                productimage2?.name, it
+            )
+        }
         //productimage3
         val image3 = productimage3?.asRequestBody(
-            getMimeType(productimage3.path)!!.toMediaType()
+            getMimeType(productimage3.path)?.toMediaType()
         )
-        val isImage3 = MultipartBody.Part.createFormData(
-            "productimage3",
-            productimage3?.name, image3!!
-        )
+        val isImage3 = image3?.let {
+            MultipartBody.Part.createFormData(
+                "productimage3",
+                productimage3?.name, it
+            )
+        }
         //productimage4
         val image4 = productimage4?.asRequestBody(
-            getMimeType(productimage4.path)!!.toMediaType()
+            getMimeType(productimage4.path)?.toMediaType()
         )
-        val isImage4 = MultipartBody.Part.createFormData(
-            "productimage4",
-            productimage4?.name, image4!!
-        )
+        val isImage4 = image4?.let {
+            MultipartBody.Part.createFormData(
+                "productimage4",
+                productimage4?.name, it
+            )
+        }
         val namaBody        = nama_produk.toRequestBody("text/plain".toMediaType())
         val hargaBody       = harga_produk.toRequestBody("text/plain".toMediaType())
         val diskonBody      = diskon_produk.toRequestBody("text/plain".toMediaType())
