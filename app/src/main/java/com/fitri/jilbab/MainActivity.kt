@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor       = ContextCompat.getColor(this, R.color.colorBase)
-        window.navigationBarColor   = ContextCompat.getColor(this,R.color.colorBase)
+        window.statusBarColor       = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        window.navigationBarColor   = ContextCompat.getColor(this,R.color.colorPrimaryDark)
 
     }
 

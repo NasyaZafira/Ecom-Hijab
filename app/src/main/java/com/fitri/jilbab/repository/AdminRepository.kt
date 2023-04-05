@@ -101,5 +101,52 @@ class AdminRepository @Inject constructor(
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 
+    suspend fun editroductAd(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        id_product: Int,
+        thumbnail: MultipartBody.Part?,
+        productimage1: MultipartBody.Part? = null,
+        productimage2: MultipartBody.Part? = null,
+        productimage3: MultipartBody.Part? = null,
+        productimage4: MultipartBody.Part? = null,
+        nama_produk: RequestBody,
+        harga_produk: RequestBody,
+        diskon_produk: RequestBody,
+        kategori_produk: RequestBody,
+        berat_produk: RequestBody,
+        stock_default: RequestBody,
+        deskripsi_produk: RequestBody,
+        detail_info: RequestBody?
+    ) = flow {
+        val response = apiService.editProduct(
+            id_product,
+            thumbnail!!,
+            productimage1,
+            productimage2,
+            productimage3,
+            productimage4,
+            nama_produk,
+            harga_produk,
+            diskon_produk,
+            kategori_produk,
+            berat_produk,
+            stock_default,
+            deskripsi_produk,
+            detail_info
+        )
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
 
 }
