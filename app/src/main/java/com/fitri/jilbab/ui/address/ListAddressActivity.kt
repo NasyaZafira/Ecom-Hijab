@@ -1,5 +1,6 @@
 package com.fitri.jilbab.ui.address
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.databinding.ActivityListAddressBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -22,10 +24,20 @@ class ListAddressActivity : BaseActivity() {
         binding = ActivityListAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnAddress.setOnClickListener {
+            val i = Intent(this, AddAddressActivity::class.java)
+            startActivity(i)
+            finish()
+        }
         lifecycleScope.launch{
             viewModel.isList()
         }
         setupObserver()
+        binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     override fun setupObserver() {
@@ -43,5 +55,10 @@ class ListAddressActivity : BaseActivity() {
                 adapter = adAdapter
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

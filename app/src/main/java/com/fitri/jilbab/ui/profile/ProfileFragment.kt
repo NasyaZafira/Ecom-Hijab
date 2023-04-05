@@ -6,17 +6,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.FragmentProfileBinding
+import com.fitri.jilbab.ui.address.ListAddressActivity
+import com.fitri.jilbab.ui.admin.home.HomeAdapter
 import com.fitri.jilbab.ui.login.LoginActivity
 import com.fitri.jilbab.ui.profile.edit.EditProfileActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,14 +52,26 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.detailProfile()
         }
-        binding.btnEdit.setOnClickListener {
+        setupObserver()
+
+        binding.layoutChange.setOnClickListener {
             val i = Intent(requireContext(), EditProfileActivity::class.java)
             i.putExtra("data", dataUser)
             startActivity(i)
             requireActivity().finish()
         }
-        setupObserver()
-        button()
+        binding.layoutAddress.setOnClickListener {
+            val i = Intent(requireContext(), ListAddressActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+        binding.layoutLogout.setOnClickListener {
+            SharedPref.clear()
+            val i = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(i)
+            finishAffinity(requireActivity())
+
+        }
 
     }
 
@@ -80,36 +98,7 @@ class ProfileFragment : Fragment() {
             } else {
                 "--"
             }
-            if (it.data?.detail?.phone != null) {
-                binding.isNumb.text = it.data!!.detail!!.phone
-            } else {
-                "--"
-            }
-            if (it.data?.detail?.gender != null) {
-                binding.isGender.text = it.data.detail.gender
-            } else {
-                "--"
-            }
-            if (it.data?.detail?.date_of_birth != null) {
-                binding.isBirth.text = it.data!!.detail!!.date_of_birth
-            } else {
-                "--"
-            }
-            if (it.data?.detail?.address != null) {
-                binding.isAdress.text = it.data.detail.address
-            } else {
-                "--"
-            }
         }
     }
 
-    private fun button() {
-        binding.btnLogout.setOnClickListener {
-            SharedPref.clear()
-            val i = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(i)
-            finishAffinity(requireActivity())
-
-        }
-    }
 }

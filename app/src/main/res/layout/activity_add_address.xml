@@ -25,6 +25,7 @@
                 android:id="@+id/verifyAcc"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_constraintBottom_toTopOf="@id/layoutOne"
@@ -58,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Nama Produk"
+                android:text="Nama Lengkap"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/layoutOne" />
 
@@ -81,11 +82,11 @@
                 app:layout_constraintTop_toBottomOf="@id/nameProduct">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNameProduct"
+                    android:id="@+id/isedtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Masukan nama"
+                    android:hint="Masukan Nama"
                     android:inputType="text"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -96,16 +97,16 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtNumber"
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Harga Produk"
+                android:text="Nomor Telepon"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/edtNmProduct" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edtPriceProduct"
+                android:id="@+id/edtInNumber"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,14 +123,14 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtPrice" >
+                app:layout_constraintTop_toBottomOf="@id/txtNumber" >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPrice"
+                    android:id="@+id/isedtNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Harga Produk"
+                    android:hint="Masukan Nomor Telepon"
                     android:inputType="text"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -141,16 +142,16 @@
 
 
             <TextView
-                android:id="@+id/txtKategori"
+                android:id="@+id/txtProvince"
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Kategori Produk"
+                android:text="Provinsi"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtPriceProduct" />
+                app:layout_constraintTop_toBottomOf="@id/edtInNumber" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edtKategori"
+                android:id="@+id/edtProvince"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,14 +167,14 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtKategori">
+                app:layout_constraintTop_toBottomOf="@id/txtProvince">
 
                 <AutoCompleteTextView
-                    android:id="@+id/autoCompleteTxtKategori"
+                    android:id="@+id/auProv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Pilih Kategori"
+                    android:hint="Pilih Provinsi"
                     android:inputType="none"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -183,13 +184,55 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/txtBerat"
+                android:id="@+id/txtCity"
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Berat Produk"
+                android:text="Kota / Kabupaten"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/edtKategori" />
+                app:layout_constraintTop_toBottomOf="@id/edtProvince" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtCity"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtCity">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Pilih Kota / Kabupaten"
+                    android:inputType="none"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtAddress"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtCity" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edtBerat"
@@ -209,14 +252,14 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtBerat" >
+                app:layout_constraintTop_toBottomOf="@id/txtAddress" >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editBerat"
+                    android:id="@+id/iesdtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Berat Produk"
+                    android:hint="Masukan Alamat Lengkap"
                     android:inputType="text"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -226,11 +269,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/txtStock"
+                android:id="@+id/txtDetailAddress"
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Stok Produk"
+                android:text="Detail Alamat"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/edtBerat" />
 
@@ -252,14 +295,14 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/txtTittle"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtStock" >
+                app:layout_constraintTop_toBottomOf="@id/txtDetailAddress" >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editStock"
+                    android:id="@+id/isedtDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Stok Produk"
+                    android:hint="Masukan Detail Alamat"
                     android:inputType="text"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -268,7 +311,16 @@
                     tools:ignore="RtlSymmetry" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
+            <CheckBox
+                android:id="@+id/cbPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atur sebagai alamat pengiriman utama"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/edtStock"
+                app:layout_constraintStart_toStartOf="@id/txtDetailAddress" />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -281,7 +333,7 @@
                 android:text="Simpan"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBase"
-                app:layout_constraintTop_toBottomOf="@id/edtStock" />
+                app:layout_constraintTop_toBottomOf="@id/cbPolicy" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

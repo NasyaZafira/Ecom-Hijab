@@ -1,6 +1,10 @@
 package com.fitri.jilbab.data.remote
 
 import com.fitri.jilbab.data.model.address.ListAddressResponse
+import com.fitri.jilbab.data.model.address.add.AddAddressResponse
+import com.fitri.jilbab.data.model.address.add.BodyAddAddress
+import com.fitri.jilbab.data.model.address.cities.CitiesResponse
+import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.list.ListProductResponse
@@ -107,4 +111,18 @@ interface ApiServices {
     suspend fun placeOrder(
         @Body body: BodyPlaceOrder
     ): ApiResponse<OrderResponse>
+
+    @GET("address/provinces")
+    suspend fun listProv(
+    ): ApiResponse<ProvinceResponse>
+
+    @GET("address/cities/{id}")
+    suspend fun listCity(
+        @Path("id") id: Int
+    ): ApiResponse<CitiesResponse>
+
+    @POST("shipping-address/add")
+    suspend fun addAddress(
+        @Body body: BodyAddAddress
+    ): ApiResponse<AddAddressResponse>
 }

@@ -23,10 +23,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".AddAddress"
+            android:name=".ui.address.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProductActivity"
+            android:name=".ui.profile.edit.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.midtrans.MidtransActivity"

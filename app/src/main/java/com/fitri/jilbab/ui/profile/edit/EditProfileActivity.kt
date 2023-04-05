@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
+import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.profile.Data
@@ -32,7 +33,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 @AndroidEntryPoint
-class EditProfileActivity : AppCompatActivity() {
+class EditProfileActivity : BaseActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: ProfileViewModel by viewModels()
@@ -54,13 +55,16 @@ class EditProfileActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
+        lifecycleScope.launch {
+            viewModel.detailProfile()
+        }
         intent.extras?.getParcelable<Data>("data")?.let {
             isData = it
-            binding.editFullName.setText(it.name)
-            binding.editPhoneNumber.setText(it.detail?.phone)
-            binding.autoCompleteTxtGender.setText(it.detail?.gender.toString())
-            binding.editBirth.setText(it.detail?.date_of_birth)
-            binding.editAdress.setText(it.detail?.address)
+            binding.editFullName.setText(isData.name)
+            binding.editPhoneNumber.setText(isData.detail?.phone)
+            binding.autoCompleteTxtGender.setText(isData.detail?.gender.toString())
+            binding.editBirth.setText(isData.detail?.date_of_birth)
+            binding.editAdress.setText(isData.detail?.address)
         }
         binding.btnSave.setOnClickListener {
             lifecycleScope.launch {
@@ -72,10 +76,16 @@ class EditProfileActivity : AppCompatActivity() {
                 viewModel.editProfile(adress, birth, gender, nama, numb)
             }
         }
+    }
+
+    override fun setupObserver() {
         viewModel.updateProfile.observe(this){
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
+        }
+        viewModel.userDetail.observe(this){
+
         }
     }
 

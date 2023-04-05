@@ -13,24 +13,18 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityAddProductBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.parse
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.MultipartBody.Part.Companion.createFormData
-import okhttp3.RequestBody
 import java.io.File
 
 @AndroidEntryPoint
@@ -59,7 +53,7 @@ class AddProductActivity : BaseActivity() {
 
         f_back()
         f_continue()
-
+        checked()
         f_runCategory()
         f_listSpinner()
 
@@ -131,6 +125,71 @@ class AddProductActivity : BaseActivity() {
             viewModel.categoryList()
         }
         setupObserver()
+    }
+
+    private fun checked(){
+        binding.etNameProduct.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtNmProduct.error = "Nama produk tidak boleh kosong"
+                else -> binding.edtNmProduct.error = null
+            }
+            validateButton()
+        }
+        binding.editPrice.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtPriceProduct.error = "Harga produk tidak boleh kosong"
+                else -> binding.edtPriceProduct.error = null
+            }
+            validateButton()
+        }
+        binding.editDiskon.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtDiskon.error = "Diskon produk tidak boleh kosong"
+                else -> binding.edtDiskon.error = null
+            }
+            validateButton()
+        }
+        binding.autoCompleteTxtKategori.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtKategori.error = "Kategori produk tidak boleh kosong"
+                else -> binding.edtKategori.error = null
+            }
+            validateButton()
+        }
+        binding.editBerat.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtBerat.error = "Berat produk tidak boleh kosong"
+                else -> binding.edtBerat.error = null
+            }
+            validateButton()
+        }
+        binding.editStock.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtStock.error = "Stok produk tidak boleh kosong"
+                else -> binding.edtStock.error = null
+            }
+            validateButton()
+        }
+        binding.editDesc.doOnTextChanged{text,_,_,_ ->
+            when {
+                text.toString().isEmpty() -> binding.edtDesc.error = "Deskripsi produk tidak boleh kosong"
+                else -> binding.edtDesc.error = null
+            }
+            validateButton()
+        }
+
+    }
+
+    private fun validateButton(){
+        val nameOk = binding.edtNmProduct.error == null
+        val hargaOk = binding.edtPriceProduct.error == null
+        val diskonOk = binding.edtDiskon.error == null
+        val kategoriOk = binding.edtKategori.error == null
+        val beratOk = binding.edtBerat.error == null
+        val stokOk = binding.edtStock.error == null
+        val descOk = binding.edtDesc.error == null
+        binding.btnContinue.isEnabled =
+            nameOk && hargaOk && diskonOk && kategoriOk && beratOk && stokOk && descOk
     }
 
     override fun setupObserver() {
@@ -467,26 +526,37 @@ class AddProductActivity : BaseActivity() {
                 }
         }
     }
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        if (requestCode == 777) {
-//            if (
-//                grantResults.isNotEmpty() && grantResults[0] ==
-//                PackageManager.PERMISSION_GRANTED
-//            ) {
-//                requestImage1()
-//            } else {
-//                Toast.makeText(
-//                    this,
-//                    "Aplikasi ini butuh izin akses",
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            }
-//        }
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 777) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                selectFileUpload()
+            } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestImage2()
+            } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestImage3()
+            } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestImage4()
+            } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestImage5()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Aplikasi ini butuh izin akses",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 
 }
