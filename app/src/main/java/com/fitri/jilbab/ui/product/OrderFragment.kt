@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.FragmentOrderBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +26,9 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentOrderBinding.bind(view)
+
+        SharedPref.idNav = 2
+
 
     }
 

@@ -5,21 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.product.list.Data
-import com.fitri.jilbab.databinding.ItemProductadmBinding
+import com.fitri.jilbab.data.model.admin.product.listNew.Data
 import com.fitri.jilbab.databinding.ItemProductusrBinding
 
 class PuAdapter (
     var prUser: MutableList<Data>,
-    private val onDetailCLick: (Data, Int) -> Unit
+    private val onDetailCLick: (Data) -> Unit
 ): RecyclerView.Adapter<PuAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductusrBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             proUser : List<Data>,
-            onDetailCLick: (Data, Int) -> Unit
+            onDetailCLick: (Data) -> Unit
         ) {
-            val isProduct = proUser[adapterPosition]
+            val isProduct = proUser[position]
 
             if (isProduct.is_main == 1 ) {
                 Glide.with(binding.imgProduct.context)
@@ -30,7 +29,7 @@ class PuAdapter (
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
             binding.itemProductUser.setOnClickListener {
-                onDetailCLick(isProduct, adapterPosition)
+                onDetailCLick(isProduct)
             }
         }
     }

@@ -6,7 +6,7 @@ import com.commer.app.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
-import com.fitri.jilbab.data.model.admin.product.list.ListProductResponse
+import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
 import com.fitri.jilbab.repository.AdminRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MediaType.Companion.toMediaType
@@ -22,7 +22,7 @@ class ProductAdminVm @Inject constructor(
 ) : BaseViewModel() {
 
     val succesLoad = MutableLiveData<String>()
-    val list = MutableLiveData<ListProductResponse>()
+    val list = MutableLiveData<ProductResponse>()
     val category = MutableLiveData<CategoryListResponse>()
     val product = MutableLiveData<AddProductResponse>()
     val edit = MutableLiveData<EditProductReponse>()

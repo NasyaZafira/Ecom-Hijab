@@ -1,7 +1,6 @@
 package com.fitri.jilbab.repository
 
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
-import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.remote.ApiServices
@@ -122,6 +121,25 @@ class UserRepository @Inject constructor(
         body: BodyPlaceOrder
     ) = flow {
         val response = apiServices.placeOrder(body)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
+    suspend fun searchProduct(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        q: String?
+    ) = flow {
+        val response = apiServices.searchProduct(q)
         response.suspendOnSuccess {
             emit(data)
         }.onError {

@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
-import com.fitri.jilbab.data.model.admin.product.list.Data
+import com.fitri.jilbab.data.model.admin.product.listNew.Data
 import com.fitri.jilbab.databinding.FragmentHomeBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import com.fitri.jilbab.ui.cart.CartActivity
+import com.fitri.jilbab.ui.search.SearchActivity
+import com.fitri.jilbab.ui.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,8 +28,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductAdminVm by viewModels()
-    private var adapterUsr = PuAdapter(mutableListOf(), onDetailCLick = { data, pos -> intentToDetail(data, pos) })
-    private var targetPosition = -1
+    private var adapterUsr = PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +52,12 @@ class HomeFragment : Fragment() {
             startActivity(i)
             requireActivity().finish()
         }
+        binding.editSearch.setOnClickListener {
+            val i = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+        SharedPref.idNav = 1
 
         binding.txtTittle.text = "Halo, " + SharedPref.nameUser
         setupObserver()
@@ -59,10 +66,9 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun intentToDetail(content: Data, pos: Int) {
-        targetPosition = pos
+    private fun intentToDetail(content: Data) {
         val i = Intent(requireContext(), DetailProductActivity::class.java)
-        i.putExtra("product", content)
+        i.putExtra("product", content.id_product!!.toLong())
         startActivity(i)
     }
 

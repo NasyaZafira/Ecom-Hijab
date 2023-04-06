@@ -4,17 +4,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.product.list.Data
+import com.fitri.jilbab.data.model.admin.product.listNew.Data
 import com.fitri.jilbab.databinding.ItemProductadmBinding
 
 class PaAdapter(
-    var prAdmin: MutableList<Data>
+    var prAdmin: MutableList<Data>,
+    private val onDetail: (Data, Int) -> Unit
 ): RecyclerView.Adapter<PaAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductadmBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             proAdmin : List<Data>,
+            onDetail: (Data, Int) -> Unit
         ) {
             val isProduct = proAdmin[adapterPosition]
 
@@ -25,10 +28,10 @@ class PaAdapter(
                 .into(binding.imgProduct)
             }
             binding.isName.text = isProduct.product_name
-            binding.isPrice.text = isProduct.price
+            binding.isPrice.formatPrice(isProduct.price.toString())
             binding.isStock.text = "Sisa stok : " + isProduct.stock
             binding.btnEdit.setOnClickListener {
-
+                onDetail(isProduct, adapterPosition)
             }
         }
     }
@@ -40,7 +43,7 @@ class PaAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-      holder.bind(prAdmin)
+      holder.bind(prAdmin, onDetail)
     }
     override fun getItemCount() = prAdmin.size
 }

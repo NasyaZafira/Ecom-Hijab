@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Harga Produk"
+                    android:hint="Harga Produk ( contoh: 10000 )"
                     android:inputType="text"
                     android:paddingVertical="9dp"
                     android:paddingStart="13dp"
@@ -241,7 +241,7 @@
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Berat Produk"
+                android:text="Berat Produk (Gram)"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/edtKategori" />
 

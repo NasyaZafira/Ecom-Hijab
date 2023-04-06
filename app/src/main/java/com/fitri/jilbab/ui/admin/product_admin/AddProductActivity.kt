@@ -127,52 +127,59 @@ class AddProductActivity : BaseActivity() {
         setupObserver()
     }
 
-    private fun checked(){
-        binding.etNameProduct.doOnTextChanged{text,_,_,_ ->
+    private fun checked() {
+        binding.etNameProduct.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtNmProduct.error = "Nama produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtNmProduct.error =
+                    "Nama produk tidak boleh kosong"
                 else -> binding.edtNmProduct.error = null
             }
             validateButton()
         }
-        binding.editPrice.doOnTextChanged{text,_,_,_ ->
+        binding.editPrice.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtPriceProduct.error = "Harga produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtPriceProduct.error =
+                    "Harga produk tidak boleh kosong"
                 else -> binding.edtPriceProduct.error = null
             }
             validateButton()
         }
-        binding.editDiskon.doOnTextChanged{text,_,_,_ ->
+        binding.editDiskon.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtDiskon.error = "Diskon produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtDiskon.error =
+                    "Diskon produk tidak boleh kosong"
                 else -> binding.edtDiskon.error = null
             }
             validateButton()
         }
-        binding.autoCompleteTxtKategori.doOnTextChanged{text,_,_,_ ->
+        binding.autoCompleteTxtKategori.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtKategori.error = "Kategori produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtKategori.error =
+                    "Kategori produk tidak boleh kosong"
                 else -> binding.edtKategori.error = null
             }
             validateButton()
         }
-        binding.editBerat.doOnTextChanged{text,_,_,_ ->
+        binding.editBerat.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtBerat.error = "Berat produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtBerat.error =
+                    "Berat produk tidak boleh kosong"
                 else -> binding.edtBerat.error = null
             }
             validateButton()
         }
-        binding.editStock.doOnTextChanged{text,_,_,_ ->
+        binding.editStock.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtStock.error = "Stok produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtStock.error =
+                    "Stok produk tidak boleh kosong"
                 else -> binding.edtStock.error = null
             }
             validateButton()
         }
-        binding.editDesc.doOnTextChanged{text,_,_,_ ->
+        binding.editDesc.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtDesc.error = "Deskripsi produk tidak boleh kosong"
+                text.toString().isEmpty() -> binding.edtDesc.error =
+                    "Deskripsi produk tidak boleh kosong"
                 else -> binding.edtDesc.error = null
             }
             validateButton()
@@ -180,7 +187,7 @@ class AddProductActivity : BaseActivity() {
 
     }
 
-    private fun validateButton(){
+    private fun validateButton() {
         val nameOk = binding.edtNmProduct.error == null
         val hargaOk = binding.edtPriceProduct.error == null
         val diskonOk = binding.edtDiskon.error == null
@@ -203,12 +210,12 @@ class AddProductActivity : BaseActivity() {
                 listSpinner.add(it.data[i].category_name)
                 listId.add(it.data[i].id_category)
             }
-            viewModel.product.observe(this) {
-                Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
-                val i = Intent(this, SuperActivity::class.java)
-                startActivity(i)
-                finish()
-            }
+        }
+        viewModel.product.observe(this) {
+            Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
         }
     }
 

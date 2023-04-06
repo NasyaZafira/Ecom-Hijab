@@ -10,7 +10,6 @@ import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivitySplashBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.login.LoginActivity
-import com.fitri.jilbab.ui.singup.VerifyActivity
 
 class Splash : AppCompatActivity() {
 
@@ -18,19 +17,20 @@ class Splash : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    binding = ActivitySplashBinding.inflate(layoutInflater)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val w = this.window
-        w.statusBarColor = Color.parseColor("#FFC700")
+        w.statusBarColor = Color.parseColor("#FFFFFF")
         r_delay()
     }
+
     private fun r_delay() {
         val handler = Handler()
         handler.postDelayed({
             if (SharedPref.isLoggedIn) {
-                if(SharedPref.userRole == "customer" ) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                if (SharedPref.userRole == "customer") {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 } else {
                     val intent = Intent(this, SuperActivity::class.java)
                     startActivity(intent)

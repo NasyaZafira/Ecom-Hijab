@@ -8,7 +8,7 @@ import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
-import com.fitri.jilbab.data.model.admin.product.list.ListProductResponse
+import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
 import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
@@ -20,12 +20,11 @@ import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
-import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
-import com.fitri.jilbab.data.model.user.checkout.CheckoutResponse
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.model.user.order.OrderResponse
+import com.fitri.jilbab.data.model.user.search.SearchResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -56,7 +55,7 @@ interface ApiServices {
 
     @GET("product")
     suspend fun listProduct(
-    ): ApiResponse<ListProductResponse>
+    ): ApiResponse<ProductResponse>
 
     @GET("product-category")
     suspend fun lisCategory(
@@ -84,7 +83,7 @@ interface ApiServices {
     @POST("product/update/{id_product}")
     suspend fun editProduct(
         @Path("id_product") id_product: Int,
-        @Part thumbnail : MultipartBody.Part,
+        @Part thumbnail : MultipartBody.Part?,
         @Part productimage1 : MultipartBody.Part?,
         @Part productimage2 : MultipartBody.Part?,
         @Part productimage3 : MultipartBody.Part?,
@@ -145,4 +144,9 @@ interface ApiServices {
     suspend fun addAddress(
         @Body body: BodyAddAddress
     ): ApiResponse<AddAddressResponse>
+
+    @GET("product/search")
+    suspend fun searchProduct(
+        @Query("q") q: String?
+    ): ApiResponse<SearchResponse>
 }

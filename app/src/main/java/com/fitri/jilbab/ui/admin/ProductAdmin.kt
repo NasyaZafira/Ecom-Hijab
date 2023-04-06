@@ -12,10 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
+import com.fitri.jilbab.data.model.admin.product.listNew.Data
 import com.fitri.jilbab.databinding.FragmentProductAdminBinding
 import com.fitri.jilbab.ui.admin.product_admin.AddProductActivity
+import com.fitri.jilbab.ui.admin.product_admin.EditProductActivity
 import com.fitri.jilbab.ui.admin.product_admin.PaAdapter
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
+import com.fitri.jilbab.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -24,7 +27,9 @@ class ProductAdmin : Fragment() {
     private var _binding: FragmentProductAdminBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductAdminVm by viewModels()
-    private var adapterAdm = PaAdapter(mutableListOf())
+    private var adapterAdm = PaAdapter(mutableListOf(), onDetail = {data, pos -> intentToDetail(data, pos)})
+    private var targetPosition = -1
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,10 +53,22 @@ class ProductAdmin : Fragment() {
             requireActivity().finish()
         }
 
+        binding.editSearch.setOnClickListener {
+            val i = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
         SharedPref.navAdmin = 2
 
         setupObserver()
 
+    }
+
+    private fun intentToDetail(content: Data, pos: Int) {
+        targetPosition = pos
+        val i = Intent(requireContext(), EditProductActivity::class.java)
+        i.putExtra("product", content)
+        startActivity(i)
     }
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())

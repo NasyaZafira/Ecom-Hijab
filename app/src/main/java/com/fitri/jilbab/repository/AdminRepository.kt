@@ -106,7 +106,7 @@ class AdminRepository @Inject constructor(
         onComplete: () -> Unit,
         onError: (String?) -> Unit,
         id_product: Int,
-        thumbnail: MultipartBody.Part?,
+        thumbnail: MultipartBody.Part? = null,
         productimage1: MultipartBody.Part? = null,
         productimage2: MultipartBody.Part? = null,
         productimage3: MultipartBody.Part? = null,
@@ -122,7 +122,7 @@ class AdminRepository @Inject constructor(
     ) = flow {
         val response = apiService.editProduct(
             id_product,
-            thumbnail!!,
+            thumbnail,
             productimage1,
             productimage2,
             productimage3,

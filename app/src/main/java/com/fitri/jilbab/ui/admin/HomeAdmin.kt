@@ -34,6 +34,8 @@ class HomeAdmin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeAdminBinding.bind(view)
 
+        SharedPref.navAdmin = 1
+
         binding.viewPager.apply {
             this.adapter = HomeAdapter(this@HomeAdmin)
         }

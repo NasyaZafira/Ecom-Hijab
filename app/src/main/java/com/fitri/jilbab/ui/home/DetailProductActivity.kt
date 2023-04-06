@@ -10,7 +10,8 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.admin.product.list.Data
+import com.fitri.jilbab.data.model.user.Data
+
 import com.fitri.jilbab.data.model.user.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
 import com.fitri.jilbab.ui.cart.CartActivity
@@ -24,7 +25,7 @@ class DetailProductActivity : BaseActivity() {
     private lateinit var    binding         : ActivityDetailProductBinding
     private val             viewModel       : HomeViewModel by viewModels()
     private val             cartViewModel   : CartViewModel by viewModels()
-    private lateinit var    data            : Data
+    private  lateinit var            data            : Data
     private var             dataPicture     : MutableList<Picture> = ArrayList()
     private var             imageList       = ArrayList<SlideModel>()
 
@@ -42,7 +43,6 @@ class DetailProductActivity : BaseActivity() {
 
         f_back()
         f_extras()
-        f_launch()
         f_total()
         f_troli()
 
@@ -55,21 +55,25 @@ class DetailProductActivity : BaseActivity() {
     }
 
     private fun f_extras() {
-        intent.extras?.getParcelable<Data>("product")?.let{
-            data = it
 
-            binding.tvTitle.text    = it.product_name
-            binding.tvDesc.text     = it.product_description
-            binding.tvInfo.text     = it.product_detail_info
-            binding.txtPrice.formatPrice(it.price.toString())
-            binding.tvTotal.formatPrice("0")
-        }
+        val id = intent.getLongExtra("product",0)
+        f_launch(id.toInt())
+
+    //?.let{
+//            data = it
+//
+//            binding.tvTitle.text    = it.product_name
+//            binding.tvDesc.text     = it.product_description
+//            binding.tvInfo.text     = it.product_detail_info
+//            binding.txtPrice.formatPrice(it.price.toString())
+//            binding.tvTotal.formatPrice("0")
+//        }
     }
 
-    private fun f_launch() {
+    private fun f_launch(id_Product: Int) {
         lifecycleScope.launch {
-            Log.e("TAG", "onCreate: id product " + data.id_product )
-            viewModel.productUser(data.id_product!!)
+//            Log.e("TAG", "onCreate: id product " + data.id_product )
+            viewModel.productUser(id_Product)
             setupObserver()
         }
     }
@@ -89,8 +93,14 @@ class DetailProductActivity : BaseActivity() {
                 imageList.add(SlideModel("https://ecom-mobile.spdev.my.id/img/products/" + it.data.pictures[i].picture))
             }
             binding.ivPoster.setImageList(imageList,ScaleTypes.CENTER_CROP)
-        }
 
+            data = it.data
+            binding.tvTitle.text    = it.data.product_name
+            binding.tvDesc.text     = it.data.product_description
+            binding.tvInfo.text     = it.data.product_detail_info
+            binding.txtPrice.formatPrice(it.data.price.toString())
+            binding.tvTotal.formatPrice("0")
+        }
         cartViewModel.add.observe(this){
             Log.e("TAG", "setupObserver: " + it )
             val i = Intent(this,CartActivity::class.java)
