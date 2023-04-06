@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Pashmina"
@@ -58,7 +58,7 @@
             android:text="Rp. 10.0000.000"
             android:textColor="@color/colorAccent"
             android:textSize="13sp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/isName"
             app:layout_constraintTop_toBottomOf="@id/isName" />
