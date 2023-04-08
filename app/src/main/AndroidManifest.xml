@@ -23,6 +23,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.search.categoryUsr.DetailCategory"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.categoryUsr.ListCatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.home.category.AddCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.search.SearchActivity"
             android:exported="false" />
         <activity

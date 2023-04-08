@@ -22,17 +22,16 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DetailProductActivity : BaseActivity() {
 
-    private lateinit var    binding         : ActivityDetailProductBinding
-    private val             viewModel       : HomeViewModel by viewModels()
-    private val             cartViewModel   : CartViewModel by viewModels()
-    private  lateinit var            data            : Data
-    private var             dataPicture     : MutableList<Picture> = ArrayList()
-    private var             imageList       = ArrayList<SlideModel>()
+    private lateinit var binding: ActivityDetailProductBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
+    private lateinit var data: Data
+    private var dataPicture: MutableList<Picture> = ArrayList()
+    private var imageList = ArrayList<SlideModel>()
 
-    private var             p_name        : String = ""
-    private var             p_total       : Int = 0
-    private var             p_price       : Int = 0
-
+    private var p_name: String = ""
+    private var p_total: Int = 0
+    private var p_price: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +54,10 @@ class DetailProductActivity : BaseActivity() {
     }
 
     private fun f_extras() {
-
-        val id = intent.getLongExtra("product",0)
+        val id = intent.getLongExtra("product", 0)
         f_launch(id.toInt())
 
-    //?.let{
+        //?.let{
 //            data = it
 //
 //            binding.tvTitle.text    = it.product_name
@@ -83,27 +81,27 @@ class DetailProductActivity : BaseActivity() {
         viewModel.loading.observe(this) {
             if (it) showLoading() else hideLoading()
         }
-        viewModel.detailProduct.observe(this){
+        viewModel.detailProduct.observe(this) {
             dataPicture = it.data.pictures!!.toMutableList()
-            Log.e("TAG", "setupObserver: data " + it )
-            Log.e("TAG", "setupObserver: data picture " + dataPicture )
+            Log.e("TAG", "setupObserver: data " + it)
+            Log.e("TAG", "setupObserver: data picture " + dataPicture)
 
-            for (i : Int in 0 until dataPicture.size){
+            for (i: Int in 0 until dataPicture.size) {
                 //imageList.add(SlideModel("https://ecom-mobile.spdev.my.id/img/products/" + it.data.pictures[i].picture , i.toString()))
                 imageList.add(SlideModel("https://ecom-mobile.spdev.my.id/img/products/" + it.data.pictures[i].picture))
             }
-            binding.ivPoster.setImageList(imageList,ScaleTypes.CENTER_CROP)
+            binding.ivPoster.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
             data = it.data
-            binding.tvTitle.text    = it.data.product_name
-            binding.tvDesc.text     = it.data.product_description
-            binding.tvInfo.text     = it.data.product_detail_info
+            binding.tvTitle.text = it.data.product_name
+            binding.tvDesc.text = it.data.product_description
+            binding.tvInfo.text = it.data.product_detail_info
             binding.txtPrice.formatPrice(it.data.price.toString())
             binding.tvTotal.formatPrice("0")
         }
-        cartViewModel.add.observe(this){
-            Log.e("TAG", "setupObserver: " + it )
-            val i = Intent(this,CartActivity::class.java)
+        cartViewModel.add.observe(this) {
+            Log.e("TAG", "setupObserver: " + it)
+            val i = Intent(this, CartActivity::class.java)
             startActivity(i)
             finish()
         }
@@ -117,10 +115,9 @@ class DetailProductActivity : BaseActivity() {
             f_textCount()
         }
         binding.removeCount.setOnClickListener {
-            if (p_total.equals(0)){
+            if (p_total.equals(0)) {
                 f_textCount()
-            }
-            else if (p_total > 0){
+            } else if (p_total > 0) {
                 p_total = p_total - 1
                 f_textCount()
             }
@@ -135,15 +132,15 @@ class DetailProductActivity : BaseActivity() {
 
     private fun f_troli() {
         binding.btnOrderNow.setOnClickListener {
-            if (p_total == 0){
-                Log.e("TAG", "f_troli: total 0 please add min 1 order" )
-            }else if (p_total > 0){
-                p_name  = data.product_name.toString()
+            if (p_total == 0) {
+                Log.e("TAG", "f_troli: total 0 please add min 1 order")
+            } else if (p_total > 0) {
+                p_name = data.product_name.toString()
                 p_total = p_total
                 p_price = p_total * (data.price!!.toInt())
-                Log.e("TAG", "f_troli: p_name " + p_name )
-                Log.e("TAG", "f_troli: p_total " + p_total )
-                Log.e("TAG", "f_troli: p_price " + p_price )
+                Log.e("TAG", "f_troli: p_name " + p_name)
+                Log.e("TAG", "f_troli: p_total " + p_total)
+                Log.e("TAG", "f_troli: p_price " + p_price)
                 f_addCart()
             }
         }
@@ -154,31 +151,6 @@ class DetailProductActivity : BaseActivity() {
             cartViewModel.addCart(data.id_product.toString(), p_total.toString())
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

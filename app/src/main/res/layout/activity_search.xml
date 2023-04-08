@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorLine"
     tools:context=".ui.search.SearchActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutOne"
         android:layout_width="match_parent"
@@ -58,14 +59,17 @@
         android:layout_marginTop="24dp"
         android:background="@color/colorBase"
         app:layout_constraintTop_toBottomOf="@id/layoutOne">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="@color/colorBase"
             app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
@@ -96,17 +100,54 @@
                 android:src="@drawable/icon_search_v2" />
 
         </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorBase"
+        app:layout_constraintTop_toBottomOf="@id/layoutTwo">
+
+        <TextView
+            style="@style/TextView.Normal14Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="20dp"
+            android:text="Cari produk berdasarkan kategori"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorBase"
+        app:layout_constraintTop_toBottomOf="@id/layoutCat">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProduct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardSearch"
+            app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:itemCount="8"
             tools:listitem="@layout/item_search" />

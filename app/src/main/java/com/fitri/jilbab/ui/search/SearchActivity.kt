@@ -13,6 +13,7 @@ import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.model.user.search.Data
 import com.fitri.jilbab.databinding.ActivitySearchBinding
 import com.fitri.jilbab.ui.home.DetailProductActivity
+import com.fitri.jilbab.ui.search.categoryUsr.ListCatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -36,6 +37,12 @@ class SearchActivity : BaseActivity() {
                 }
             }
             true
+        }
+        binding.layoutCat.setOnClickListener {
+            val i = Intent(this, ListCatActivity::class.java)
+            startActivity(i)
+            finish()
+
         }
         binding.verifyAcc.setOnClickListener {
             finish()

@@ -6,6 +6,7 @@ import com.fitri.jilbab.data.model.address.add.BodyAddAddress
 import com.fitri.jilbab.data.model.address.cities.CitiesResponse
 import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
+import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
 import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
@@ -20,6 +21,7 @@ import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
+import com.fitri.jilbab.data.model.user.cat.CatResponse
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
@@ -149,4 +151,15 @@ interface ApiServices {
     suspend fun searchProduct(
         @Query("q") q: String?
     ): ApiResponse<SearchResponse>
+
+    @POST("product-category/add")
+    suspend fun addCategory(
+        @Part("category_name") category_name : RequestBody,
+        @Part category_image : MultipartBody.Part,
+    ): ApiResponse<CategoryAddResponse>
+
+    @GET("product/by-category")
+    suspend fun productCat(
+        @Query("category") category: String?
+    ): ApiResponse<CatResponse>
 }

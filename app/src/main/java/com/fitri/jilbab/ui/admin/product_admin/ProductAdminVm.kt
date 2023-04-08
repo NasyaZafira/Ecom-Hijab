@@ -4,6 +4,7 @@ import android.webkit.MimeTypeMap
 import androidx.lifecycle.MutableLiveData
 import com.commer.app.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
+import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
 import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
@@ -26,6 +27,7 @@ class ProductAdminVm @Inject constructor(
     val category = MutableLiveData<CategoryListResponse>()
     val product = MutableLiveData<AddProductResponse>()
     val edit = MutableLiveData<EditProductReponse>()
+    val addCat = MutableLiveData<CategoryAddResponse>()
 
     suspend fun theList() {
         productRepository.adminProduct(
@@ -57,6 +59,38 @@ class ProductAdminVm @Inject constructor(
             },
         ).collect {
             category.postValue(it)
+            succesLoad.postValue("200")
+        }
+    }
+
+    suspend fun addCategory(
+        category_name: String,
+        category_image: File
+    ) {
+        val nama = category_name.toRequestBody("text/plain".toMediaType())
+        val thumb = category_image.asRequestBody(
+            getMimeType(category_image.path)?.toMediaType()
+        )
+        val image = thumb.let {
+            MultipartBody.Part.createFormData(
+                "category_image",
+                category_image.name, it
+            )
+        }
+        productRepository.addCategory(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            nama,
+            image
+        ).collect {
+            addCat.postValue(it)
             succesLoad.postValue("200")
         }
     }
