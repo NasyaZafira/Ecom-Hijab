@@ -82,44 +82,14 @@
 
             </androidx.cardview.widget.CardView>
 
-            <View
-                android:id="@+id/layoutOne"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorLine"
-                app:layout_constraintTop_toBottomOf="@id/cardSearch" />
-
-            <TextView
-                android:id="@+id/txtNew"
-                style="@style/TextView.Medium16Black"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Produk Baru"
-                app:layout_constraintBottom_toBottomOf="@id/layoutOne"
-                app:layout_constraintEnd_toEndOf="@id/txtTittle"
-                app:layout_constraintStart_toStartOf="@id/txtTittle"
-                app:layout_constraintTop_toTopOf="@id/layoutOne" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvListNew"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutOne"
-                tools:itemCount="6"
-                tools:listitem="@layout/item_latestproduct" />
 
             <View
                 android:id="@+id/layoutTwo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorLine"
-                app:layout_constraintTop_toBottomOf="@id/rvListNew" />
+                app:layout_constraintTop_toBottomOf="@id/cardSearch" />
 
             <TextView
                 android:id="@+id/txtProduct"

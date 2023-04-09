@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.admin.product.listNew.Data
@@ -19,7 +17,6 @@ import com.fitri.jilbab.databinding.FragmentHomeBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import com.fitri.jilbab.ui.cart.CartActivity
 import com.fitri.jilbab.ui.search.SearchActivity
-import com.fitri.jilbab.ui.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,7 +25,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductAdminVm by viewModels()
-    private var adapterUsr = PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
+    private var adapterUsr =
+        PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +61,6 @@ class HomeFragment : Fragment() {
         setupObserver()
 
 
-
     }
 
     private fun intentToDetail(content: Data) {
@@ -89,15 +86,7 @@ class HomeFragment : Fragment() {
                 adapter = adapterUsr
             }
         }
-        viewModel.list.observe(viewLifecycleOwner) {
-            adapterUsr.prUser.clear()
-            adapterUsr.prUser.addAll(it.data)
-            adapterUsr.notifyDataSetChanged()
-            binding.rvListNew.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                adapter = adapterUsr
-            }
-        }
+
     }
 
 }

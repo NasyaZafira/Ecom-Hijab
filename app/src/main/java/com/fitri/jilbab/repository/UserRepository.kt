@@ -151,4 +151,23 @@ class UserRepository @Inject constructor(
         .onStart { onStart() }
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
+
+    suspend fun productCat(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        category: String?
+    ) = flow {
+        val response = apiServices.productCat(category)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
 }
