@@ -14,6 +14,8 @@ import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
+import com.fitri.jilbab.data.model.profile.password.BodyPassword
+import com.fitri.jilbab.data.model.profile.password.ChangePassResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
@@ -162,4 +164,9 @@ interface ApiServices {
     suspend fun productCat(
         @Query("category") category: String?
     ): ApiResponse<CatResponse>
+
+    @POST("profile/change-password")
+    suspend fun changePass(
+        @Body body: BodyPassword
+    ): ApiResponse<ChangePassResponse>
 }
