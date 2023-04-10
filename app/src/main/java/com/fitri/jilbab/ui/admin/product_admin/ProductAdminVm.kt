@@ -69,7 +69,7 @@ class ProductAdminVm @Inject constructor(
     ) {
         val nama = category_name.toRequestBody("text/plain".toMediaType())
         val thumb = category_image.asRequestBody(
-            getMimeType(category_image.path)?.toMediaType()
+            getMimeType(category_image.path)!!.toMediaType()
         )
         val image = thumb.let {
             MultipartBody.Part.createFormData(

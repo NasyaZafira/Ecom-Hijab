@@ -11,6 +11,7 @@ import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.model.user.cat.Data
 import com.fitri.jilbab.databinding.ActivityDetailCategoryBinding
 import com.fitri.jilbab.ui.home.DetailProductActivity
+import com.fitri.jilbab.ui.search.SearchActivity
 import com.fitri.jilbab.ui.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,12 +29,14 @@ class DetailCategory : BaseActivity() {
         setContentView(binding.root)
 
         binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, ListCatActivity::class.java)
+            startActivity(i)
             finish()
         }
-
         f_extras()
         setupObserver()
     }
+
 
     private fun f_extras() {
         val id = intent.getLongExtra("product", 0)

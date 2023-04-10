@@ -44,6 +44,7 @@ class ListCatActivity : BaseActivity() {
         val i = Intent(this, DetailCategory::class.java)
         i.putExtra("product", content.id_category!!.toLong())
         startActivity(i)
+        finish()
     }
 
     override fun setupObserver() {

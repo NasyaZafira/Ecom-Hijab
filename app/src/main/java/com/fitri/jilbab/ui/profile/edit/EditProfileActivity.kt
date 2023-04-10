@@ -28,6 +28,7 @@ import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.ActivityEditProfileBinding
 import com.fitri.jilbab.ui.profile.ProfileViewModel
+import com.fitri.jilbab.ui.profile.change_pass.ChangePassActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
@@ -76,6 +77,11 @@ class EditProfileActivity : BaseActivity() {
                 viewModel.editProfile(adress, birth, gender, nama, numb)
             }
         }
+        binding.btnChange.setOnClickListener {
+            val i = Intent(this, ChangePassActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     override fun setupObserver() {
@@ -85,7 +91,9 @@ class EditProfileActivity : BaseActivity() {
             finish()
         }
         viewModel.userDetail.observe(this){
-
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
         }
     }
 

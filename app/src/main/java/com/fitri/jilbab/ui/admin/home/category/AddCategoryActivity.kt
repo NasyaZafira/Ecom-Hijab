@@ -33,7 +33,7 @@ class AddCategoryActivity : BaseActivity() {
     private val File.size get() = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
-    private var selectedFiles : File? = null
+    private var selectedFiles = mutableListOf<File>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class AddCategoryActivity : BaseActivity() {
         }
         binding.close.setOnClickListener {
             binding.imgCat.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            selectedFiles!!.clear()
             binding.imgCat.setImageDrawable(null)
             binding.close.visibility = View.INVISIBLE
             binding.imgCat.visibility = View.VISIBLE
@@ -62,7 +62,7 @@ class AddCategoryActivity : BaseActivity() {
            validateButton()
             lifecycleScope.launch{
                 val name = binding.isedtName.text.toString().trim()
-                viewModel.addCategory(name, selectedFiles!!)
+                viewModel.addCategory(name, selectedFiles[0])
             }
         }
     }
@@ -136,7 +136,7 @@ class AddCategoryActivity : BaseActivity() {
                         val file = File(it.mediaPath)
                         if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
                             if (file.sizeInMb <= 50.0) {
-                                selectedFiles = File(it.mediaPath)
+                                selectedFiles.add(File(it.mediaPath))
                                 Glide
                                     .with(this)
                                     .load(it.mediaPath)
