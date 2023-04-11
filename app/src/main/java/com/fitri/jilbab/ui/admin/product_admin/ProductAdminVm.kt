@@ -6,6 +6,7 @@ import com.commer.app.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
+import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
 import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
 import com.fitri.jilbab.repository.AdminRepository
@@ -28,6 +29,7 @@ class ProductAdminVm @Inject constructor(
     val product = MutableLiveData<AddProductResponse>()
     val edit = MutableLiveData<EditProductReponse>()
     val addCat = MutableLiveData<CategoryAddResponse>()
+    val del = MutableLiveData<DelProductResponse>()
 
     suspend fun theList() {
         productRepository.adminProduct(
@@ -42,6 +44,26 @@ class ProductAdminVm @Inject constructor(
             },
         ).collect {
             list.postValue(it)
+            succesLoad.postValue("200")
+        }
+    }
+
+    suspend fun delProduct(
+        id_product: Int
+    ) {
+        productRepository.deleteProduct(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            id_product
+        ).collect {
+            del.postValue(it)
             succesLoad.postValue("200")
         }
     }

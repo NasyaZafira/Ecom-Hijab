@@ -421,6 +421,28 @@
                 android:textColor="@color/colorBase"
                 app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"
+                android:layout_marginTop="18dp"
+                android:id="@+id/view01"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintTop_toBottomOf="@id/btnContinue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDel"
+                style="@style/Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="18dp"
+                android:text="Hapus Product"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorError"
+                android:textColor="@color/colorBase"
+                app:layout_constraintTop_toBottomOf="@id/view01" />
+
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"

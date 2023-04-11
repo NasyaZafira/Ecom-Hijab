@@ -8,6 +8,7 @@ import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
+import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
 import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
 import com.fitri.jilbab.data.model.login.LoginResponse
@@ -139,7 +140,7 @@ interface ApiServices {
     suspend fun listProv(
     ): ApiResponse<ProvinceResponse>
 
-    @GET("address/cities/{id}")
+    @GET("address/cities/mobile/{id}")
     suspend fun listCity(
         @Path("id") id: Int
     ): ApiResponse<CitiesResponse>
@@ -169,4 +170,9 @@ interface ApiServices {
     suspend fun changePass(
         @Body body: BodyPassword
     ): ApiResponse<ChangePassResponse>
+
+    @POST("product/archive/{id_product}")
+    suspend fun deletePeoduct(
+        @Path("id_product") id_product: Int
+    ): ApiResponse<DelProductResponse>
 }

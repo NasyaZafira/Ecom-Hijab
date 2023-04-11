@@ -1,25 +1,28 @@
 package com.fitri.jilbab
 
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
+import android.hardware.lights.Light
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -40,8 +43,12 @@ class MainActivity : AppCompatActivity() {
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor       = ContextCompat.getColor(this, R.color.colorPrimaryDark)
-        window.navigationBarColor   = ContextCompat.getColor(this,R.color.colorPrimaryDark)
+        window.statusBarColor       = ContextCompat.getColor(this, R.color.colorBase)
+        window.navigationBarColor   = ContextCompat.getColor(this,R.color.colorBase)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+
 
     }
 

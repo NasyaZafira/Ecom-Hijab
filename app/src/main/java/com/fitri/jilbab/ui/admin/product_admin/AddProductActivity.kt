@@ -30,21 +30,21 @@ import java.io.File
 @AndroidEntryPoint
 class AddProductActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityAddProductBinding
-    private val viewModel: ProductAdminVm by viewModels()
-    private var selectedFiles: File? = null
-    private var selectedFiles1: File? = null
-    private var selectedFiles2: File? = null
-    private var selectedFiles3: File? = null
-    private var selectedFiles4: File? = null
+    private lateinit var binding    : ActivityAddProductBinding
+    private val viewModel           : ProductAdminVm by viewModels()
+    private var selectedFiles       : File? = null
+    private var selectedFiles1      : File? = null
+    private var selectedFiles2      : File? = null
+    private var selectedFiles3      : File? = null
+    private var selectedFiles4      : File? = null
 
-    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
 
-    private val listSpinner: MutableList<String> = ArrayList()
-    private val listId: MutableList<Int> = ArrayList()
-    private var idValue: String = " "
+    private val listSpinner         : MutableList<String> = ArrayList()
+    private val listId              : MutableList<Int> = ArrayList()
+    private var idValue             : String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -220,7 +220,6 @@ class AddProductActivity : BaseActivity() {
     }
 
     private fun f_listSpinner() {
-
         val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
         val autoCompleteKategori = binding.autoCompleteTxtKategori
         autoCompleteKategori.setAdapter(arrayAdapterKategori)

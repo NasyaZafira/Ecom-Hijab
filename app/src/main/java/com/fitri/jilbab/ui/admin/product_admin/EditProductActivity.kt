@@ -59,17 +59,28 @@ class EditProductActivity : BaseActivity() {
         checked()
         //f_listSpinner()
         f_continue()
+        binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
+        }
 
         intent.extras?.getParcelable<Data>("product")?.let {
             data = it
             binding.etNameProduct.setText(data.product_name)
             binding.editPrice.setText(data.price)
             binding.editDiskon.setText(data.discount)
-            binding.autoCompleteTxtKategori.setText(data.category!!.category_name)
+            binding.autoCompleteTxtKategori.setText(data.category?.category_name)
             binding.editBerat.setText(data.weight_product)
             binding.editStock.setText(data.stock)
             binding.editDesc.setText(data.product_description)
             binding.editDescInfo.setText(data.product_detail_info)
+
+            binding.btnDel.setOnClickListener {
+                lifecycleScope.launch{
+                    viewModel.delProduct(data.id_product!!)
+                }
+            }
 
 //            for (i : Int in 0 until it.pictures.size) {
 //                Glide.with(binding.fixaddreportImage1.context)
@@ -310,6 +321,12 @@ class EditProductActivity : BaseActivity() {
         }
         viewModel.edit.observe(this) {
             Toast.makeText(this, "Berhasil Mengubah Produk", Toast.LENGTH_LONG).show()
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        viewModel.del.observe(this){
+            Toast.makeText(this, "Berhasil Menghapus Produk", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)
             finish()
@@ -607,5 +624,12 @@ class EditProductActivity : BaseActivity() {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val i = Intent(this, SuperActivity::class.java)
+        startActivity(i)
+        finish()
     }
 }

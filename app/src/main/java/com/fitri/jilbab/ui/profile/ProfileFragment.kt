@@ -6,23 +6,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.finishAffinity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.FragmentProfileBinding
 import com.fitri.jilbab.ui.address.ListAddressActivity
-import com.fitri.jilbab.ui.admin.home.HomeAdapter
 import com.fitri.jilbab.ui.login.LoginActivity
 import com.fitri.jilbab.ui.profile.edit.EditProfileActivity
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -87,6 +84,18 @@ class ProfileFragment : Fragment() {
             Log.e("TAG", "setupObserver: " + it)
 
             dataUser = it.data
+
+            if(it.data?.detail?.profile_picture == null){
+                Glide.with(binding.imgProfile.context)
+                    .load(R.drawable.white_image)
+                    .error(R.drawable.white_image)
+                    .into(binding.imgProfile)
+            } else {
+                Glide.with(binding.imgProfile.context)
+                    .load("https://ecom-mobile.spdev.my.id/img/profile/" + it.data!!.detail!!.profile_picture)
+                    .error(R.drawable.white_image)
+                    .into(binding.imgProfile)
+            }
 
             if (it.data?.name != null) {
                 binding.isUname.text = it.data.name

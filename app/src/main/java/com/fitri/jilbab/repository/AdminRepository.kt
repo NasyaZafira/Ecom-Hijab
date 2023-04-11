@@ -56,6 +56,25 @@ class AdminRepository @Inject constructor(
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 
+    suspend fun deleteProduct(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        id_product: Int
+    ) = flow {
+        val response = apiService.deletePeoduct(id_product)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
     suspend fun addCategory(
         onStart: () -> Unit,
         onComplete: () -> Unit,

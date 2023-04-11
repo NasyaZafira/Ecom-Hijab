@@ -29,6 +29,11 @@ class CartActivity : BaseActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
         launch()
         button()
 
@@ -69,6 +74,17 @@ class CartActivity : BaseActivity() {
         viewModel.pay.observe(this) {
             Log.e("TAG", "\n INI CHECKOUT: " + it)
 
+        }
+        viewModel.remove.observe(this){
+            //adapterCart.cart.clear()
+            //adapterCart.notifyDataSetChanged()
+            //binding.rvCart.apply {
+            //    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+            //    adapter = adapterCart
+            //}
+            lifecycleScope.launch {
+                viewModel.cartList()
+            }
         }
     }
 
