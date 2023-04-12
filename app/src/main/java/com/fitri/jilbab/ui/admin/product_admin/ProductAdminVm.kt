@@ -89,6 +89,7 @@ class ProductAdminVm @Inject constructor(
         category_name: String,
         category_image: File
     ) {
+
         val nama = category_name.toRequestBody("text/plain".toMediaType())
         val thumb = category_image.asRequestBody(
             getMimeType(category_image.path)!!.toMediaType()

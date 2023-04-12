@@ -103,6 +103,12 @@ interface ApiServices {
         @Part("detail_info") detail_info : RequestBody?
     ): ApiResponse<EditProductReponse>
 
+    @Multipart
+    @POST("product-category/add")
+    suspend fun addCategory(
+        @Part("category_name") category_name : RequestBody,
+        @Part category_image : MultipartBody.Part,
+    ): ApiResponse<CategoryAddResponse>
     @GET("shipping-address")
     suspend fun listAddress(
     ): ApiResponse<ListAddressResponse>
@@ -154,12 +160,6 @@ interface ApiServices {
     suspend fun searchProduct(
         @Query("q") q: String?
     ): ApiResponse<SearchResponse>
-
-    @POST("product-category/add")
-    suspend fun addCategory(
-        @Part("category_name") category_name : RequestBody,
-        @Part category_image : MultipartBody.Part,
-    ): ApiResponse<CategoryAddResponse>
 
     @GET("product/by-category")
     suspend fun productCat(

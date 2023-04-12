@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -65,6 +66,7 @@ class AddCategoryActivity : BaseActivity() {
                 viewModel.addCategory(name, selectedFiles[0])
             }
         }
+        setupObserver()
     }
 
     private fun validateButton() {
@@ -84,6 +86,7 @@ class AddCategoryActivity : BaseActivity() {
             if (it.success == false) {
                 binding.warningError.visibility = View.VISIBLE
             }
+            Log.e("TAG", "setupObserver: " + it.data )
             Toast.makeText(this, "Berhasil Menambahkan Kategori", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)
@@ -142,6 +145,7 @@ class AddCategoryActivity : BaseActivity() {
                                     .load(it.mediaPath)
                                     .into(binding.imgCat)
                                 binding.txtImg.visibility = View.INVISIBLE
+                                binding.close.visibility = View.VISIBLE
                             } else {
                                 Toast.makeText(
                                     this,
