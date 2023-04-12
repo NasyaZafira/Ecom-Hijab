@@ -59,6 +59,12 @@ class EditProfileActivity : BaseActivity() {
         lifecycleScope.launch {
             viewModel.detailProfile()
         }
+        lifecycleScope.launch {
+            viewModel.isAva(selectedFiles[0])
+        }
+        binding.btnPic.setOnClickListener {
+            requestAccessForFile()
+        }
         intent.extras?.getParcelable<Data>("data")?.let {
             isData = it
             binding.editFullName.setText(isData.name)
@@ -94,6 +100,10 @@ class EditProfileActivity : BaseActivity() {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
+        }
+        viewModel.changeava.observe(this){
+            Toast.makeText(this, "Berhasil Mengubah Foto Profil", Toast.LENGTH_LONG).show()
+
         }
     }
 
@@ -185,6 +195,25 @@ class EditProfileActivity : BaseActivity() {
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 777) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                selectFileUpload()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Aplikasi ini butuh izin akses",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onBackPressed() {

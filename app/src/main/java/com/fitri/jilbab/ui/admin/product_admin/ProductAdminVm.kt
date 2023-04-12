@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.commer.app.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
+import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
@@ -30,6 +31,7 @@ class ProductAdminVm @Inject constructor(
     val edit = MutableLiveData<EditProductReponse>()
     val addCat = MutableLiveData<CategoryAddResponse>()
     val del = MutableLiveData<DelProductResponse>()
+    val delCat = MutableLiveData<DelCatResponse>()
 
     suspend fun theList() {
         productRepository.adminProduct(
@@ -67,7 +69,25 @@ class ProductAdminVm @Inject constructor(
             succesLoad.postValue("200")
         }
     }
+    suspend fun deletecCategory(
+        id_category: Int
+    ){
+        productRepository.deleteCategory(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
 
+            },
+            id_category
+        ).collect{
+            delCat.postValue(it)
+            succesLoad.postValue("200")
+        }
+    }
     suspend fun categoryList() {
         productRepository.categoryAdmin(
             onStart = {
