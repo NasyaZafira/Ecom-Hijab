@@ -72,8 +72,8 @@ class AddAddressActivity : BaseActivity() {
                 val detail      = binding.isedtDetail.text.toString().trim()
                 val utama       = binding.cbPolicy.isChecked
                 val prov        = idValue
-                //val cities =
-                viewModel.add(address, "", detail, utama, name, number, prov)
+                val cities      = idValueCity
+                viewModel.add(address, cities, detail, utama, name, number, prov)
             }
         }
     }
