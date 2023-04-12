@@ -4,16 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.co.Courier
-import com.fitri.jilbab.data.model.user.co.Data
+import com.fitri.jilbab.data.model.user.checkout.Courier
+
 import com.fitri.jilbab.databinding.ActivityShippingBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,9 +21,9 @@ class ShippingActivity : BaseActivity() {
 
     private lateinit var binding: ActivityShippingBinding
     private lateinit var radioGroup: RadioGroup
-    private lateinit var kurir: String
-    private lateinit var service: String
-    private lateinit var price: String
+    private  var kurir: String = ""
+    private  var service: String = ""
+    private  var price: String = ""
     private lateinit var courier: Courier
     private lateinit var radioTiki: RadioGroup
     private lateinit var radioPos : RadioGroup
@@ -71,6 +69,7 @@ class ShippingActivity : BaseActivity() {
         intent.extras!!.getParcelable<Courier>("shipping").let {
             Log.e("TAG", "r_intent: " + it!!)
             courier = it
+
             binding.txtName.text = it.jne[0].code
             binding.txtName2.text = it.tiki[0].code
             binding.one.text =
@@ -119,15 +118,15 @@ class ShippingActivity : BaseActivity() {
 
     private fun r_jne(id: Int) {
         Log.e("TAG", "r_radioGroup: ID -> " + id)
-        if (id.equals(2131362261)) {
+        if (id.equals(2131362293)) {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[0].cost[0].value.toString()
             service = courier.jne[0].costs[0].service
-        } else if (id.equals(2131362463)) {
+        } else if (id.equals(2131362494)) {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[1].cost[0].value.toString()
             service = courier.jne[0].costs[1].service
-        } else if (id.equals(2131362428)) {
+        } else if (id.equals(2131362461)) {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[2].cost[0].value.toString()
             service = courier.jne[0].costs[2].service
@@ -136,11 +135,11 @@ class ShippingActivity : BaseActivity() {
 
     private fun r_tiki(id: Int) {
         Log.e("TAG", "r_radioGroup: ID -> " + id)
-        if (id.equals(2131362262)) {
+        if (id.equals(2131362294)) {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[0].cost[0].value.toString()
             service = courier.tiki[0].costs[0].service
-        } else if (id.equals(2131362464)) {
+        } else if (id.equals(2131362495)) {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[1].cost[0].value.toString()
             service = courier.tiki[0].costs[1].service
@@ -148,11 +147,12 @@ class ShippingActivity : BaseActivity() {
     }
 
     private fun pos(id: Int){
-        if(id.equals(2131362263)){
+        Log.e("TAG", "r_radioGroup: ID -> " + id)
+        if(id.equals(2131362295)){
             kurir = courier.pos[0].code
             price = courier.pos[0].costs[0].cost[0].value.toString()
             service = courier.pos[0].costs[0].service
-        } else if (id.equals(2131362465)) {
+        } else if (id.equals(2131362496)) {
             kurir = courier.pos[0].code
             price = courier.pos[0].costs[1].cost[0].value.toString()
             service = courier.pos[0].costs[1].service

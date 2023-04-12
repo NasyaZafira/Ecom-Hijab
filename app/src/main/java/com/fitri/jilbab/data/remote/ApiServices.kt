@@ -25,6 +25,7 @@ import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.cat.CatResponse
+import com.fitri.jilbab.data.model.user.checkout.CheckOutResponse
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
@@ -135,7 +136,7 @@ interface ApiServices {
     @POST("cart/checkout")
     suspend fun checkout(
         @Body body : CoBody
-    ): ApiResponse<CoResponse>
+    ): ApiResponse<CheckOutResponse>
 
     @POST("order/place-order")
     suspend fun placeOrder(

@@ -68,7 +68,14 @@ class CartActivity : BaseActivity() {
             }
 
             if (it.data.shipping_address.isNotEmpty()) {
-                id_example = it.data.shipping_address[0].id_ship_address.toString()
+                //id_example = it.data.shipping_address[0].id_ship_address.toString()
+                for (i: Int in 0 until it.data.shipping_address.size){
+                    if (it.data.shipping_address[i].is_main_address == 1){
+                        id_example = it.data.shipping_address[i].id_ship_address.toString()
+                        Log.e("TAG", "setupObserver: uji coba " + id_example)
+                    }
+                }
+
             }
         }
         viewModel.pay.observe(this) {

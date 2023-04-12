@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.user.co.Data
+import com.fitri.jilbab.data.model.user.checkout.Data
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +46,7 @@ class CheckoutActivity : BaseActivity() {
             if (it) showLoading() else hideLoading()
         }
         viewModel.pay.observe(this){
-
+            Log.e("TAG", "setupObserver: " + it.data )
             data = it.data
 
             binding.rvOrder.apply {

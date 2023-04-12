@@ -6,8 +6,7 @@ import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
-import com.fitri.jilbab.data.model.user.checkout.BodyCheckout
-import com.fitri.jilbab.data.model.user.checkout.CheckoutResponse
+import com.fitri.jilbab.data.model.user.checkout.CheckOutResponse
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
@@ -24,7 +23,7 @@ class CartViewModel @Inject constructor(
     val succesLoad = MutableLiveData<String>()
     val remove = MutableLiveData<RemoveResponse>()
     val add = MutableLiveData<AddCartResponse>()
-    val pay = MutableLiveData<CoResponse>()
+    val pay = MutableLiveData<CheckOutResponse>()
     val placeOrder = MutableLiveData<OrderResponse>()
 
 
