@@ -31,21 +31,21 @@ import java.io.File
 @AndroidEntryPoint
 class EditProductActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityEditProductBinding
-    private val viewModel: ProductAdminVm by viewModels()
-    private var selectedFiles: File? = null
-    private var selectedFiles1: File? = null
-    private var selectedFiles2: File? = null
-    private var selectedFiles3: File? = null
-    private var selectedFiles4: File? = null
+    private lateinit var binding    : ActivityEditProductBinding
+    private val viewModel           : ProductAdminVm by viewModels()
+    private var selectedFiles       : File? = null
+    private var selectedFiles1      : File? = null
+    private var selectedFiles2      : File? = null
+    private var selectedFiles3      : File? = null
+    private var selectedFiles4      : File? = null
 
-    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
 
-    private val listSpinner: MutableList<String> = ArrayList()
-    private val listId: MutableList<Int> = ArrayList()
-    private var idValue: String = " "
+    private val listSpinner         : MutableList<String> = ArrayList()
+    private val listId              : MutableList<Int> = ArrayList()
+    private var idValue             : String = " "
 
     private lateinit var data: Data
 
@@ -54,17 +54,18 @@ class EditProductActivity : BaseActivity() {
         binding = ActivityEditProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        f_getContent()
         f_runCategory()
+
         imageChooser()
         checked()
-        //f_listSpinner()
         f_continue()
-        binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, SuperActivity::class.java)
-            startActivity(i)
-            finish()
-        }
 
+        f_getBack()
+
+    }
+
+    private fun f_getContent(){
         intent.extras?.getParcelable<Data>("product")?.let {
             data = it
             binding.etNameProduct.setText(data.product_name)
@@ -76,43 +77,98 @@ class EditProductActivity : BaseActivity() {
             binding.editDesc.setText(data.product_description)
             binding.editDescInfo.setText(data.product_detail_info)
 
+            idValue = data.category?.id_category.toString()
+
             binding.btnDel.setOnClickListener {
                 lifecycleScope.launch{
                     viewModel.delProduct(data.id_product!!)
                 }
             }
 
-//            for (i : Int in 0 until it.pictures.size) {
-//                Glide.with(binding.fixaddreportImage1.context)
-//                    .load("https://ecom-mobile.spdev.my.id/img/products/" + it.pictures[i].picture)
-//                    .error(R.drawable.white_image)
-//                    .into(binding.fixaddreportImage1)
-//                binding.fixaddreportTxt1.visibility = View.INVISIBLE
-//                binding.textView18.visibility = View.INVISIBLE
-//                binding.close01.visibility = View.VISIBLE
-//
-//                Glide.with(binding.fixaddreportImage2.context)
-//                    .load("https://ecom-mobile.spdev.my.id/img/products/" + it.pictures[i].picture)
-//                    .error(R.drawable.white_image)
-//                    .into(binding.fixaddreportImage2)
-//
-//                Glide.with(binding.fixaddreportImage3.context)
-//                    .load("https://ecom-mobile.spdev.my.id/img/products/" + it.pictures[i].picture)
-//                    .error(R.drawable.white_image)
-//                    .into(binding.fixaddreportImage3)
-//
-//                Glide.with(binding.fixaddreportImage4.context)
-//                    .load("https://ecom-mobile.spdev.my.id/img/products/" + it.pictures[i].picture)
-//                    .error(R.drawable.white_image)
-//                    .into(binding.fixaddreportImage4)
-//
-//                Glide.with(binding.fixaddreportImage5.context)
-//                    .load("https://ecom-mobile.spdev.my.id/img/products/" + it.pictures[i].picture)
-//                    .error(R.drawable.white_image)
-//                    .into(binding.fixaddreportImage5)
-//            }
+
+            Log.e("TAG", "f_getContent: " + data.pictures.size)
+            if (data.pictures.size.equals(1)){
+                f_glide_1()
+            }
+            else if (data.pictures.size.equals(2)){
+                f_glide_1()
+                f_glide_2()
+            }
+            else if (data.pictures.size.equals(3)){
+                f_glide_1()
+                f_glide_2()
+                f_glide_3()
+            }
+            else if (data.pictures.size.equals(4)){
+                f_glide_1()
+                f_glide_2()
+                f_glide_3()
+                f_glide_4()
+            }
+            else if (data.pictures.size.equals(5)){
+                f_glide_1()
+                f_glide_2()
+                f_glide_3()
+                f_glide_4()
+                f_glide_5()
+            }
 
         }
+    }
+
+    private fun f_glide_1(){
+        Glide.with(binding.fixaddreportImage1.context)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[0].picture)
+            .error(R.drawable.white_image)
+            .into(binding.fixaddreportImage1)
+
+        //binding.fixaddreportTxt1.visibility = View.INVISIBLE
+        //binding.textView18.visibility       = View.INVISIBLE
+        //binding.close01.visibility          = View.VISIBLE
+    }
+
+    private fun f_glide_2(){
+        Glide.with(binding.fixaddreportImage2.context)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[1].picture)
+            .error(R.drawable.white_image)
+            .into(binding.fixaddreportImage2)
+
+        //binding.fixaddreportTxt2.visibility = View.INVISIBLE
+        //binding.textView12.visibility       = View.INVISIBLE
+        //binding.close02.visibility          = View.VISIBLE
+    }
+
+    private fun f_glide_3(){
+        Glide.with(binding.fixaddreportImage3.context)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[2].picture)
+            .error(R.drawable.white_image)
+            .into(binding.fixaddreportImage3)
+
+        //        binding.fixaddreportTxt3.visibility = View.INVISIBLE
+        //        binding.textView13.visibility       = View.INVISIBLE
+        //        binding.close03.visibility          = View.VISIBLE
+    }
+
+    private fun f_glide_4(){
+        Glide.with(binding.fixaddreportImage4.context)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[3].picture)
+            .error(R.drawable.white_image)
+            .into(binding.fixaddreportImage4)
+
+        //        binding.fixaddreportTxt4.visibility = View.INVISIBLE
+        //        binding.textView14.visibility       = View.INVISIBLE
+        //        binding.close04.visibility          = View.VISIBLE
+    }
+
+    private fun f_glide_5(){
+        Glide.with(binding.fixaddreportImage5.context)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[4].picture)
+            .error(R.drawable.white_image)
+            .into(binding.fixaddreportImage5)
+
+        //        binding.fixaddreportTxt5.visibility = View.INVISIBLE
+        //        binding.textView15.visibility       = View.INVISIBLE
+        //        binding.close05.visibility          = View.VISIBLE
     }
 
     private fun f_continue() {
@@ -121,11 +177,14 @@ class EditProductActivity : BaseActivity() {
                 val name = binding.etNameProduct.text.toString().trim()
                 val harga = binding.editPrice.text.toString().trim()
                 val diskon = binding.editDiskon.text.toString().trim()
-                val category = if (data.category == null) {
-                    idValue
-                } else {
-                    binding.autoCompleteTxtKategori.text.toString().trim()
-                }
+                val category = idValue
+
+                //if (data.category == null) {
+                //    idValue
+                //} else {
+                //    binding.autoCompleteTxtKategori.text.toString().trim()
+                //}
+
                 val berat = binding.editBerat.text.toString().trim()
                 val stok = binding.editStock.text.toString().trim()
                 val desc = binding.editDesc.text.toString().trim()
@@ -157,79 +216,49 @@ class EditProductActivity : BaseActivity() {
         setupObserver()
     }
 
-    private fun validateButton() {
-        val nameOk = binding.edtNmProduct.error == null
-        val hargaOk = binding.edtPriceProduct.error == null
-        val diskonOk = binding.edtDiskon.error == null
-        val kategoriOk = binding.edtKategori.error == null
-        val beratOk = binding.edtBerat.error == null
-        val stokOk = binding.edtStock.error == null
-        val descOk = binding.edtDesc.error == null
-        binding.btnContinue.isEnabled =
-            nameOk && hargaOk && diskonOk && kategoriOk && beratOk && stokOk && descOk
+    override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
+        viewModel.category.observe(this) {
+            Log.e("TAG", "setupObserver: " + it )
+            val result = it.data.toMutableList()
+            for (i: Int in 0 until result.size) {
+                listSpinner.add(it.data[i].category_name)
+                listId.add(it.data[i].id_category)
+            }
+            f_listSpinner()
+        }
+        viewModel.edit.observe(this) {
+            Log.e("TAG", "setupObserver: hasil " + it )
+            Toast.makeText(this, "Berhasil Mengubah Produk", Toast.LENGTH_LONG).show()
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        viewModel.del.observe(this){
+            Toast.makeText(this, "Berhasil Menghapus Produk", Toast.LENGTH_LONG).show()
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
-    private fun checked() {
-        binding.etNameProduct.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtNmProduct.error =
-                    "Nama produk tidak boleh kosong"
-                else -> binding.edtNmProduct.error = null
-            }
-            validateButton()
-        }
-        binding.editPrice.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtPriceProduct.error =
-                    "Harga produk tidak boleh kosong"
-                else -> binding.edtPriceProduct.error = null
-            }
-            validateButton()
-        }
-        binding.editDiskon.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtDiskon.error =
-                    "Diskon produk tidak boleh kosong"
-                else -> binding.edtDiskon.error = null
-            }
-            validateButton()
-        }
-        binding.autoCompleteTxtKategori.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtKategori.error =
-                    "Kategori produk tidak boleh kosong"
-                else -> binding.edtKategori.error = null
-            }
-            validateButton()
-        }
-        binding.editBerat.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtBerat.error =
-                    "Berat produk tidak boleh kosong"
-                else -> binding.edtBerat.error = null
-            }
-            validateButton()
-        }
-        binding.editStock.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtStock.error =
-                    "Stok produk tidak boleh kosong"
-                else -> binding.edtStock.error = null
-            }
-            validateButton()
-        }
-        binding.editDesc.doOnTextChanged { text, _, _, _ ->
-            when {
-                text.toString().isEmpty() -> binding.edtDesc.error =
-                    "Deskripsi produk tidak boleh kosong"
-                else -> binding.edtDesc.error = null
-            }
-            validateButton()
-        }
+    private fun f_listSpinner() {
 
+        val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
+        val autoCompleteKategori = binding.autoCompleteTxtKategori
+        autoCompleteKategori.setAdapter(arrayAdapterKategori)
+
+        binding.autoCompleteTxtKategori.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+            idValue = listId.get(position).toString()
+            Log.e("TAG", "f_listSpinner: " + listId.get(position).toString())
+        })
     }
 
     private fun imageChooser() {
+        // Add
         binding.layout1.setOnClickListener {
             Log.e("TAG", "f_imageUpload: " + it)
             requestAccessForFile()
@@ -246,9 +275,11 @@ class EditProductActivity : BaseActivity() {
         binding.layout5.setOnClickListener {
             requestImage5()
         }
+
+        // Del
         binding.close01.setOnClickListener {
             binding.fixaddreportImage1.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            //selectedFiles!!.delete()
             binding.fixaddreportImage1.setImageDrawable(null)
             binding.close01.visibility = View.INVISIBLE
             binding.fixaddreportTxt1.visibility = View.VISIBLE
@@ -256,7 +287,7 @@ class EditProductActivity : BaseActivity() {
         }
         binding.close02.setOnClickListener {
             binding.fixaddreportImage2.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            //selectedFiles1!!.delete()
             binding.fixaddreportImage2.setImageDrawable(null)
             binding.close02.visibility = View.INVISIBLE
             binding.fixaddreportTxt2.visibility = View.VISIBLE
@@ -265,7 +296,7 @@ class EditProductActivity : BaseActivity() {
         }
         binding.close03.setOnClickListener {
             binding.fixaddreportImage3.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            //selectedFiles2!!.delete()
             binding.fixaddreportImage3.setImageDrawable(null)
             binding.close03.visibility = View.INVISIBLE
             binding.fixaddreportTxt3.visibility = View.VISIBLE
@@ -274,7 +305,7 @@ class EditProductActivity : BaseActivity() {
         }
         binding.close04.setOnClickListener {
             binding.fixaddreportImage4.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            //selectedFiles3!!.delete()
             binding.fixaddreportImage4.setImageDrawable(null)
             binding.close04.visibility = View.INVISIBLE
             binding.fixaddreportTxt4.visibility = View.VISIBLE
@@ -283,7 +314,7 @@ class EditProductActivity : BaseActivity() {
         }
         binding.close05.setOnClickListener {
             binding.fixaddreportImage5.visibility = View.VISIBLE
-            selectedFiles!!.delete()
+            //selectedFiles4!!.delete()
             binding.fixaddreportImage5.setImageDrawable(null)
             binding.close05.visibility = View.INVISIBLE
             binding.fixaddreportTxt5.visibility = View.VISIBLE
@@ -291,46 +322,6 @@ class EditProductActivity : BaseActivity() {
 
         }
 
-    }
-
-
-    private fun f_listSpinner() {
-
-        val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
-        val autoCompleteKategori = binding.autoCompleteTxtKategori
-        autoCompleteKategori.setAdapter(arrayAdapterKategori)
-
-        binding.autoCompleteTxtKategori.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
-            idValue = listId.get(position).toString()
-            Log.e("TAG", "f_listSpinner: " + idValue)
-        })
-    }
-
-    override fun setupObserver() {
-        loadingUI = CustomLoadingDialog(this)
-        viewModel.loading.observe(this) {
-            if (it) showLoading() else hideLoading()
-        }
-        viewModel.category.observe(this) {
-            val result = it.data.toMutableList()
-            for (i: Int in 0 until result.size) {
-                listSpinner.add(it.data[i].category_name)
-                listId.add(it.data[i].id_category)
-            }
-            f_listSpinner()
-        }
-        viewModel.edit.observe(this) {
-            Toast.makeText(this, "Berhasil Mengubah Produk", Toast.LENGTH_LONG).show()
-            val i = Intent(this, SuperActivity::class.java)
-            startActivity(i)
-            finish()
-        }
-        viewModel.del.observe(this){
-            Toast.makeText(this, "Berhasil Menghapus Produk", Toast.LENGTH_LONG).show()
-            val i = Intent(this, SuperActivity::class.java)
-            startActivity(i)
-            finish()
-        }
     }
 
     private fun requestAccessForFile() {
@@ -388,7 +379,6 @@ class EditProductActivity : BaseActivity() {
                 }
             }
     }
-
 
     private fun requestImage2() {
         if (ContextCompat.checkSelfPermission(
@@ -598,7 +588,6 @@ class EditProductActivity : BaseActivity() {
         }
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -624,6 +613,86 @@ class EditProductActivity : BaseActivity() {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun checked() {
+        binding.etNameProduct.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtNmProduct.error =
+                    "Nama produk tidak boleh kosong"
+                else -> binding.edtNmProduct.error = null
+            }
+            validateButton()
+        }
+        binding.editPrice.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtPriceProduct.error =
+                    "Harga produk tidak boleh kosong"
+                else -> binding.edtPriceProduct.error = null
+            }
+            validateButton()
+        }
+        binding.editDiskon.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtDiskon.error =
+                    "Diskon produk tidak boleh kosong"
+                else -> binding.edtDiskon.error = null
+            }
+            validateButton()
+        }
+        binding.autoCompleteTxtKategori.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtKategori.error =
+                    "Kategori produk tidak boleh kosong"
+                else -> binding.edtKategori.error = null
+            }
+            validateButton()
+        }
+        binding.editBerat.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtBerat.error =
+                    "Berat produk tidak boleh kosong"
+                else -> binding.edtBerat.error = null
+            }
+            validateButton()
+        }
+        binding.editStock.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtStock.error =
+                    "Stok produk tidak boleh kosong"
+                else -> binding.edtStock.error = null
+            }
+            validateButton()
+        }
+        binding.editDesc.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isEmpty() -> binding.edtDesc.error =
+                    "Deskripsi produk tidak boleh kosong"
+                else -> binding.edtDesc.error = null
+            }
+            validateButton()
+        }
+
+    }
+
+    private fun validateButton() {
+        val nameOk = binding.edtNmProduct.error == null
+        val hargaOk = binding.edtPriceProduct.error == null
+        val diskonOk = binding.edtDiskon.error == null
+        val kategoriOk = binding.edtKategori.error == null
+        val beratOk = binding.edtBerat.error == null
+        val stokOk = binding.edtStock.error == null
+        val descOk = binding.edtDesc.error == null
+        binding.btnContinue.isEnabled =
+            nameOk && hargaOk && diskonOk && kategoriOk && beratOk && stokOk && descOk
+    }
+
+    private fun f_getBack() {
+        binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, SuperActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     override fun onBackPressed() {

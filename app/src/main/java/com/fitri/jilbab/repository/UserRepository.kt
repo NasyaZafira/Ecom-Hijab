@@ -3,6 +3,7 @@ package com.fitri.jilbab.repository
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.co.CoBody
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
+import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
@@ -83,6 +84,25 @@ class UserRepository @Inject constructor(
         body: BodyCart
     ) = flow {
         val response = apiServices.addCart(body)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
+    suspend fun addReview(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        body: BodyReview
+    ) = flow {
+        val response = apiServices.review(body)
         response.suspendOnSuccess {
             emit(data)
         }.onError {

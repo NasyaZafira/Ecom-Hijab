@@ -2,6 +2,7 @@ package com.fitri.jilbab.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,17 +23,12 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel: ProductAdminVm by viewModels()
-    private var adapterUsr =
-        PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
+    private var _binding        : FragmentHomeBinding? = null
+    private val binding get()   = _binding!!
+    private val viewModel       : ProductAdminVm by viewModels()
+    private var adapterUsr      = PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -50,17 +46,17 @@ class HomeFragment : Fragment() {
             startActivity(i)
             requireActivity().finish()
         }
+
         binding.editSearch.setOnClickListener {
             val i = Intent(requireContext(), SearchActivity::class.java)
             startActivity(i)
             requireActivity().finish()
         }
+
         SharedPref.idNav = 1
 
         binding.txtTittle.text = "Halo, " + SharedPref.nameUser
         setupObserver()
-
-
     }
 
     private fun intentToDetail(content: Data) {
@@ -71,13 +67,17 @@ class HomeFragment : Fragment() {
 
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())
+
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) loading.show() else loading.dismiss()
         }
+
         viewModel.message.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
+
         viewModel.list.observe(viewLifecycleOwner) {
+            Log.e("TAG", "setupObserver: " + it)
             adapterUsr.prUser.clear()
             adapterUsr.prUser.addAll(it.data)
             adapterUsr.notifyDataSetChanged()
@@ -86,7 +86,26 @@ class HomeFragment : Fragment() {
                 adapter = adapterUsr
             }
         }
-
     }
 
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

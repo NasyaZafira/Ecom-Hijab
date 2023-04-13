@@ -10,8 +10,8 @@ import com.fitri.jilbab.data.model.admin.product.listNew.Data
 import com.fitri.jilbab.databinding.ItemProductusrBinding
 
 class PuAdapter (
-    var prUser: MutableList<Data>,
-    private val onDetailCLick: (Data) -> Unit
+    var             prUser          : MutableList<Data>,
+    private val     onDetailCLick   : (Data) -> Unit
 ): RecyclerView.Adapter<PuAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductusrBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,11 +27,14 @@ class PuAdapter (
                     .error(R.drawable.white_image)
                     .into(binding.imgProduct)
             }
-            binding.isName.text = isProduct.product_name
+
+            binding.rbFood.rating       = isProduct.rating.toFloat() //3.0f
+            binding.isName.text         = isProduct.product_name
             binding.isPrice.formatPrice(isProduct.price.toString())
             binding.itemProductUser.setOnClickListener {
                 onDetailCLick(isProduct)
             }
+
         }
     }
 
