@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class ProfileRepository @Inject constructor(
@@ -61,6 +62,25 @@ class ProfileRepository @Inject constructor(
         body: BodyPassword
     ) = flow {
         val response = apiService.changePass(body)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
+    suspend fun changeAva(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        profile_picture: MultipartBody.Part
+    ) = flow {
+        val response = apiService.changePicture(profile_picture)
         response.suspendOnSuccess {
             emit(data)
         }.onError {
