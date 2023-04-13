@@ -23,10 +23,10 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val repository: ProfileRepository
 ) : BaseViewModel() {
-    val userDetail = MutableLiveData<DetailProfileResponse>()
-    val updateProfile = MutableLiveData<EditProfileResponse>()
-    val changePass = MutableLiveData<ChangePassResponse>()
-    val changeava = MutableLiveData<ChangePictureResponse>()
+    val userDetail      = MutableLiveData<DetailProfileResponse>()
+    val updateProfile   = MutableLiveData<EditProfileResponse>()
+    val changePass      = MutableLiveData<ChangePassResponse>()
+    val changeava       = MutableLiveData<ChangePictureResponse>()
 
     suspend fun detailProfile() {
         repository.userDetail(

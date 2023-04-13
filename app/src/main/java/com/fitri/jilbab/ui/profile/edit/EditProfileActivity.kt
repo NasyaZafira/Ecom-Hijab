@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Rect
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
@@ -17,12 +16,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.profile.Data
@@ -36,35 +35,50 @@ import java.io.File
 @AndroidEntryPoint
 class EditProfileActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityEditProfileBinding
-    private val viewModel: ProfileViewModel by viewModels()
-    private lateinit var isData: Data
-    private var selectedFiles = mutableListOf<File>()
+    private lateinit var    binding         : ActivityEditProfileBinding
+    private val             viewModel       : ProfileViewModel by viewModels()
+    private lateinit var    isData          : Data
+    private var             selectedFiles   = mutableListOf<File>()
 
-    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        f_back()
+        f_detail()
+        f_pick()
+        f_extras()
+        f_save()
+        f_changepw()
+        setupObserver()
+    }
+
+    private fun f_back() {
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
+    }
+
+    private fun f_detail() {
         lifecycleScope.launch {
             viewModel.detailProfile()
         }
-        lifecycleScope.launch {
-            viewModel.isAva(selectedFiles[0])
-        }
+    }
+
+    private fun f_pick() {
         binding.btnPic.setOnClickListener {
             requestAccessForFile()
         }
+    }
+
+    private fun f_extras() {
         intent.extras?.getParcelable<Data>("data")?.let {
             isData = it
             binding.editFullName.setText(isData.name)
@@ -72,7 +86,22 @@ class EditProfileActivity : BaseActivity() {
             binding.autoCompleteTxtGender.setText(isData.detail?.gender.toString())
             binding.editBirth.setText(isData.detail?.date_of_birth)
             binding.editAdress.setText(isData.detail?.address)
+
+            if(it.detail?.profile_picture == null){
+                Glide.with(binding.imgProfile.context)
+                    .load(R.drawable.white_image)
+                    .error(R.drawable.white_image)
+                    .into(binding.imgProfile)
+            } else {
+                Glide.with(binding.imgProfile.context)
+                    .load("https://ecom-mobile.spdev.my.id/img/profile/" + it.detail!!.profile_picture)
+                    .error(R.drawable.white_image)
+                    .into(binding.imgProfile)
+            }
         }
+    }
+
+    private fun f_save() {
         binding.btnSave.setOnClickListener {
             lifecycleScope.launch {
                 val nama = binding.editFullName.text.toString().trim()
@@ -81,35 +110,51 @@ class EditProfileActivity : BaseActivity() {
                 val birth = binding.editBirth.text.toString().trim()
                 val adress = binding.editAdress.text.toString().trim()
                 viewModel.editProfile(adress, birth, gender, nama, numb)
+                if (selectedFiles.isNotEmpty()){
+                    viewModel.isAva(selectedFiles[0])
+                }
             }
         }
+    }
+
+    private fun f_changepw() {
         binding.btnChange.setOnClickListener {
-            val i = Intent(this, ChangePassActivity::class.java)
+            val i = Intent(this@EditProfileActivity, ChangePassActivity::class.java)
             startActivity(i)
             finish()
         }
     }
 
     override fun setupObserver() {
+        loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
+
         viewModel.updateProfile.observe(this){
+            Log.e("TAG", "setupObserver: "+ it )
+            Toast.makeText(this@EditProfileActivity, "Berhasil Mengubah Informasi Akun", Toast.LENGTH_LONG).show()
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
+
         viewModel.userDetail.observe(this){
-            val i = Intent(this, MainActivity::class.java)
+        }
+
+        viewModel.changeava.observe(this){
+            Log.e("TAG", "setupObserver: "+ it )
+            Toast.makeText(this, "Berhasil Mengubah Foto Profil", Toast.LENGTH_LONG).show()
+            val i = Intent(this@EditProfileActivity, MainActivity::class.java)
             startActivity(i)
             finish()
-        }
-        viewModel.changeava.observe(this){
-            Toast.makeText(this, "Berhasil Mengubah Foto Profil", Toast.LENGTH_LONG).show()
 
         }
+
     }
 
     override fun onResume() {
         super.onResume()
-
         val gender = resources.getStringArray(R.array.gender)
         val arrayAdapterGender = ArrayAdapter(this, R.layout.signup_menu, gender)
         val autoCompleteGender = binding.autoCompleteTxtGender
@@ -222,4 +267,11 @@ class EditProfileActivity : BaseActivity() {
         startActivity(i)
         finish()
     }
+
 }
+
+
+
+
+
+

@@ -54,8 +54,6 @@ class HomeFragment : Fragment() {
         }
 
         SharedPref.idNav = 1
-
-        binding.txtTittle.text = "Halo, " + SharedPref.nameUser
         setupObserver()
     }
 

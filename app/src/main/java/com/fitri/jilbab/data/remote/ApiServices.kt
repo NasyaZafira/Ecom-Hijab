@@ -7,6 +7,7 @@ import com.fitri.jilbab.data.model.address.cities.CitiesResponse
 import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
+import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
@@ -17,6 +18,7 @@ import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse
 import com.fitri.jilbab.data.model.profile.password.BodyPassword
 import com.fitri.jilbab.data.model.profile.password.ChangePassResponse
+import com.fitri.jilbab.data.model.profile.picture.ChangePictureResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
@@ -183,4 +185,15 @@ interface ApiServices {
     suspend fun review(
         @Body body: BodyReview
     ): ApiResponse<ReviewResponse>
+
+    @Multipart
+    @POST("profile/change-picture")
+    suspend fun changePicture(
+        @Part profile_picture: MultipartBody.Part
+    ): ApiResponse<ChangePictureResponse>
+
+    @POST("product-category/archive/{id_category}")
+    suspend fun delCategory(
+        @Path("id_category") id_category: Int
+    ): ApiResponse<DelCatResponse>
 }
