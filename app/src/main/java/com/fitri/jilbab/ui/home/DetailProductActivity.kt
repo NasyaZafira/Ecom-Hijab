@@ -9,6 +9,8 @@ import android.widget.RatingBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -26,16 +28,17 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DetailProductActivity : BaseActivity() {
 
-    private lateinit var    binding         : ActivityDetailProductBinding
-    private val             viewModel       : HomeViewModel by viewModels()
-    private val             cartViewModel   : CartViewModel by viewModels()
-    private lateinit var    data            : Data
-    private var             dataPicture     : MutableList<Picture> = ArrayList()
-    private var             imageList       = ArrayList<SlideModel>()
+    private lateinit var binding: ActivityDetailProductBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
+    private lateinit var data: Data
+    private var dataPicture: MutableList<Picture> = ArrayList()
+    private var imageList = ArrayList<SlideModel>()
 
-    private var             p_name          : String = ""
-    private var             p_total         : Int = 0
-    private var             p_price         : Int = 0
+    private var p_name: String = ""
+    private var p_total: Int = 0
+    private var p_price: Int = 0
+    private var reviewAdapter = ReviewAdapter(mutableListOf())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,12 +54,10 @@ class DetailProductActivity : BaseActivity() {
         f_total()
         f_troli()
 
-        f_sendRating()
-    }
-
-    private fun f_sendRating() {
 
     }
+
+
 
     private fun f_reting() {
         // Create rating bar programmatically...
@@ -75,11 +76,11 @@ class DetailProductActivity : BaseActivity() {
         binding.txtSend.setOnClickListener {
             val ulasan = binding.edtKoment.text.toString().trim()
             val rating = ratingBar.rating.toInt().toString()
-            val id     = data.id_product
+            val id = data.id_product
 
             Log.e("TAG", "f_reting: -" + ulasan + "-" + rating + "-" + id)
 
-            if (!ulasan.isNullOrBlank() && !rating.isNullOrBlank() && id != null){
+            if (!ulasan.isNullOrBlank() && !rating.isNullOrBlank() && id != null) {
                 lifecycleScope.launch {
                     viewModel.reviewProduct(
                         id.toString(),
@@ -87,11 +88,10 @@ class DetailProductActivity : BaseActivity() {
                         ulasan
                     )
                 }
-                Log.e("TAG", "f_reting: compleate" )
-            }
-            else{
+                Log.e("TAG", "f_reting: compleate")
+            } else {
                 Toast.makeText(this, "Lengkapi rating dan ulasan", Toast.LENGTH_LONG).show()
-                Log.e("TAG", "f_reting: not compleate" )
+                Log.e("TAG", "f_reting: not compleate")
             }
 
         }
@@ -100,8 +100,14 @@ class DetailProductActivity : BaseActivity() {
     private fun f_extras() {
         val id = intent.getLongExtra("product", 0)
         f_launch(id.toInt())
+        f_listReview(id.toString())
     }
 
+    private fun f_listReview(id_Product: String) {
+        lifecycleScope.launch {
+            viewModel.listReview(id_Product)
+        }
+    }
     private fun f_launch(id_Product: Int) {
         lifecycleScope.launch {
             //Log.e("TAG", "onCreate: id product " + data.id_product )
@@ -133,10 +139,11 @@ class DetailProductActivity : BaseActivity() {
             }
             binding.ivPoster.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
-            data                    = it.data
-            binding.tvTitle.text    = it.data.product_name
-            binding.tvDesc.text     = it.data.product_description
-            binding.tvInfo.text     = it.data.product_detail_info
+            data = it.data
+            binding.ratingBar.rating = it.data.rating.toFloat()
+            binding.tvTitle.text = it.data.product_name
+            binding.tvDesc.text = it.data.product_description
+            binding.tvInfo.text = it.data.product_detail_info
             binding.txtPrice.formatPrice(it.data.price.toString())
             binding.tvTotal.formatPrice("0")
         }
@@ -148,12 +155,24 @@ class DetailProductActivity : BaseActivity() {
             finish()
         }
 
-        viewModel.isReview.observe(this){
+        viewModel.isReview.observe(this) {
             Toast.makeText(this, "Review dikirim", Toast.LENGTH_LONG).show()
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
             Log.e("TAG", "setupObserver: " + it)
+        }
+        viewModel.listReview.observe(this) {
+            reviewAdapter.review.clear()
+            reviewAdapter.review.addAll(it.data)
+            reviewAdapter.notifyDataSetChanged()
+            binding.rvProduct.apply {
+                layoutManager = LinearLayoutManager(
+                    context, RecyclerView.VERTICAL,
+                    true
+                )
+                adapter = reviewAdapter
+            }
         }
 
     }
@@ -201,7 +220,10 @@ class DetailProductActivity : BaseActivity() {
         }
     }
 
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 
 
 }

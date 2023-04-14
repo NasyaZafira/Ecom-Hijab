@@ -77,6 +77,25 @@ class UserRepository @Inject constructor(
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 
+    suspend fun listReview(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        id_product: String
+    ) = flow {
+        val response = apiServices.listReview(id_product)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
     suspend fun addCart(
         onStart: () -> Unit,
         onComplete: () -> Unit,

@@ -29,11 +29,11 @@ import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.cat.CatResponse
 import com.fitri.jilbab.data.model.user.checkout.CheckOutResponse
 import com.fitri.jilbab.data.model.user.co.CoBody
-import com.fitri.jilbab.data.model.user.co.CoResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.model.user.order.OrderResponse
 import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.model.user.review.ReviewResponse
+import com.fitri.jilbab.data.model.user.review.list.ListReviewResponse
 import com.fitri.jilbab.data.model.user.search.SearchResponse
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.MultipartBody
@@ -196,4 +196,9 @@ interface ApiServices {
     suspend fun delCategory(
         @Path("id_category") id_category: Int
     ): ApiResponse<DelCatResponse>
+
+    @GET("review/list/{id_product}")
+    suspend fun listReview(
+        @Path("id_product") id_product: String
+    ): ApiResponse<ListReviewResponse>
 }

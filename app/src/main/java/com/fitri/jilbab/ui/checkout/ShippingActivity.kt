@@ -81,26 +81,27 @@ class ShippingActivity : BaseActivity() {
 
             binding.txtName.text    = it.jne[0].code
             binding.txtName2.text   = it.tiki[0].code
+            binding.txtName3.text   = it.pos[0].code
 
-            binding.one.text    = it.jne[0].code + " " + it.jne[0].costs[0].service + " " + it.jne[0].costs[0].cost[0].value + "\n" + it.jne[0]
-            binding.two.text    = it.jne[0].code + it.jne[0].costs[1].service + it.jne[0].costs[1].cost[0].value
-            binding.three.text  = it.jne[0].code + it.jne[0].costs[2].service + it.jne[0].costs[2].cost[0].value
+            binding.one.text    = it.jne[0].costs[0].service + "\nOngkos Kirim RP."+ it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            binding.two.text    = it.jne[0].costs[1].service + "\nOngkos Kirim RP."+ it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+            binding.three.text  = it.jne[0].costs[2].service + "\nOngkos Kirim RP."+ it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
 
-            text11              = it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
-            text12              = it.jne[0].code + it.jne[0].costs[1].service + it.jne[0].costs[1].cost[0].value
-            text13              = it.jne[0].code + it.jne[0].costs[2].service + it.jne[0].costs[2].cost[0].value
+            text11              = it.jne[0].costs[0].service + "\nOngkos Kirim RP."+ it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari" //it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
+            text12              = it.jne[0].costs[1].service + "\nOngkos Kirim RP."+ it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+            text13              = it.jne[0].costs[2].service + "\nOngkos Kirim RP."+ it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
 
-            binding.one2.text   = it.tiki[0].code + it.tiki[0].costs[0].service + it.tiki[0].costs[0].cost[0].value
-            binding.two2.text   = it.tiki[0].code + it.tiki[0].costs[1].service + it.tiki[0].costs[1].cost[0].value
+            binding.one2.text   = it.tiki[0].costs[0].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            binding.two2.text   = it.tiki[0].costs[1].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
 
-            text21              = it.tiki[0].code + it.tiki[0].costs[0].service + it.tiki[0].costs[0].cost[0].value
-            text22              = it.tiki[0].code + it.tiki[0].costs[1].service + it.tiki[0].costs[1].cost[0].value
+            text21              = it.tiki[0].costs[0].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            text22              = it.tiki[0].costs[1].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
 
-            binding.one3.text   = it.pos[0].code + it.pos[0].costs[0].service + it.pos[0].costs[0].cost[0].value
-            binding.two3.text   = it.pos[0].code + it.pos[0].costs[1].service + it.pos[0].costs[1].cost[0].value
+            binding.one3.text   = it.pos[0].costs[0].service + "\nOngkos Kirim RP."+ it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            binding.two3.text   = it.pos[0].costs[1].service + "\nOngkos Kirim RP."+ it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
 
-            text31              = it.pos[0].code + it.pos[0].costs[0].service + it.pos[0].costs[0].cost[0].value
-            text32              = it.pos[0].code + it.pos[0].costs[1].service + it.pos[0].costs[1].cost[0].value
+            text31              = it.pos[0].costs[0].service + "\nOngkos Kirim RP."+ it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            text32              = it.pos[0].costs[1].service + "\nOngkos Kirim RP."+ it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
         }
     }
 

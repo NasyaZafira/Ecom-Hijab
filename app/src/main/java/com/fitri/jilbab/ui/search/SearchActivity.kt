@@ -2,6 +2,7 @@ package com.fitri.jilbab.ui.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.data.model.user.search.Data
 import com.fitri.jilbab.databinding.ActivitySearchBinding
 import com.fitri.jilbab.ui.home.DetailProductActivity
@@ -22,9 +24,6 @@ class SearchActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySearchBinding
     private val viewModel: SearchViewModel by viewModels()
-    private var targetPosition = -1
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
@@ -45,6 +44,8 @@ class SearchActivity : BaseActivity() {
 
         }
         binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
             finish()
         }
         setupObserver()
@@ -66,8 +67,13 @@ class SearchActivity : BaseActivity() {
         }
 
         viewModel.search.observe(this) { response ->
+
+            Log.e("TAG", "setupObserver: " + response )
             if (response.data.isNotEmpty()) {
                 binding.rvProduct.visibility = View.VISIBLE
+            } else {
+                binding.txtNoResult.visibility = View.VISIBLE
+                binding.rvProduct.visibility = View.GONE
             }
             binding.rvProduct.apply {
                 layoutManager = LinearLayoutManager(
@@ -92,6 +98,8 @@ class SearchActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
         finish()
     }
 }

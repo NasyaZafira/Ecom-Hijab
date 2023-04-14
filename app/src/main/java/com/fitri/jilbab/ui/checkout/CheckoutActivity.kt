@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
+import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.data.model.user.checkout.Data
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
+import com.fitri.jilbab.ui.cart.CartActivity
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,6 +33,12 @@ class CheckoutActivity : BaseActivity() {
 
         r_getIntent()
         setupObserver()
+
+        binding.verifyAcc.setOnClickListener {
+            val i = Intent(this, CartActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     private fun r_getIntent() {
@@ -98,6 +106,12 @@ class CheckoutActivity : BaseActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val i = Intent(this, CartActivity::class.java)
+        startActivity(i)
+        finish()
+    }
 
 }
 

@@ -19,5 +19,6 @@ data class Data(
     val slug_product: String,
     val stock: String?,
     val updated_at: String?,
-    val weight_product: String?
+    val weight_product: String?,
+    val rating: String
 ) : Parcelable

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.search.Data
-import com.fitri.jilbab.databinding.ItemProductusrBinding
 import com.fitri.jilbab.databinding.ItemSearchBinding
 
 class SearchAdapter(
@@ -28,6 +27,7 @@ class SearchAdapter(
                     .error(R.drawable.white_image)
                     .into(binding.imgProduct)
             }
+            binding.rbFood.rating = isProduct.rating.toFloat()
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
             binding.itemSearch.setOnClickListener {
