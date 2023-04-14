@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_order_user"
+    android:background="@drawable/bg_round_white_transparant"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#ORD-131815FNWUVN"
+        style="@style/TextView.Normal14Grey"
+        android:id="@+id/idOrder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belum dibayar"
+        style="@style/TextView.Normal14Grey"
+        android:id="@+id/statusOrder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal : 2023-04-06 06:32:22"
+        style="@style/TextView.Normal14Grey"
+        android:id="@+id/dateorder"
+        app:layout_constraintTop_toBottomOf="@id/idOrder"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_order"
+        app:layout_constraintTop_toBottomOf="@id/dateorder"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

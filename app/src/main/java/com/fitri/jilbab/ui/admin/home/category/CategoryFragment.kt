@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.data.model.admin.category.Data
 import com.fitri.jilbab.databinding.FragmentCategoryBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,8 @@ class CategoryFragment : Fragment() {
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductAdminVm by viewModels()
-    private var adapterCg = CategoryAdapter(mutableListOf())
+    private var targetPosition = -1
+    private var adapterCg = CategoryAdapter(mutableListOf(), onDetailClick = {data, pos -> intentToDetail(data, pos)})
 
 
 
@@ -47,6 +49,13 @@ class CategoryFragment : Fragment() {
             requireActivity().finish()
         }
         setupObserver()
+    }
+
+    private fun intentToDetail(content: Data, pos: Int) {
+        targetPosition = pos
+        val i = Intent(requireContext(), EditCategoryActivity::class.java)
+        i.putExtra("category", content)
+        startActivity(i)
     }
 
     private fun setupObserver() {

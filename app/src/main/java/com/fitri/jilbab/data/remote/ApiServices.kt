@@ -8,6 +8,7 @@ import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
+import com.fitri.jilbab.data.model.admin.category.editCat.EditCatResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
@@ -74,46 +75,47 @@ interface ApiServices {
     @Multipart
     @POST("product/add")
     suspend fun addProduct(
-        @Part thumbnail : MultipartBody.Part,
-        @Part productimage1 : MultipartBody.Part?,
-        @Part productimage2 : MultipartBody.Part?,
-        @Part productimage3 : MultipartBody.Part?,
-        @Part productimage4 : MultipartBody.Part?,
-        @Part("nama_produk") nama_produk : RequestBody,
-        @Part("harga_produk") harga_produk : RequestBody,
-        @Part("diskon_produk") diskon_produk : RequestBody,
-        @Part("kategori_produk") kategori_produk : RequestBody,
-        @Part("berat_produk") berat_produk : RequestBody,
-        @Part("stock_default") stock_default : RequestBody,
-        @Part("deskripsi_produk") deskripsi_produk : RequestBody,
-        @Part("detail_info") detail_info : RequestBody?
-        ): ApiResponse<AddProductResponse>
+        @Part thumbnail: MultipartBody.Part,
+        @Part productimage1: MultipartBody.Part?,
+        @Part productimage2: MultipartBody.Part?,
+        @Part productimage3: MultipartBody.Part?,
+        @Part productimage4: MultipartBody.Part?,
+        @Part("nama_produk") nama_produk: RequestBody,
+        @Part("harga_produk") harga_produk: RequestBody,
+        @Part("diskon_produk") diskon_produk: RequestBody,
+        @Part("kategori_produk") kategori_produk: RequestBody,
+        @Part("berat_produk") berat_produk: RequestBody,
+        @Part("stock_default") stock_default: RequestBody,
+        @Part("deskripsi_produk") deskripsi_produk: RequestBody,
+        @Part("detail_info") detail_info: RequestBody?
+    ): ApiResponse<AddProductResponse>
 
     @Multipart
     @POST("product/update/{id_product}")
     suspend fun editProduct(
         @Path("id_product") id_product: Int,
-        @Part thumbnail : MultipartBody.Part?,
-        @Part productimage1 : MultipartBody.Part?,
-        @Part productimage2 : MultipartBody.Part?,
-        @Part productimage3 : MultipartBody.Part?,
-        @Part productimage4 : MultipartBody.Part?,
-        @Part("nama_produk") nama_produk : RequestBody,
-        @Part("harga_produk") harga_produk : RequestBody,
-        @Part("diskon_produk") diskon_produk : RequestBody,
-        @Part("kategori_produk") kategori_produk : RequestBody,
-        @Part("berat_produk") berat_produk : RequestBody,
-        @Part("stock_default") stock_default : RequestBody,
-        @Part("deskripsi_produk") deskripsi_produk : RequestBody,
-        @Part("detail_info") detail_info : RequestBody?
+        @Part thumbnail: MultipartBody.Part?,
+        @Part productimage1: MultipartBody.Part?,
+        @Part productimage2: MultipartBody.Part?,
+        @Part productimage3: MultipartBody.Part?,
+        @Part productimage4: MultipartBody.Part?,
+        @Part("nama_produk") nama_produk: RequestBody,
+        @Part("harga_produk") harga_produk: RequestBody,
+        @Part("diskon_produk") diskon_produk: RequestBody,
+        @Part("kategori_produk") kategori_produk: RequestBody,
+        @Part("berat_produk") berat_produk: RequestBody,
+        @Part("stock_default") stock_default: RequestBody,
+        @Part("deskripsi_produk") deskripsi_produk: RequestBody,
+        @Part("detail_info") detail_info: RequestBody?
     ): ApiResponse<EditProductReponse>
 
     @Multipart
     @POST("product-category/add")
     suspend fun addCategory(
-        @Part("category_name") category_name : RequestBody,
-        @Part category_image : MultipartBody.Part,
+        @Part("category_name") category_name: RequestBody,
+        @Part category_image: MultipartBody.Part,
     ): ApiResponse<CategoryAddResponse>
+
     @GET("shipping-address")
     suspend fun listAddress(
     ): ApiResponse<ListAddressResponse>
@@ -139,7 +141,7 @@ interface ApiServices {
 
     @POST("cart/checkout")
     suspend fun checkout(
-        @Body body : CoBody
+        @Body body: CoBody
     ): ApiResponse<CheckOutResponse>
 
     @POST("order/place-order")
@@ -201,4 +203,12 @@ interface ApiServices {
     suspend fun listReview(
         @Path("id_product") id_product: String
     ): ApiResponse<ListReviewResponse>
+
+    @Multipart
+    @POST("product-category/update/{id_category}")
+    suspend fun editCat(
+        @Path("id_category") id_category: Int,
+        @Part("category_name") category_name: RequestBody,
+        @Part category_image: MultipartBody.Part,
+    ): ApiResponse<EditCatResponse>
 }

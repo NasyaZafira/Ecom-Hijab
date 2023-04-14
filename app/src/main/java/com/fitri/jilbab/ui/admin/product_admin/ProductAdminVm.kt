@@ -6,6 +6,7 @@ import com.commer.app.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
+import com.fitri.jilbab.data.model.admin.category.editCat.EditCatResponse
 import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
@@ -32,6 +33,7 @@ class ProductAdminVm @Inject constructor(
     val addCat = MutableLiveData<CategoryAddResponse>()
     val del = MutableLiveData<DelProductResponse>()
     val delCat = MutableLiveData<DelCatResponse>()
+    val editCat = MutableLiveData<EditCatResponse>()
 
     suspend fun theList() {
         productRepository.adminProduct(
@@ -85,6 +87,40 @@ class ProductAdminVm @Inject constructor(
             id_category
         ).collect{
             delCat.postValue(it)
+            succesLoad.postValue("200")
+        }
+    }
+
+    suspend fun editCategory(
+        id_category: Int,
+        category_name: String,
+        category_image: File
+    ) {
+        val nama = category_name.toRequestBody("text/plain".toMediaType())
+        val thumb = category_image.asRequestBody(
+            getMimeType(category_image.path)!!.toMediaType()
+        )
+        val image = thumb.let {
+            MultipartBody.Part.createFormData(
+                "category_image",
+                category_image.name, it
+            )
+        }
+        productRepository.editCategory(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            id_category,
+            nama,
+            image
+        ).collect{
+            editCat.postValue(it)
             succesLoad.postValue("200")
         }
     }

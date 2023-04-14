@@ -11,22 +11,24 @@ import com.fitri.jilbab.databinding.ItemCategoryBinding
 
 class CategoryAdapter(
     var cgAdmin: MutableList<Data>,
-    //private val onDetailClick: (Data) -> Unit
+    private val onDetailClick: (Data, Int) -> Unit
 ): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             category: List<Data>,
-            //onDetailClick: (Data) -> Unit
+            onDetailClick: (Data, Int) -> Unit
         ) {
-            val isCategory = category[position]
+            val isCategory = category[adapterPosition]
 
             Glide.with(binding.imgProduct.context)
                 .load("https://ecom-mobile.spdev.my.id/img/category/" + isCategory.category_image)
                 .error(R.drawable.white_image)
                 .into(binding.imgProduct)
             binding.isName.text = isCategory.category_name
-//            binding.isStock.text = "Total Produk : " + isCategory.
+            binding.itemCat.setOnClickListener {
+                onDetailClick(isCategory, adapterPosition)
+            }
 
         }
     }
@@ -37,7 +39,7 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cgAdmin) //onDetailClick)
+        holder.bind(cgAdmin, onDetailClick)
     }
     override fun getItemCount() = cgAdmin.size
 }

@@ -114,6 +114,27 @@ class AdminRepository @Inject constructor(
         .onCompletion { onComplete() }
         .flowOn(ioDispatcher)
 
+    suspend fun editCategory(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        id_product: Int,
+        category_name: RequestBody,
+        category_image: MultipartBody.Part
+    ) = flow {
+        val response = apiService.editCat(id_product,category_name, category_image)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
     suspend fun addProductAd(
         onStart: () -> Unit,
         onComplete: () -> Unit,

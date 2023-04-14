@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
@@ -60,21 +59,17 @@ class AddCategoryActivity : BaseActivity() {
             finish()
         }
         binding.btnContinue.setOnClickListener {
-           validateButton()
-            lifecycleScope.launch{
-                val name = binding.isedtName.text.toString().trim()
-                viewModel.addCategory(name, selectedFiles[0])
+            val name = binding.isedtName.text.toString().trim()
+            if (!name.isNullOrBlank() && selectedFiles.isNotEmpty()) {
+                lifecycleScope.launch {
+                    viewModel.addCategory(name, selectedFiles[0])
+                }
+            } else {
+                Toast.makeText(this, "Lengkapi nama kategori dan foto kategori", Toast.LENGTH_LONG).show()
+
             }
         }
         setupObserver()
-    }
-
-    private fun validateButton() {
-
-        val nameOk = binding.edtNmProduct.error == null
-        val fileOk = selectedFiles != null
-        binding.btnContinue.isEnabled = nameOk && fileOk
-
     }
 
     override fun setupObserver() {
@@ -82,11 +77,11 @@ class AddCategoryActivity : BaseActivity() {
         viewModel.loading.observe(this) {
             if (it) showLoading() else hideLoading()
         }
-        viewModel.addCat.observe(this){
+        viewModel.addCat.observe(this) {
             if (it.success == false) {
                 binding.warningError.visibility = View.VISIBLE
             }
-            Log.e("TAG", "setupObserver: " + it.data )
+            Log.e("TAG", "setupObserver: " + it.data)
             Toast.makeText(this, "Berhasil Menambahkan Kategori", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)
@@ -181,6 +176,8 @@ class AddCategoryActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val i = Intent(this, SuperActivity::class.java)
+        startActivity(i)
         finish()
     }
 }

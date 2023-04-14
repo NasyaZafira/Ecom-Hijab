@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".EditCategoryActivity"
+            android:name=".ui.admin.home.category.EditCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.change_pass.ChangePassActivity"

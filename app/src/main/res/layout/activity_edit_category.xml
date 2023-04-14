@@ -51,7 +51,9 @@
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_roundyellowt"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutOne"
             app:riv_corner_radius="10dp" />
@@ -63,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="+\nTambahkan\nFoto Kategori"
+            android:text="+\nUbah\nFoto Kategori"
+            android:fontFamily="@font/poppins_medium"
             app:layout_constraintBottom_toBottomOf="@id/imgCat"
             app:layout_constraintEnd_toEndOf="@id/imgCat"
             app:layout_constraintStart_toStartOf="@id/imgCat"
@@ -131,7 +134,7 @@
             android:text="* Nama kategori dan foto kategori wajib diisi"
             android:textColor="@color/colorError"
             android:textSize="12sp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/edtNmProduct"
             app:layout_constraintTop_toBottomOf="@id/edtNmProduct" />
 
@@ -153,12 +156,12 @@
         app:layout_constraintBottom_toTopOf="@id/view01" />
 
     <View
+        android:id="@+id/view01"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorAccent"
-        android:layout_marginBottom="18dp"
-        android:id="@+id/view01"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="18dp"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/btnDel" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -168,9 +171,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="18dp"
+        android:backgroundTint="@color/colorError"
         android:text="Hapus Kategori"
         android:textAllCaps="false"
-        android:backgroundTint="@color/colorError"
         android:textColor="@color/colorBase"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
