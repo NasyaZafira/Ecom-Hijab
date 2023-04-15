@@ -196,7 +196,7 @@ class EditProfileActivity : BaseActivity() {
                     files.forEach {
                         val file = File(it.mediaPath)
                         if (it.mediaType == UwMediaPickerMediaType.IMAGE) {
-                            if (file.sizeInMb <= 50.0) {
+                            if (file.sizeInMb <= 2.0) {
                                 selectedFiles.add(File(it.mediaPath))
                                 Glide
                                     .with(this)
@@ -205,7 +205,7 @@ class EditProfileActivity : BaseActivity() {
                             } else {
                                 Toast.makeText(
                                     this,
-                                    "Maksimum foto yang dipilih harus < 50 MB",
+                                    "Maksimum foto yang dipilih harus < 2 MB",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
