@@ -1,5 +1,6 @@
 package com.fitri.jilbab.ui.midtrans
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,7 +13,7 @@ import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityMidtransBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
-import com.midtrans.sdk.uikit.api.model.CustomColorTheme
+import com.fitri.jilbab.ui.splash.Splash
 import com.midtrans.sdk.uikit.api.model.TransactionResult
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
@@ -29,7 +30,20 @@ class MidtransActivity : BaseActivity() {
         if (result?.resultCode == RESULT_OK) {
             result.data?.let {
                 val transactionResult = it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
-                Toast.makeText(this,"${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"${transactionResult?.status}", Toast.LENGTH_SHORT).show()
+                when (transactionResult?.status) {
+                    "success" -> {
+                        val i = Intent(this, Splash::class.java)
+                        startActivity(i)
+                        finishAffinity()
+                    }
+                    "pending" -> {
+                        initMidtransSdk()
+                    }
+                    else -> {
+                        runData()
+                    }
+                }
             }
         }
     }
@@ -39,20 +53,7 @@ class MidtransActivity : BaseActivity() {
         binding = ActivityMidtransBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            viewModel.paymentMidtrans(
-                BodyPlaceOrder(
-                    courier = "JNE",
-                    courier_package = "OKE",
-                    shipping_cost = "9000",
-                    delivery_estimate = "2-3",
-                    id_shipping_address = "7",
-                    total_price = "35000"
-                )
-            )
-        }
-
-        setupObserver()
+        runData()
     }
 
     override fun setupObserver() {
@@ -68,7 +69,25 @@ class MidtransActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        initMidtransSdk()
+        launcher
+    }
+
+    private fun runData() {
+        val data = intent.getParcelableExtra<BodyPlaceOrder>("midtrans")!!
+        lifecycleScope.launch {
+            viewModel.paymentMidtrans(
+                BodyPlaceOrder(
+                    courier = data.courier,
+                    courier_package = data.courier_package,
+                    shipping_cost = data.shipping_cost,
+                    delivery_estimate = data.delivery_estimate,
+                    id_shipping_address = data.id_shipping_address,
+                    total_price = data.total_price
+                )
+            )
+        }
+
+        setupObserver()
     }
 
     private fun initMidtransSdk() {
@@ -77,7 +96,6 @@ class MidtransActivity : BaseActivity() {
             .withContext(this) // context is mandatory
             .withMerchantUrl("https://ecom-mobile.spdev.my.id/api/") // set transaction finish callback (sdk callback)
             .enableLog(true) // enable sdk log (optional)
-            .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .build()
         setLocaleNew("id") //`en` for English and `id` for Bahasa
 

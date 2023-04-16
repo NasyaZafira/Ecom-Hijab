@@ -12,7 +12,6 @@ import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.checkout.Courier
-
 import com.fitri.jilbab.databinding.ActivityShippingBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +24,7 @@ class ShippingActivity : BaseActivity() {
     private var kurir: String = ""
     private var service: String = ""
     private var price: String = ""
+    private var estimate: String = ""
     private lateinit var courier: Courier
     private lateinit var radioTiki: RadioGroup
     private lateinit var radioPos : RadioGroup
@@ -151,14 +151,17 @@ class ShippingActivity : BaseActivity() {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[0].cost[0].value.toString()
             service = courier.jne[0].costs[0].service
+            estimate = courier.jne[0].costs[0].cost[0].etd
         } else if (id.equals(12)) {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[1].cost[0].value.toString()
             service = courier.jne[0].costs[1].service
+            estimate = courier.jne[0].costs[1].cost[0].etd
         } else if (id.equals(13)) {
             kurir = courier.jne[0].code
             price = courier.jne[0].costs[2].cost[0].value.toString()
             service = courier.jne[0].costs[2].service
+            estimate = courier.jne[0].costs[2].cost[0].etd
         }
     }
 
@@ -168,10 +171,12 @@ class ShippingActivity : BaseActivity() {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[0].cost[0].value.toString()
             service = courier.tiki[0].costs[0].service
+            estimate = courier.tiki[0].costs[0].cost[0].etd
         } else if (id.equals(22)) {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[1].cost[0].value.toString()
             service = courier.tiki[0].costs[1].service
+            estimate = courier.tiki[0].costs[1].cost[0].etd
         }
     }
 
@@ -181,10 +186,12 @@ class ShippingActivity : BaseActivity() {
             kurir = courier.pos[0].code
             price = courier.pos[0].costs[0].cost[0].value.toString()
             service = courier.pos[0].costs[0].service
+            estimate = courier.pos[0].costs[0].cost[0].etd
         } else if (id.equals(32)) {
             kurir = courier.pos[0].code
             price = courier.pos[0].costs[1].cost[0].value.toString()
             service = courier.pos[0].costs[1].service
+            estimate = courier.pos[0].costs[1].cost[0].etd
         }
     }
 
@@ -202,6 +209,7 @@ class ShippingActivity : BaseActivity() {
         i.putExtra("kurir", kurir)
         i.putExtra("service", service)
         i.putExtra("price", price)
+        i.putExtra("estimate", estimate)
         setResult(Activity.RESULT_OK, i)
         finish()
     }

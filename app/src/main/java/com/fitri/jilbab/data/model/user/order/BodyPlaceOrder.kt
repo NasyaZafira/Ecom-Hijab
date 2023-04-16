@@ -1,5 +1,9 @@
 package com.fitri.jilbab.data.model.user.order
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class BodyPlaceOrder(
     val courier: String,
     val courier_package: String,
@@ -7,4 +11,4 @@ data class BodyPlaceOrder(
     val id_shipping_address: String,
     val shipping_cost: String,
     val total_price: String
-)
+): Parcelable
