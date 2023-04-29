@@ -4,6 +4,8 @@ import com.fitri.jilbab.data.model.address.ListAddressResponse
 import com.fitri.jilbab.data.model.address.add.AddAddressResponse
 import com.fitri.jilbab.data.model.address.add.BodyAddAddress
 import com.fitri.jilbab.data.model.address.cities.CitiesResponse
+import com.fitri.jilbab.data.model.address.edit.BodyEditAddress
+import com.fitri.jilbab.data.model.address.edit.EditAddressResponse
 import com.fitri.jilbab.data.model.address.province.ProvinceResponse
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
@@ -164,6 +166,11 @@ interface ApiServices {
     suspend fun addAddress(
         @Body body: BodyAddAddress
     ): ApiResponse<AddAddressResponse>
+    @POST("shipping-address/update/{id_ship_address}")
+    suspend fun editAddress(
+        @Body body: BodyEditAddress,
+        @Path("id_ship_address") id_ship_address: Int
+    ): ApiResponse<EditAddressResponse>
 
     @GET("product/search")
     suspend fun searchProduct(

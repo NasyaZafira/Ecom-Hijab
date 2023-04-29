@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="10dp"
+    android:id="@+id/itemAddressUser"
     android:background="@drawable/bg_round_white_transparant"
     android:clickable="true">
 

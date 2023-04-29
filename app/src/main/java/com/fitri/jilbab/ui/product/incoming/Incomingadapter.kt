@@ -25,11 +25,22 @@ class Incomingadapter(
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
                 adapter = IncAdapter(a.products.toMutableList())
             }
-            for (i: Int in 0 until userUnpaid.size) {
-                val b = 0 + ((userUnpaid[i].products[i].product.price.toInt()) * (userUnpaid[i].products[i].qty))
-                binding.txtTotalPrice.formatPrice(b.toString())
+
+            var total       = 0
+            var tampungan   = 0
+            var com_1       = 0
+            var com_2       = 0
+
+            if (a.products.size > 0){
+                for (i : Int in 0 until a.products.toMutableList().size){
+                    com_1       = a.products.toMutableList()[i].product.price.toInt()
+                    com_2       = a.products.toMutableList()[i].qty
+                    tampungan   = com_1 * com_2
+                    total       = total + tampungan
+                }
             }
 
+            binding.txtTotalPrice.formatPrice(total.toString())
         }
     }
 

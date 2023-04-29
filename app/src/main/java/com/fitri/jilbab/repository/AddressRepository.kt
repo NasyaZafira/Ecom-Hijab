@@ -1,6 +1,7 @@
 package com.fitri.jilbab.repository
 
 import com.fitri.jilbab.data.model.address.add.BodyAddAddress
+import com.fitri.jilbab.data.model.address.edit.BodyEditAddress
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
@@ -42,6 +43,26 @@ class AddressRepository @Inject constructor(
         body: BodyAddAddress
     ) = flow {
         val response = apiService.addAddress(body)
+        response.suspendOnSuccess {
+            emit(data)
+        }.onError {
+            onError(this.message())
+        }.onException {
+            onError(this.message())
+        }
+    }
+        .onStart { onStart() }
+        .onCompletion { onComplete() }
+        .flowOn(ioDispatcher)
+
+    suspend fun editAddress(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit,
+        body: BodyEditAddress,
+        id_ship_address : Int
+    ) = flow {
+        val response = apiService.editAddress(body, id_ship_address)
         response.suspendOnSuccess {
             emit(data)
         }.onError {

@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.data.model.address.Data
+
 import com.fitri.jilbab.databinding.ActivityListAddressBinding
+import com.fitri.jilbab.ui.admin.product_admin.EditProductActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -17,7 +20,9 @@ import kotlinx.coroutines.launch
 class ListAddressActivity : BaseActivity() {
     private lateinit var binding: ActivityListAddressBinding
     private val viewModel : AddressViewModel by viewModels()
-    private var adAdapter = AddressAdapter(mutableListOf())
+    private var adAdapter = AddressAdapter(mutableListOf(), onDetail = {data, pos -> intentToDetail(data, pos)})
+    private var targetPosition = -1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,12 @@ class ListAddressActivity : BaseActivity() {
         }
     }
 
+    private fun intentToDetail(content: Data, pos: Int) {
+        targetPosition = pos
+        val i = Intent(this, EditAddressActivity::class.java)
+        i.putExtra("address", content)
+        startActivity(i)
+    }
     override fun setupObserver() {
         loadingUI = CustomLoadingDialog(this)
         viewModel.loading.observe(this) {

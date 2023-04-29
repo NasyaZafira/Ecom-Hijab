@@ -8,12 +8,15 @@ import com.fitri.jilbab.data.model.address.Data
 import com.fitri.jilbab.databinding.ItemAddressBinding
 
 class AddressAdapter(
-    var address: MutableList<Data>
+    var address: MutableList<Data>,
+    private val onDetail: (Data, Int) -> Unit
 ) : RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemAddressBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            userAddress: List<Data>
+            userAddress: List<Data>,
+            onDetail: (Data, Int) -> Unit
+
         ) {
             val isAddress = userAddress[adapterPosition]
 
@@ -26,6 +29,9 @@ class AddressAdapter(
             } else {
                 binding.icDefault.visibility = View.GONE
             }
+            binding.itemAddressUser.setOnClickListener {
+                onDetail(isAddress, adapterPosition)
+            }
         }
     }
 
@@ -36,7 +42,7 @@ class AddressAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bind(address)
+       holder.bind(address, onDetail)
     }
     override fun getItemCount() = address.size
 }

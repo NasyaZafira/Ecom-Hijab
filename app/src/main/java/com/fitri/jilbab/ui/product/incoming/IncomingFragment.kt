@@ -1,24 +1,21 @@
 package com.fitri.jilbab.ui.product.incoming
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.FragmentIncomingBinding
-import com.fitri.jilbab.databinding.FragmentTransactionBinding
-import com.fitri.jilbab.databinding.FragmentUnpaidBinding
 import com.fitri.jilbab.ui.product.OrderViewModel
-import com.fitri.jilbab.ui.product.unpaid.UnpaidAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class IncomingFragment : Fragment() {
     private var _binding: FragmentIncomingBinding? = null
     private val binding get() = _binding!!
