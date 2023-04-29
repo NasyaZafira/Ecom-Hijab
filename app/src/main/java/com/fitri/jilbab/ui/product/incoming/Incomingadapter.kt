@@ -1,19 +1,17 @@
-package com.fitri.jilbab.ui.product.unpaid
+package com.fitri.jilbab.ui.product.incoming
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.unpaid.Data
-import com.fitri.jilbab.databinding.ItemOrderBinding
+import com.fitri.jilbab.data.model.transaction.incoming.Data
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
-import com.fitri.jilbab.ui.checkout.itemAdapter
-import com.fitri.jilbab.ui.search.SearchAdapter
+import com.fitri.jilbab.ui.product.unpaid.PunpAdapter
 
-class UnpaidAdapter(
-    var unpaid: MutableList<Data>
-) : RecyclerView.Adapter<UnpaidAdapter.ViewHolder>() {
+class Incomingadapter(
+    var incom: MutableList<Data>
+) : RecyclerView.Adapter<Incomingadapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemOrderUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
@@ -25,13 +23,12 @@ class UnpaidAdapter(
             binding.dateOrder.text = a.order_date
             binding.rvOrder.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
-                adapter = PunpAdapter(a.products.toMutableList())
+                adapter = IncAdapter(a.products.toMutableList())
             }
             for (i: Int in 0 until userUnpaid.size) {
                 val b = 0 + ((userUnpaid[i].products[i].product.price.toInt()) * (userUnpaid[i].products[i].qty))
                 binding.txtTotalPrice.formatPrice(b.toString())
             }
-
 
         }
     }
@@ -42,8 +39,8 @@ class UnpaidAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(unpaid)
+        holder.bind(incom)
     }
 
-    override fun getItemCount() = unpaid.size
+    override fun getItemCount() = incom.size
 }

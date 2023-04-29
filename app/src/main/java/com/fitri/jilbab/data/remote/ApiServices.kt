@@ -22,6 +22,8 @@ import com.fitri.jilbab.data.model.profile.password.ChangePassResponse
 import com.fitri.jilbab.data.model.profile.picture.ChangePictureResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
+import com.fitri.jilbab.data.model.transaction.incoming.IncomingResponse
+import com.fitri.jilbab.data.model.transaction.unpaid.UnpaidResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
 import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
@@ -211,4 +213,12 @@ interface ApiServices {
         @Part("category_name") category_name: RequestBody,
         @Part category_image: MultipartBody.Part,
     ): ApiResponse<EditCatResponse>
+
+    @GET("order/unpaid")
+    suspend fun getUnpaid(
+    ): ApiResponse<UnpaidResponse>
+
+    @GET("order/incoming")
+    suspend fun getIncoming(
+    ): ApiResponse<IncomingResponse>
 }
