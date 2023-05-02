@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import okhttp3.MultipartBody
+import timber.log.Timber
 import javax.inject.Inject
 
 class ProfileRepository @Inject constructor(
@@ -65,7 +66,21 @@ class ProfileRepository @Inject constructor(
         response.suspendOnSuccess {
             emit(data)
         }.onError {
-            onError(this.message())
+            Timber.e(this.message())
+            when (raw.networkResponse?.code) {
+                400 -> {
+                    onError("Gagal ganti kata sandi, cek kembali kata sandi anda")
+                }
+                404 -> {
+                    onError("Server tidak ditemukan")
+                }
+                500 -> {
+                    onError("Server bermasalah, silahkan coba lagi nanti")
+                }
+                else -> {
+                    onError(message())
+                }
+            }
         }.onException {
             onError(this.message())
         }

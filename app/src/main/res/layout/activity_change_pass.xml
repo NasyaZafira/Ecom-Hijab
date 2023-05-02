@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/edtPassLatest" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/isPassNew"
+        android:id="@+id/edtPasswordNew"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@id/edtPassNew">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/isedtNumber"
+            android:id="@+id/isPassNew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:text="Konfirmasi kata Sandi Baru"
         app:layout_constraintStart_toStartOf="@id/verifyAcc"
-        app:layout_constraintTop_toBottomOf="@id/isPassNew" />
+        app:layout_constraintTop_toBottomOf="@id/edtPasswordNew" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtRepass"

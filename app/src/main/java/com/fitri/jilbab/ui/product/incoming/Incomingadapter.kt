@@ -41,6 +41,8 @@ class Incomingadapter(
             }
 
             binding.txtTotalPrice.formatPrice(total.toString())
+            binding.isEkspedisi.text = a.courier
+            binding.isResi.text = a.no_resi
         }
     }
 

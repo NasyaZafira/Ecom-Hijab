@@ -18,13 +18,16 @@ class PunpAdapter(
         fun bind(
             thisItem: List<Product>
         ) {
-            val isOrdered = thisItem[adapterPosition]
-
-            if (isOrdered.product.mainpicture.is_main == 1) {
-                Glide.with(binding.ivPoster.context)
-                    .load("https://ecom-mobile.spdev.my.id/img/products/" + isOrdered.product.mainpicture.picture)
-                    .error(R.drawable.white_image)
-                    .into(binding.ivPoster)
+            val isOrdered = thisItem[absoluteAdapterPosition]
+            try {
+                if (isOrdered.product.mainpicture.is_main == 1) {
+                    Glide.with(binding.ivPoster.context)
+                        .load("https://ecom-mobile.spdev.my.id/img/products/" + isOrdered.product.mainpicture.picture)
+                        .error(R.drawable.white_image)
+                        .into(binding.ivPoster)
+                }
+            } catch (e: NullPointerException) {
+                print("Caught the NullPointerException")
             }
             binding.tvTitle.text = isOrdered.product.product_name
             binding.tvPrice.formatPrice(isOrdered.product.price)

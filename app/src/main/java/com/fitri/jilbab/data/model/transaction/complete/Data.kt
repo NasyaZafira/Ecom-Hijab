@@ -1,6 +1,8 @@
 package com.fitri.jilbab.data.model.transaction.complete
+
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+
 @Parcelize
 data class Data(
     val arrive_est_date: String,

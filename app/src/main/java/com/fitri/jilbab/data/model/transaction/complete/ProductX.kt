@@ -3,13 +3,12 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ProductX(
-    val category: String,
+    val category: Category,
     val created_at: String,
     val discount: String,
     val id_category: String,
     val id_product: Int,
     val is_active: String,
-    val mainpicture: Mainpicture,
     val pictures: List<Picture>,
     val price: String,
     val product_description: String,

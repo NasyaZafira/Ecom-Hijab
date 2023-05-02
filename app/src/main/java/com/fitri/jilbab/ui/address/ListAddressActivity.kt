@@ -70,6 +70,8 @@ class ListAddressActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
         finish()
     }
 }

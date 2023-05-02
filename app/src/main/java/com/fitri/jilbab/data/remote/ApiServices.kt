@@ -24,7 +24,13 @@ import com.fitri.jilbab.data.model.profile.password.ChangePassResponse
 import com.fitri.jilbab.data.model.profile.picture.ChangePictureResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
+import com.fitri.jilbab.data.model.transaction.complete.CompleteResponse
+import com.fitri.jilbab.data.model.transaction.cancle.CancleResponse
+import com.fitri.jilbab.data.model.transaction.cancle.post.BodyCancleOrder
+import com.fitri.jilbab.data.model.transaction.cancle.post.PostCancleResponse
 import com.fitri.jilbab.data.model.transaction.incoming.IncomingResponse
+import com.fitri.jilbab.data.model.transaction.packed.PackedResponse
+import com.fitri.jilbab.data.model.transaction.sent.SentResponse
 import com.fitri.jilbab.data.model.transaction.unpaid.UnpaidResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
 import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
@@ -228,4 +234,21 @@ interface ApiServices {
     @GET("order/incoming")
     suspend fun getIncoming(
     ): ApiResponse<IncomingResponse>
+    @GET("order/packed")
+    suspend fun getPacked(
+    ): ApiResponse<PackedResponse>
+    @GET("order/sent")
+    suspend fun getSent(
+    ): ApiResponse<SentResponse>
+    @GET("order/canceled")
+    suspend fun getCanceled(
+    ): ApiResponse<CancleResponse>
+    @GET("order/complete")
+    suspend fun getComplete(
+    ): ApiResponse<CompleteResponse>
+
+    @POST("order/cancel-order")
+    suspend fun postCancle(
+        @Body body: BodyCancleOrder
+    ): ApiResponse<PostCancleResponse>
 }

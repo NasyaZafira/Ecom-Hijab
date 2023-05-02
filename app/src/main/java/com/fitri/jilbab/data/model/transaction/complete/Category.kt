@@ -2,11 +2,10 @@ package com.fitri.jilbab.data.model.transaction.complete
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 @Parcelize
-data class Mainpicture(
+data class Category(
+    val category_name: String,
     val created_at: String,
-    val id_picture: Int,
-    val id_product: String,
-    val is_main: Int,
-    val picture: String,
+    val id_category: Int,
+    val slug_category: String,
     val updated_at: String
 ): Parcelable

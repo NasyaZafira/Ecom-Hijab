@@ -62,12 +62,11 @@
         style="@style/TextView.Normal14Grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="8dp"
-        android:text="Total : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/txtTotalPrice"
+        android:text="Total Produk"
+        app:layout_constraintStart_toStartOf="@id/idOrder"
         app:layout_constraintTop_toBottomOf="@id/idView1" />
 
     <TextView
@@ -75,10 +74,48 @@
         style="@style/TextView.Normal14Green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:text="memuat..."
+        app:layout_constraintEnd_toEndOf="@id/dateOrder"
+        app:layout_constraintTop_toTopOf="@id/txtTotal" />
+
+    <TextView
+        android:id="@+id/txtEkspedisi"
+        style="@style/TextView.Normal14Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Ekspedisi"
+        app:layout_constraintStart_toStartOf="@id/idOrder"
+        app:layout_constraintTop_toBottomOf="@id/txtTotal" />
+
+    <TextView
+        android:id="@+id/isEkspedisi"
+        style="@style/TextView.Normal14Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="@id/dateOrder"
+        app:layout_constraintTop_toTopOf="@id/txtEkspedisi" />
+
+    <TextView
+        android:id="@+id/txtResi"
+        style="@style/TextView.Normal14Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="No. Resi"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/idOrder"
+        app:layout_constraintTop_toBottomOf="@id/txtEkspedisi" />
+    <TextView
+        android:id="@+id/isResi"
+        style="@style/TextView.Normal14Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="@id/dateOrder"
-        app:layout_constraintTop_toBottomOf="@id/idView1" />
+        app:layout_constraintTop_toTopOf="@id/txtResi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

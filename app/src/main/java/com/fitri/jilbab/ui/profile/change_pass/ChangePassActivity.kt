@@ -40,17 +40,17 @@ class ChangePassActivity : BaseActivity() {
             }
             validateButton()
         }
-        binding.isedtNumber.doOnTextChanged { text, _, _, _ ->
+        binding.isPassNew.doOnTextChanged { text, _, _, _ ->
             val txt = text.toString().trim()
             when {
                 txt.isEmpty() ->
-                    binding.isPassNew.error = "Kata sandi tidak boleh kosong"
+                    binding.edtPasswordNew.error = "Kata sandi tidak boleh kosong"
                 txt != binding.isRepas.text.toString() -> {
                     binding.edtRepass.error = "Konfirmasi kata sandi tidak sama"
-                    binding.isPassNew.error = null
+                    binding.edtPasswordNew.error = null
                 }
                 else -> {
-                    binding.isPassNew.error = null
+                    binding.edtPasswordNew.error = null
                     binding.edtRepass.error = null
                 }
             }
@@ -69,12 +69,13 @@ class ChangePassActivity : BaseActivity() {
         binding.btnContinue.setOnClickListener {
             lifecycleScope.launch{
                 viewModel.updatePass(
-                    confirmpassword = binding.isPassLatest.text.toString(),
-                    currentpassword = binding.isedtNumber.text.toString(),
-                    newpassword = binding.isRepas.text.toString()
+                    confirmpassword = binding.isRepas.text.toString(),
+                    currentpassword = binding.isPassLatest.text.toString(),
+                    newpassword = binding.isPassNew.text.toString()
                 )
             }
         }
+        setupObserver()
     }
 
     private fun validateButton() {
@@ -90,14 +91,17 @@ class ChangePassActivity : BaseActivity() {
         viewModel.loading.observe(this) {
             if (it) showLoading() else hideLoading()
         }
+        viewModel.message.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
         viewModel.changePass.observe(this) {
             if (it.success == true) {
                 Toast.makeText(this, "Berhasil Mengubah Kata Sandi", Toast.LENGTH_LONG).show()
                 val i = Intent(this, MainActivity::class.java)
                 startActivity(i)
                 finish()
-            } else {
-                Toast.makeText(this, "Gagal Mengubah Kata Sandi, Server Bermasalah", Toast.LENGTH_LONG).show()
+            } else if (it.success == false ){
+                Toast.makeText(this, "Gagal Mengubah Kata Sandi", Toast.LENGTH_LONG).show()
             }
         }
     }
