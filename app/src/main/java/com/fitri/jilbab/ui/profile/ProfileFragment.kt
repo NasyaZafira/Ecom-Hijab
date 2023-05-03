@@ -1,6 +1,7 @@
 package com.fitri.jilbab.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -67,7 +68,12 @@ class ProfileFragment : Fragment() {
             val i = Intent(requireContext(), LoginActivity::class.java)
             startActivity(i)
             finishAffinity(requireActivity())
-
+        }
+        binding.layoutHelp.setOnClickListener {
+            val url = "wa.me/+6281555438099"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
         }
 
     }

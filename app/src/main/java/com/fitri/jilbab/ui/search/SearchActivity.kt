@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.user.search.Data
 import com.fitri.jilbab.databinding.ActivitySearchBinding
+import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.home.DetailProductActivity
 import com.fitri.jilbab.ui.search.categoryUsr.ListCatActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,9 +46,16 @@ class SearchActivity : BaseActivity() {
 
         }
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+            if (SharedPref.isLoggedIn) {
+                if (SharedPref.userRole == "customer") {
+                    val i = Intent(this, MainActivity::class.java)
+                    startActivity(i)
+                    finish()
+                }
+            } else {
+                val intent = Intent(this, SuperActivity::class.java)
+                startActivity(intent)
+            }
         }
         setupObserver()
     }
@@ -68,7 +77,7 @@ class SearchActivity : BaseActivity() {
 
         viewModel.search.observe(this) { response ->
 
-            Log.e("TAG", "setupObserver: " + response )
+            Log.e("TAG", "setupObserver: " + response)
             if (response.data.isNotEmpty()) {
                 binding.rvProduct.visibility = View.VISIBLE
             } else {

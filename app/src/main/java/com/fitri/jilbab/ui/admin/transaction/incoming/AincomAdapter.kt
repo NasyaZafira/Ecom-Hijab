@@ -6,14 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.data.model.transaction.incoming.Data
-import com.fitri.jilbab.databinding.ItemUnpaidBinding
-import com.fitri.jilbab.ui.product.incoming.IncAdapter
+import com.fitri.jilbab.databinding.ItemChangedBinding
 
 class AincomAdapter(
-    var unpaid: MutableList<Data>,
+    var pack: MutableList<Data>,
     private val onCancle : (Data, Int) -> Unit
 ) : RecyclerView.Adapter<AincomAdapter.ViewHolder>() {
-    inner class ViewHolder(val binding: ItemUnpaidBinding) :
+    inner class ViewHolder(val binding: ItemChangedBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             userUnpaid: List<Data>,
@@ -25,7 +24,7 @@ class AincomAdapter(
             binding.dateOrder.text  = a.order_date
             binding.rvOrder.apply {
                 layoutManager       = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
-                adapter             = IncAdapter(a.products.toMutableList())
+                adapter             = AincAdapter(a.products.toMutableList())
             }
 
             var total       = 0
@@ -51,13 +50,13 @@ class AincomAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemUnpaidBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemChangedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(unpaid, onCancle)
+        holder.bind(pack, onCancle)
     }
 
-    override fun getItemCount() = unpaid.size
+    override fun getItemCount() = pack.size
 }

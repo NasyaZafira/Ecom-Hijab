@@ -6,15 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.data.model.transaction.sent.Data
+import com.fitri.jilbab.databinding.ItemCompleteBinding
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
 
 class SentAdapter (
-    var sent: MutableList<Data>
+    var sent: MutableList<Data>,
+    private val onDone : (Data, Int) -> Unit
 ) : RecyclerView.Adapter<SentAdapter.ViewHolder>() {
-    inner class ViewHolder(val binding: ItemOrderUserBinding) :
+    inner class ViewHolder(val binding: ItemCompleteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            ispacked: List<Data>
+            ispacked: List<Data>,
+            onDone : (Data, Int) -> Unit
         ) {
             val a = ispacked[adapterPosition]
 
@@ -42,16 +45,19 @@ class SentAdapter (
             binding.txtTotalPrice.formatPrice(total.toString())
             binding.isEkspedisi.text = a.courier
             binding.isResi.text = a.no_resi
+            binding.btnCheckout.setOnClickListener {
+                onDone(a, adapterPosition)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemOrderUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemCompleteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(sent)
+        holder.bind(sent, onDone)
     }
 
     override fun getItemCount() = sent.size

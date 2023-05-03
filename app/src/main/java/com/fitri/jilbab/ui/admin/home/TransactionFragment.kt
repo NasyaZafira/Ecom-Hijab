@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.fitri.jilbab.databinding.FragmentHomeAdminBinding
 import com.fitri.jilbab.databinding.FragmentTransactionBinding
+import com.fitri.jilbab.ui.admin.transaction.cancle.CancleActivity
+import com.fitri.jilbab.ui.admin.transaction.complete.CompleteActivity
+import com.fitri.jilbab.ui.admin.transaction.incoming.IncomingActivity
+import com.fitri.jilbab.ui.admin.transaction.packed.PackedActivity
+import com.fitri.jilbab.ui.admin.transaction.sent.SentActivity
 import com.fitri.jilbab.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
@@ -28,7 +33,29 @@ class TransactionFragment : Fragment() {
         _binding = FragmentTransactionBinding.bind(view)
 
         binding.layoutBaru.setOnClickListener {
-            val i = Intent(requireContext(), LoginActivity::class.java)
+            val i = Intent(requireContext(), IncomingActivity::class.java)
             startActivity(i)
+            requireActivity().finish()
+        }
+        binding.layoutDikemas.setOnClickListener {
+            val i = Intent(requireContext(), PackedActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+        binding.layoutDikirim.setOnClickListener {
+            val i = Intent(requireContext(), SentActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+        binding.layoutSelesai.setOnClickListener {
+            val i = Intent(requireContext(), CompleteActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
+        }
+        binding.layoutBatal.setOnClickListener {
+            val i = Intent(requireContext(), CancleActivity::class.java)
+            startActivity(i)
+            requireActivity().finish()
         }
     }
+}

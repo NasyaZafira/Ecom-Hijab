@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="Orderan Baru"
+                android:text="Pesanan Baru"
                 app:layout_constraintBottom_toTopOf="@id/txtDetail"
                 app:layout_constraintStart_toEndOf="@id/verifyAcc"
                 app:layout_constraintTop_toTopOf="@id/verifyAcc" />
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="Daftar orderan baru"
+                android:text="Daftar pesanan baru"
                 app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
                 app:layout_constraintStart_toEndOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/txtTittle" />

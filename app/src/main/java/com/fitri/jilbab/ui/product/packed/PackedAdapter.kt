@@ -8,7 +8,6 @@ import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.data.model.transaction.packed.Data
 
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
-import com.fitri.jilbab.ui.product.incoming.IncAdapter
 
 class PackedAdapter (
     var packed: MutableList<Data>

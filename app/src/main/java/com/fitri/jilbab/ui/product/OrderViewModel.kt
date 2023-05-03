@@ -6,8 +6,14 @@ import com.fitri.jilbab.data.model.transaction.complete.CompleteResponse
 import com.fitri.jilbab.data.model.transaction.cancle.CancleResponse
 import com.fitri.jilbab.data.model.transaction.cancle.post.BodyCancleOrder
 import com.fitri.jilbab.data.model.transaction.cancle.post.PostCancleResponse
+import com.fitri.jilbab.data.model.transaction.complete.done.BodyDone
+import com.fitri.jilbab.data.model.transaction.complete.done.DoneResponse
 import com.fitri.jilbab.data.model.transaction.incoming.IncomingResponse
+import com.fitri.jilbab.data.model.transaction.incoming.admin.AdmIncomResponse
+import com.fitri.jilbab.data.model.transaction.incoming.admin.BodyStatusIncome
 import com.fitri.jilbab.data.model.transaction.packed.PackedResponse
+import com.fitri.jilbab.data.model.transaction.packed.admin.AdPackResponse
+import com.fitri.jilbab.data.model.transaction.packed.admin.BodyPackedPost
 import com.fitri.jilbab.data.model.transaction.sent.SentResponse
 import com.fitri.jilbab.data.model.transaction.unpaid.UnpaidResponse
 import com.fitri.jilbab.repository.ProductRepository
@@ -26,6 +32,9 @@ class OrderViewModel @Inject constructor(
     val complete = MutableLiveData<CompleteResponse>()
     val cancle = MutableLiveData<CancleResponse>()
     val postcancle = MutableLiveData<PostCancleResponse>()
+    val postDone = MutableLiveData<DoneResponse>()
+    val postPack = MutableLiveData<AdmIncomResponse>()
+    val postSent = MutableLiveData<AdPackResponse>()
 
 
     suspend fun listUnpaid() {
@@ -136,6 +145,70 @@ class OrderViewModel @Inject constructor(
             body
         ).collect {
             postcancle.postValue(it)
+        }
+    }
+    suspend fun postDone(
+        id_order : String,
+        status_order : String
+    ) {
+        val body = BodyDone(status_order)
+        repository.postDone(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            id_order,
+            body
+        ).collect {
+            postDone.postValue(it)
+        }
+    }
+    suspend fun postPacked(
+        id_order : String,
+        status_order : String
+    ) {
+        val body = BodyStatusIncome(status_order)
+        repository.postPacked(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            id_order,
+            body
+        ).collect {
+            postPack.postValue(it)
+        }
+    }
+    suspend fun postSent(
+        id_order : String,
+        no_resi : String,
+        status_order : String
+    ) {
+        val body = BodyPackedPost(no_resi,status_order)
+        repository.postSent(
+            onStart = {
+                _loading.postValue(true)
+            },
+            onComplete = {
+                _loading.postValue(false)
+            },
+            onError = {
+
+            },
+            id_order,
+            body
+        ).collect {
+            postSent.postValue(it)
         }
     }
 }

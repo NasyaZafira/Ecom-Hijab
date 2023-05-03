@@ -10,6 +10,8 @@ import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.lifecycleScope
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityMidtransBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
@@ -110,5 +112,12 @@ class MidtransActivity : BaseActivity() {
     private fun setLocaleNew(languageCode: String?) {
         val locales = LocaleListCompat.forLanguageTags(languageCode)
         AppCompatDelegate.setApplicationLocales(locales)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
+        finish()
     }
 }

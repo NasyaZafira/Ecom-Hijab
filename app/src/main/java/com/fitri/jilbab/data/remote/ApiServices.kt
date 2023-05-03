@@ -28,8 +28,14 @@ import com.fitri.jilbab.data.model.transaction.complete.CompleteResponse
 import com.fitri.jilbab.data.model.transaction.cancle.CancleResponse
 import com.fitri.jilbab.data.model.transaction.cancle.post.BodyCancleOrder
 import com.fitri.jilbab.data.model.transaction.cancle.post.PostCancleResponse
+import com.fitri.jilbab.data.model.transaction.complete.done.BodyDone
+import com.fitri.jilbab.data.model.transaction.complete.done.DoneResponse
 import com.fitri.jilbab.data.model.transaction.incoming.IncomingResponse
+import com.fitri.jilbab.data.model.transaction.incoming.admin.AdmIncomResponse
+import com.fitri.jilbab.data.model.transaction.incoming.admin.BodyStatusIncome
 import com.fitri.jilbab.data.model.transaction.packed.PackedResponse
+import com.fitri.jilbab.data.model.transaction.packed.admin.AdPackResponse
+import com.fitri.jilbab.data.model.transaction.packed.admin.BodyPackedPost
 import com.fitri.jilbab.data.model.transaction.sent.SentResponse
 import com.fitri.jilbab.data.model.transaction.unpaid.UnpaidResponse
 import com.fitri.jilbab.data.model.user.DetailProductResponse
@@ -251,4 +257,21 @@ interface ApiServices {
     suspend fun postCancle(
         @Body body: BodyCancleOrder
     ): ApiResponse<PostCancleResponse>
+
+    @POST("order/change-status/{id_order}")
+    suspend fun postDone(
+        @Path("id_order") id_order: String,
+        @Body body: BodyDone
+    ): ApiResponse<DoneResponse>
+
+    @POST("order/change-status/{id_order}")
+    suspend fun postPacked(
+        @Path("id_order") id_order: String,
+        @Body body: BodyStatusIncome
+    ): ApiResponse<AdmIncomResponse>
+    @POST("order/change-status/{id_order}")
+    suspend fun postSent(
+        @Path("id_order") id_order: String,
+        @Body body: BodyPackedPost
+    ): ApiResponse<AdPackResponse>
 }
