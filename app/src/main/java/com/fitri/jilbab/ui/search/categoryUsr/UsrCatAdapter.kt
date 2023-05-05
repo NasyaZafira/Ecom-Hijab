@@ -28,6 +28,7 @@ class UsrCatAdapter(
                     .error(R.drawable.white_image)
                     .into(binding.imgProduct)
             }
+            binding.rbFood.rating       = isProduct.rating.toFloat()
             binding.isName.text = isProduct.product_name
             binding.isPrice.text = isProduct.price
             binding.itemSearch.setOnClickListener {

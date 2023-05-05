@@ -146,7 +146,7 @@
 
     <style name="RatingBar">
         <item name="colorControlNormal">#ECECEC</item>
-        <item name="colorControlActivated">#FFC700</item>
+        <item name="colorControlActivated">#FA95B1</item>
     </style>
 
     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">

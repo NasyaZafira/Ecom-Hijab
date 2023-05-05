@@ -30,6 +30,23 @@ class AuthRepository @Inject constructor(
             emit(this.data)
         }.onError {
             Timber.e(this.message())
+            when (raw.networkResponse?.code) {
+                400 -> {
+                    onError("Email atau Kata Sandi tidak valid")
+                }
+                401 -> {
+                    onError("Email atau Kata Sandi tidak valid")
+                }
+                404 -> {
+                    onError("Server tidak ditemukan")
+                }
+                500 -> {
+                    onError("Server bermasalah, silahkan coba lagi nanti")
+                }
+                else -> {
+                    onError(message())
+                }
+            }
         }.onException {
             Timber.e(this.message())
             onError(this.message())

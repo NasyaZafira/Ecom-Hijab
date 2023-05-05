@@ -1,13 +1,18 @@
 package com.fitri.jilbab.ui.admin
 
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -30,6 +35,19 @@ class SuperActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         r_navBottom()
+        r_statusBar()
+    }
+    private fun r_statusBar() {
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor       = ContextCompat.getColor(this, R.color.colorBase)
+        window.navigationBarColor   = ContextCompat.getColor(this,R.color.colorBase)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+
+
     }
     private fun r_navBottom() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_admin) as NavHostFragment

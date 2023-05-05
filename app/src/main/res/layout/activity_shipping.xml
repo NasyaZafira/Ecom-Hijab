@@ -83,6 +83,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Ekspedisi"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster"
                 app:layout_constraintTop_toTopOf="@id/ivPoster" />
@@ -170,6 +171,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="Ekspedisi"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster2"
                 app:layout_constraintTop_toTopOf="@id/ivPoster2" />
@@ -240,6 +242,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:textAllCaps="true"
                 android:layout_marginEnd="20dp"
                 android:text="Ekspedisi"
                 app:layout_constraintEnd_toEndOf="parent"

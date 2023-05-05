@@ -11,5 +11,5 @@ data class Category(
     val created_at: String,
     val id_category: Int,
     val slug_category: String,
-    val updated_at: String
+    val updated_at: String,
 ): Parcelable
