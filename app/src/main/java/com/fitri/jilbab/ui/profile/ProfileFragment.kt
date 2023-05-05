@@ -70,7 +70,7 @@ class ProfileFragment : Fragment() {
             finishAffinity(requireActivity())
         }
         binding.layoutHelp.setOnClickListener {
-            val url = "wa.me/+6281555438099"
+            val url = "https://bit.ly/3nyqpd6"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
