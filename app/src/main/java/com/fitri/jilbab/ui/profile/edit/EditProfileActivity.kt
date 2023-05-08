@@ -1,11 +1,13 @@
 package com.fitri.jilbab.ui.profile.edit
 
 import android.Manifest
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
@@ -28,19 +30,22 @@ import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.ActivityEditProfileBinding
 import com.fitri.jilbab.ui.profile.ProfileViewModel
 import com.fitri.jilbab.ui.profile.change_pass.ChangePassActivity
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class EditProfileActivity : BaseActivity() {
 
-    private lateinit var    binding         : ActivityEditProfileBinding
-    private val             viewModel       : ProfileViewModel by viewModels()
-    private lateinit var    isData          : Data
-    private var             selectedFiles   = mutableListOf<File>()
+    private lateinit var binding: ActivityEditProfileBinding
+    private val viewModel: ProfileViewModel by viewModels()
+    private lateinit var isData: Data
+    private var selectedFiles = mutableListOf<File>()
 
-    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
 
@@ -56,6 +61,7 @@ class EditProfileActivity : BaseActivity() {
         f_save()
         f_changepw()
         setupObserver()
+        birth()
     }
 
     private fun f_back() {
@@ -87,7 +93,7 @@ class EditProfileActivity : BaseActivity() {
             binding.editBirth.setText(isData.detail?.date_of_birth)
             binding.editAdress.setText(isData.detail?.address)
 
-            if(it.detail?.profile_picture == null){
+            if (it.detail?.profile_picture == null) {
                 Glide.with(binding.imgProfile.context)
                     .load(R.drawable.white_image)
                     .error(R.drawable.white_image)
@@ -109,10 +115,49 @@ class EditProfileActivity : BaseActivity() {
                 val gender = binding.autoCompleteTxtGender.text.toString()
                 val birth = binding.editBirth.text.toString().trim()
                 val adress = binding.editAdress.text.toString().trim()
-                viewModel.editProfile(adress, birth, gender, nama, numb)
-                if (selectedFiles.isNotEmpty()){
+                if (selectedFiles.isNotEmpty()) {
                     viewModel.isAva(selectedFiles[0])
                 }
+                if (!nama.isNullOrBlank() && !numb.isNullOrBlank() && !gender.isNullOrBlank() && !birth.isNullOrBlank() && !adress.isNullOrBlank()) {
+                    viewModel.editProfile(adress, birth, gender, nama, numb)
+                } else {
+                    Toast.makeText(this@EditProfileActivity, "Lengkapi Data Akun", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun birth() {
+        var cal = Calendar.getInstance()
+        var textview_date: TextInputEditText? = null
+        textview_date = this.binding.editBirth
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val myFormat = "yyyy-MM-dd" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                textview_date.setText(sdf.format(cal.time))
+                Log.e("TAG", "r_dateBirth: " + SimpleDateFormat(myFormat, Locale.US))
+            }
+
+        binding.editBirth.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                Log.e("TAG", "r_dateBirth: has focus if")
+                binding.editBirth.clearFocus()
+                binding.editBirth.clearFocus()
+                textview_date.inputType = InputType.TYPE_NULL
+                DatePickerDialog(
+                    this,
+                    dateSetListener,
+                    // set DatePickerDialog to point to today's date when it loads up
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+                ).show()
+            } else {
+                Log.e("TAG", "r_dateBirth: has focus else")
             }
         }
     }
@@ -131,19 +176,23 @@ class EditProfileActivity : BaseActivity() {
             if (it) showLoading() else hideLoading()
         }
 
-        viewModel.updateProfile.observe(this){
-            Log.e("TAG", "setupObserver: "+ it )
-            Toast.makeText(this@EditProfileActivity, "Berhasil Mengubah Informasi Akun", Toast.LENGTH_LONG).show()
+        viewModel.updateProfile.observe(this) {
+            Log.e("TAG", "setupObserver: " + it)
+            Toast.makeText(
+                this@EditProfileActivity,
+                "Berhasil Mengubah Informasi Akun",
+                Toast.LENGTH_LONG
+            ).show()
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }
 
-        viewModel.userDetail.observe(this){
+        viewModel.userDetail.observe(this) {
         }
 
-        viewModel.changeava.observe(this){
-            Log.e("TAG", "setupObserver: "+ it )
+        viewModel.changeava.observe(this) {
+            Log.e("TAG", "setupObserver: " + it)
             Toast.makeText(this, "Berhasil Mengubah Foto Profil", Toast.LENGTH_LONG).show()
             val i = Intent(this@EditProfileActivity, MainActivity::class.java)
             startActivity(i)

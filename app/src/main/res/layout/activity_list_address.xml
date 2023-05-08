@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBase"
+    android:background="@drawable/bg_four"
     tools:context=".ui.address.ListAddressActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -19,46 +19,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <ImageView
-                android:id="@+id/verifyAcc"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="30dp"
-                android:src="@drawable/ic_arrow_back"
-                app:layout_constraintBottom_toTopOf="@id/layoutOne"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txtTittle"
-                style="@style/TextView.Medium22Black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="Alamat Saya"
-                app:layout_constraintBottom_toTopOf="@id/txtDetail"
-                app:layout_constraintStart_toEndOf="@id/verifyAcc"
-                app:layout_constraintTop_toTopOf="@id/verifyAcc" />
-
-            <TextView
-                android:id="@+id/txtDetail"
-                style="@style/TextView.Normal14Grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="Kelola alamat untuk pengiriman barang"
-                app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
-                app:layout_constraintStart_toEndOf="@id/verifyAcc"
-                app:layout_constraintTop_toBottomOf="@id/txtTittle" />
-
-            <View
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutOne"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/colorLine"
-                app:layout_constraintTop_toBottomOf="@id/txtDetail" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rectangle_8_fff"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/verifyAcc"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTittle"
+                    style="@style/TextView.Medium22Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="Alamat Saya"
+                    app:layout_constraintBottom_toTopOf="@id/txtDetail"
+                    app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                    app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+                <TextView
+                    android:id="@+id/txtDetail"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="Kelola alamat untuk pengiriman barang"
+                    app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+                    app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                    app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcAddress"
@@ -67,7 +70,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@id/layoutOne"
-                tools:itemCount="1"
+                tools:itemCount="3"
                 tools:listitem="@layout/item_address" />
 
 

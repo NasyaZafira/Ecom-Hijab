@@ -4,7 +4,7 @@
     <corners android:radius="360dp"/>
 
     <stroke
-        android:color="@color/colorCardPhoto"
+        android:color="@color/colorAccent"
         android:dashWidth="30px"
         android:dashGap="40px"
         android:width="4dp"/>

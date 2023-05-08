@@ -4,13 +4,13 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLine">
+    android:background="@drawable/bg_four">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutOne"
-        android:background="@color/colorBase"
+        android:background="@color/header"
         android:paddingBottom="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -73,7 +73,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBase"
+        android:background="@color/header"
         app:layout_constraintTop_toBottomOf="@id/layoutOne"
         android:layout_marginTop="30dp">
 

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.cat.Data
 
@@ -30,7 +31,7 @@ class UsrCatAdapter(
             }
             binding.rbFood.rating       = isProduct.rating.toFloat()
             binding.isName.text = isProduct.product_name
-            binding.isPrice.text = isProduct.price
+            binding.isPrice.formatPrice(isProduct.price)
             binding.itemSearch.setOnClickListener {
                 onDetailCLick(isProduct)
             }

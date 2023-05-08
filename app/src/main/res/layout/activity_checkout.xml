@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLine"
+    android:background="@drawable/bg_two"
     tools:context=".ui.checkout.CheckoutActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
             android:id="@+id/layoutOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBase"
+            android:background="@drawable/shape_rectangle_8_fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

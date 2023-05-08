@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBase">
+    android:background="@drawable/bg_one">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/txtTittle"
-                style="@style/TextView.Normal22Black"
+                style="@style/TextView.Medium22Black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -37,6 +37,7 @@
             <TextView
                 android:id="@+id/txtDetail"
                 style="@style/TextView.Normal14Grey"
+                android:textColor="@color/colorBase"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Ayo cari produk favoritmu"
@@ -88,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorLine"
+                android:background="@color/header"
                 app:layout_constraintTop_toBottomOf="@id/cardSearch" />
 
             <TextView

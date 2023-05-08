@@ -3,6 +3,7 @@ package com.fitri.jilbab.ui.cart
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +20,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CartActivity : BaseActivity() {
 
-    private lateinit var    binding     : ActivityCartBinding
-    private val             viewModel   : CartViewModel by viewModels()
-    private var             adapterCart = CartAdapter(mutableListOf(), onRemove = { data, position -> removeCart(data, position) })
-    private var             id_example  : String = ""
+    private lateinit var binding: ActivityCartBinding
+    private val viewModel: CartViewModel by viewModels()
+    private var adapterCart =
+        CartAdapter(mutableListOf(), onRemove = { data, position -> removeCart(data, position) })
+    private var id_example: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,32 +59,38 @@ class CartActivity : BaseActivity() {
         viewModel.loading.observe(this) {
             if (it) showLoading() else hideLoading()
         }
-        viewModel.cart.observe(this) {
-            Log.e("TAG", "setupObserver: " + it)
+        viewModel.cart.observe(this) { response ->
+            binding.txtNull.visibility = View.INVISIBLE
+            binding.rvCart.visibility = View.VISIBLE
+
+            Log.e("TAG", "setupObserver: " + response)
             adapterCart.cart.clear()
-            adapterCart.cart.addAll(it.data.cart)
+            adapterCart.cart.addAll(response.data.cart)
             adapterCart.notifyDataSetChanged()
             binding.rvCart.apply {
                 layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
                 adapter = adapterCart
             }
 
-            if (it.data.shipping_address.isNotEmpty()) {
+            if (response.data.shipping_address.isNotEmpty()) {
                 //id_example = it.data.shipping_address[0].id_ship_address.toString()
-                for (i: Int in 0 until it.data.shipping_address.size){
-                    if (it.data.shipping_address[i].is_main_address == 1){
-                        id_example = it.data.shipping_address[i].id_ship_address.toString()
+                for (i: Int in 0 until response.data.shipping_address.size) {
+                    if (response.data.shipping_address[i].is_main_address == 1) {
+                        id_example =
+                            response.data.shipping_address[i].id_ship_address.toString()
                         Log.e("TAG", "setupObserver: uji coba " + id_example)
                     }
                 }
 
             }
+
+
         }
         viewModel.pay.observe(this) {
             Log.e("TAG", "\n INI CHECKOUT: " + it)
 
         }
-        viewModel.remove.observe(this){
+        viewModel.remove.observe(this) {
             //adapterCart.cart.clear()
             //adapterCart.notifyDataSetChanged()
             //binding.rvCart.apply {

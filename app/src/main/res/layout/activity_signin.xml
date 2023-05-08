@@ -4,48 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="@drawable/bg_three"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/txtSignIn"
-        style="@style/TextView.Medium22Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="Masuk"
-        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Masuk"
+        android:textColor="@color/abu"
+        android:textSize="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtDesc"
-        style="@style/TextView.Normal14Grey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:text="Temukan produk hijab terbaikmu"
-        app:layout_constraintTop_toBottomOf="@id/txtSignIn" />
-
-    <View
-        android:id="@+id/view01"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="120dp"
-        android:background="@color/colorLine"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/txtEmail"
         style="@style/TextView.Normal16Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp"
+        android:text="Temukan produk hijab terbaikmu"
+        android:textColor="@color/colorBase"
+        app:layout_constraintTop_toBottomOf="@id/txtSignIn" />
+
+
+    <TextView
+        android:id="@+id/txtEmail"
+        style="@style/TextView.Medium16Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="5dp"
         android:text="Alamat Email"
-        app:layout_constraintTop_toBottomOf="@id/view01" />
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toTopOf="@id/boxMail" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/boxMail"
@@ -53,17 +48,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="5dp"
+        app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@color/colorPrimaryDark"
         app:endIconMode="custom"
-        app:hintEnabled="false"
         app:errorEnabled="true"
         app:errorTextColor="@color/colorError"
-        app:layout_constraintTop_toBottomOf="@id/txtEmail">
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/txtPassword">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
@@ -82,13 +76,14 @@
 
     <TextView
         android:id="@+id/txtPassword"
-        style="@style/TextView.Normal16Black"
+        style="@style/TextView.Medium16Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
         android:text="Kata Sandi"
-        app:layout_constraintTop_toBottomOf="@id/boxMail" />
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toTopOf="@id/boxPassword" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/boxPassword"
@@ -96,17 +91,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="24dp"
+        app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
         app:boxCornerRadiusTopStart="8dp"
-        app:boxStrokeColor="@color/colorPrimaryDark"
         app:endIconMode="password_toggle"
-        app:hintEnabled="false"
         app:errorEnabled="true"
         app:errorTextColor="@color/colorError"
-        app:layout_constraintTop_toBottomOf="@id/txtPassword">
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/btnSignin">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPssword"
@@ -129,10 +124,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="15dp"
         android:text="Masuk"
         android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/boxPassword" />
+        app:layout_constraintBottom_toTopOf="@id/btnSignup" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignup"
@@ -140,10 +135,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="30dp"
         android:text="Buat akun baru"
         android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/warningError"
