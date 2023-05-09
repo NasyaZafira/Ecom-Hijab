@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_one">
+    android:background="@drawable/bg_fix_four">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -37,7 +37,7 @@
             <TextView
                 android:id="@+id/txtDetail"
                 style="@style/TextView.Normal14Grey"
-                android:textColor="@color/colorBase"
+                android:textColor="@color/colorAccent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Ayo cari produk favoritmu"
@@ -129,7 +129,7 @@
         android:layout_marginBottom="30dp"
         android:backgroundTint="@color/colorBase"
         android:visibility="visible"
-        app:icon="@drawable/troli"
+        app:icon="@drawable/ic_cart"
         app:iconSize="30dp"
         app:iconTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -53,6 +53,7 @@ class EditProfileActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_back()
         f_detail()

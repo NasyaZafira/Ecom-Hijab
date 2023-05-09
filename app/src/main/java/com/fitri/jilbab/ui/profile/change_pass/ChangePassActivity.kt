@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityChangePassBinding
 import com.fitri.jilbab.databinding.ActivityEditProfileBinding
 import com.fitri.jilbab.ui.profile.ProfileViewModel
@@ -25,6 +26,7 @@ class ChangePassActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChangePassBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)

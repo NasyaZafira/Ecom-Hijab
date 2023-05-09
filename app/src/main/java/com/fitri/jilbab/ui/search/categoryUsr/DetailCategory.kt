@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.cat.Data
 import com.fitri.jilbab.databinding.ActivityDetailCategoryBinding
 import com.fitri.jilbab.ui.home.DetailProductActivity
@@ -27,6 +28,7 @@ class DetailCategory : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, ListCatActivity::class.java)

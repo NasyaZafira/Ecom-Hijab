@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.data.model.user.search.Data
 import com.fitri.jilbab.databinding.ActivitySearchBinding
@@ -30,6 +31,7 @@ class SearchActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.editSearch.setOnEditorActionListener { textView, i, _ ->
             if (i == EditorInfo.IME_ACTION_SEARCH) {

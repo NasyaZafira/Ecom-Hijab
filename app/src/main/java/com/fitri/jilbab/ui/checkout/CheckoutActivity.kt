@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.checkout.Data
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
@@ -38,6 +39,7 @@ class CheckoutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         r_getIntent()
         setupObserver()

@@ -50,6 +50,7 @@ class AddProductActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_back()
         f_continue()

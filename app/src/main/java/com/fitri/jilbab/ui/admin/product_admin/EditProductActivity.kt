@@ -53,6 +53,7 @@ class EditProductActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_getContent()
         f_runCategory()

@@ -320,7 +320,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/cancel/baseline_cancel_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../Sdk/icons/material/materialicons/shopping_cart/baseline_shopping_cart_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -330,8 +330,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="f0f0f0" />
-                            <entry key="outputName" value="baseline_cancel_24" />
+                            <entry key="color" value="fcb3a9" />
+                            <entry key="outputName" value="ic_cart" />
                             <entry key="sourceFile" value="D:\nasya\Fitri-Jilbab" />
                           </map>
                         </option>

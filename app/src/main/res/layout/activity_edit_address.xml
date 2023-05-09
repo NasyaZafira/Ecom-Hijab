@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_four"
+            android:background="@drawable/bg_fix_four"
             android:paddingBottom="30dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout

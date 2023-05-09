@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.transaction.incoming.Data
 import com.fitri.jilbab.databinding.ActivityIncomingBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
@@ -30,6 +31,7 @@ class IncomingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIncomingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, SuperActivity::class.java)

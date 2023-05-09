@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.databinding.ActivityCartBinding
 import com.fitri.jilbab.ui.checkout.CheckoutActivity
@@ -30,6 +31,7 @@ class CartActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)

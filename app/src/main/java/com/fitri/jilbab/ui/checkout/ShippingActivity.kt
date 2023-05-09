@@ -44,6 +44,7 @@ class ShippingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityShippingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         r_intent()
         r_initiation()

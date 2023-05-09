@@ -138,7 +138,7 @@
         android:layout_marginBottom="30dp"
         android:text="Buat akun baru"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/warningError" />
 
     <TextView
         android:id="@+id/warningError"

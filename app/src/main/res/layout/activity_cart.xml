@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_one"
+    android:background="@drawable/bg_fix_four"
     tools:context=".ui.cart.CartActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLine"
+    android:background="@drawable/bg_fix_four"
     tools:context=".ui.checkout.ShippingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
             android:id="@+id/layoutOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBase"
+            android:background="@drawable/shape_rectangle_8_fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@color/colorBase"
+            android:background="@drawable/shape_rectangle_8_fff"
             app:layout_constraintTop_toBottomOf="@id/layoutOne">
 
             <com.makeramen.roundedimageview.RoundedImageView
@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@color/colorBase"
+            android:background="@drawable/shape_rectangle_8_fff"
             app:layout_constraintTop_toBottomOf="@id/layoutTwo">
 
             <com.makeramen.roundedimageview.RoundedImageView
@@ -222,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@color/colorBase"
+            android:background="@drawable/shape_rectangle_8_fff"
             app:layout_constraintTop_toBottomOf="@id/layoutThree">
 
             <com.makeramen.roundedimageview.RoundedImageView

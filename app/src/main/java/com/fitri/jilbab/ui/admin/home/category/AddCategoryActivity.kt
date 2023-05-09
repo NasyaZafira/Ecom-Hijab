@@ -18,6 +18,7 @@ import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
+import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityAddCategoryBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
@@ -40,6 +41,7 @@ class AddCategoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         checked()
         binding.imgCat.setOnClickListener {

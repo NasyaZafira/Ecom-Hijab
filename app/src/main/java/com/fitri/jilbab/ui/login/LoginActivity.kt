@@ -37,6 +37,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.btnSignup.setOnClickListener {
             val i = Intent(this, SignUpActivity::class.java)

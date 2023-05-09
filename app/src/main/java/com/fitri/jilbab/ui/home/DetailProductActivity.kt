@@ -17,6 +17,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.Data
 import com.fitri.jilbab.data.model.user.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
@@ -43,7 +44,6 @@ class DetailProductActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

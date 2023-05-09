@@ -54,6 +54,7 @@ class MidtransActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMidtransBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setTheme(R.style.Theme_FitriJilbab_Home)
 
         runData()
     }
