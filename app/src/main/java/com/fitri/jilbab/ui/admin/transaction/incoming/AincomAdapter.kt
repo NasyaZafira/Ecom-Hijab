@@ -5,18 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.incoming.Data
+import com.fitri.jilbab.data.model.transaction.incoming.newIncoming.Data
 import com.fitri.jilbab.databinding.ItemChangedBinding
 
 class AincomAdapter(
     var pack: MutableList<Data>,
-    private val onCancle : (Data, Int) -> Unit
+    private val onCancle : (Data, Int) -> Unit,
+    var detail: (Data) -> Unit
 ) : RecyclerView.Adapter<AincomAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemChangedBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             userUnpaid: List<Data>,
-            onCancle : (Data, Int) -> Unit
+            onCancle : (Data, Int) -> Unit,
+            detail: (Data) -> Unit
         ) {
             val a = userUnpaid[adapterPosition]
 
@@ -46,6 +48,9 @@ class AincomAdapter(
             binding.btnCheckout.setOnClickListener {
                 onCancle(a, adapterPosition)
             }
+            binding.itemOrderUser.setOnClickListener {
+                detail(a)
+            }
         }
     }
 
@@ -55,7 +60,7 @@ class AincomAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(pack, onCancle)
+        holder.bind(pack, onCancle, detail)
     }
 
     override fun getItemCount() = pack.size

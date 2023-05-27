@@ -6,11 +6,10 @@ import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
-import com.fitri.jilbab.data.model.user.checkout.CheckOutResponse
-import com.fitri.jilbab.data.model.user.co.CoBody
-import com.fitri.jilbab.data.model.user.co.CoResponse
+import com.fitri.jilbab.data.model.user.newCo.CoBody
+import com.fitri.jilbab.data.model.user.newCo.NewCoResponse
+import com.fitri.jilbab.data.model.user.newOrder.NewOrderResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
-import com.fitri.jilbab.data.model.user.order.OrderResponse
 import com.fitri.jilbab.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -23,8 +22,8 @@ class CartViewModel @Inject constructor(
     val succesLoad = MutableLiveData<String>()
     val remove = MutableLiveData<RemoveResponse>()
     val add = MutableLiveData<AddCartResponse>()
-    val pay = MutableLiveData<CheckOutResponse>()
-    val placeOrder = MutableLiveData<OrderResponse>()
+    val pay = MutableLiveData<NewCoResponse>()
+    val placeOrder = MutableLiveData<NewOrderResponse>()
 
 
     suspend fun cartList() {
@@ -66,9 +65,10 @@ class CartViewModel @Inject constructor(
 
     suspend fun addCart(
         id_product: String,
-        qty: String
+        qty: String,
+        color: String
     ) {
-        val body = BodyCart(id_product, qty)
+        val body = BodyCart(id_product, qty, color)
         repository.addCart(
             onStart = {
                 _loading.postValue(true)

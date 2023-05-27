@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.incoming.Data
+import com.fitri.jilbab.data.model.transaction.incoming.newIncoming.Data
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
 import com.fitri.jilbab.ui.product.unpaid.PunpAdapter
 
@@ -42,7 +42,6 @@ class Incomingadapter(
 
             binding.txtTotalPrice.formatPrice(total.toString())
             binding.isEkspedisi.text = a.courier
-            binding.isResi.text = a.no_resi
         }
     }
 

@@ -33,7 +33,6 @@ class AddAddressActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_verifAcc()
         f_btnSave()

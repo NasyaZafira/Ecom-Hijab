@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
-import com.fitri.jilbab.data.model.admin.product.listNew.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.FragmentProductAdminBinding
 import com.fitri.jilbab.ui.admin.product_admin.AddProductActivity
 import com.fitri.jilbab.ui.admin.product_admin.EditProductActivity
@@ -38,6 +38,24 @@ class ProductAdmin : Fragment() {
     ): View? {
         _binding = FragmentProductAdminBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.theList()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.theList()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -43,12 +43,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <TextView
+        android:id="@+id/tvCount"
+        style="@style/TextView.Normal14Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="x  item"
+        app:layout_constraintStart_toEndOf="@+id/tvPrice"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
         android:id="@+id/textView14"
         style="@style/TextView.Normal14Grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="1 items"
+        android:text="Merah"
         app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ivPoster" />

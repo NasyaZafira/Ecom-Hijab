@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.complete.Data
+import com.fitri.jilbab.data.model.transaction.complete.response.Data
 
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_fix_four"
+    android:background="@drawable/user_bg"
     tools:context=".ui.checkout.ShippingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,7 +66,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -133,13 +133,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari" />
+                    android:text="OKE (Ongkos Kirim Ekonomis) \n\n Rp. 5000 \n\n Estimasi Pengiriman 2-3 Hari"
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/colorPrimary" />
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -154,7 +156,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster2"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -227,7 +229,7 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivPoster3"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
@@ -242,9 +244,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:textAllCaps="true"
                 android:layout_marginEnd="20dp"
                 android:text="Ekspedisi"
+                android:textAllCaps="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPoster3"
                 app:layout_constraintTop_toTopOf="@id/ivPoster3" />
@@ -280,11 +282,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:visibility="gone"
                     android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:visibility="gone"
                     android:layout_marginTop="8dp"
                     android:background="@color/colorPrimary" />
 

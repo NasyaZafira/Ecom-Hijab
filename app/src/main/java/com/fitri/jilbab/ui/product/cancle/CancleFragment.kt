@@ -1,6 +1,7 @@
 package com.fitri.jilbab.ui.product.cancle
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,12 +41,31 @@ class CancleFragment : Fragment() {
         setupObserver()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.listCancle()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.listCancle()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) loading.show() else loading.dismiss()
         }
         viewModel.cancle.observe(viewLifecycleOwner) {
+            Log.e("TAG", "setupObserver: " + it.data)
             coAdapt.cancle.clear()
             coAdapt.cancle.addAll(it.data)
             binding.rvCategory.apply {

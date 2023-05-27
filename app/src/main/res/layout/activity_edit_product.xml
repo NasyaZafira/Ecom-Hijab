@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_admin_two"
+    android:background="@drawable/admin_bg"
     tools:context=".ui.admin.product_admin.AddProductActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -242,7 +242,7 @@
                 style="@style/TextView.Normal14Black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Berat Produk"
+                android:text="Berat Produk (Gram)"
                 app:layout_constraintStart_toStartOf="@id/verifyAcc"
                 app:layout_constraintTop_toBottomOf="@id/edtKategori" />
 
@@ -409,6 +409,49 @@
                     tools:ignore="RtlSymmetry" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/txtColor"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Warna Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtDescInfo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtColor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="ct: Merah,Hijau,Polkadot"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnContinue"
@@ -449,11 +492,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:scrollbars="none"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtDescInfo">
+                app:layout_constraintTop_toBottomOf="@+id/edtColor">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

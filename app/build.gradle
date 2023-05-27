@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.fitri.jilbab"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
     packagingOptions {
         pickFirst 'lib/x86/libc++_shared.so'
@@ -49,6 +50,7 @@ android {
 }
 
 dependencies {
+
 
     // Midtrans
     implementation 'com.midtrans:uikit:2.0.0-SANDBOX'
@@ -126,6 +128,7 @@ dependencies {
     // ui
     implementation 'com.github.skydoves:sandwich:1.2.3'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     //lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
@@ -143,5 +146,8 @@ dependencies {
 
     //image slider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
+    //custom bootom nav
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
 
 }

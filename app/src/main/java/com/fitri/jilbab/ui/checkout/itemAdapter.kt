@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.checkout.Order
+import com.fitri.jilbab.data.model.user.newCo.Order
 
 
 import com.fitri.jilbab.databinding.ItemOrderBinding

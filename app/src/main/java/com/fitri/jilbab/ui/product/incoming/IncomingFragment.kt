@@ -30,6 +30,24 @@ class IncomingFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.listIncom()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.listIncom()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentIncomingBinding.bind(view)

@@ -41,6 +41,24 @@ class CompleteFragment : Fragment() {
         setupObserver()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.listComplete()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.listComplete()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())
         viewModel.loading.observe(viewLifecycleOwner) {

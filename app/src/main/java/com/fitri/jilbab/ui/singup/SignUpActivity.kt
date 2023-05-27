@@ -76,7 +76,7 @@ class SignUpActivity : BaseActivity() {
                     email = binding.etEmail.text.toString(),
                     name = binding.etName.text.toString(),
                     password = binding.etPssword.text.toString(),
-                    role = "user"
+                    role = "customer"
                 )
             }
             val i = Intent(this, LoginActivity::class.java)

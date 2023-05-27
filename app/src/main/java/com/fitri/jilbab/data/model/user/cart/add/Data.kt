@@ -6,5 +6,6 @@ data class Data(
     val id_product: String,
     val id_user: Int,
     val qty: String,
-    val updated_at: String
+    val updated_at: String,
+    val color: String
 )

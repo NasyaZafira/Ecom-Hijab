@@ -26,7 +26,6 @@ class ChangePassActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChangePassBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)

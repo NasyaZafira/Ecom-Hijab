@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class Data(
     val category: Category?,
     val created_at: String?,
+    val colors: String,
     val discount: String?,
     val id_category: String?,
     val id_picture: Int?,

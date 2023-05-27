@@ -3,10 +3,9 @@ package com.fitri.jilbab.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RatingBar
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,10 +15,9 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.Data
-import com.fitri.jilbab.data.model.user.Picture
+import com.fitri.jilbab.data.model.user.newDt.Data
+import com.fitri.jilbab.data.model.user.newDt.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
 import com.fitri.jilbab.ui.cart.CartActivity
 import com.fitri.jilbab.ui.cart.CartViewModel
@@ -40,6 +38,8 @@ class DetailProductActivity : BaseActivity() {
     private var p_total: Int = 0
     private var p_price: Int = 0
     private var reviewAdapter = ReviewAdapter(mutableListOf())
+    private val listSpinner: MutableList<String> = ArrayList()
+    private var idValue: String = " "
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,15 +49,12 @@ class DetailProductActivity : BaseActivity() {
 
         f_extras()
         f_reting()
-
         f_back()
         f_total()
         f_troli()
 
 
     }
-
-
 
     private fun f_reting() {
         // Create rating bar programmatically...
@@ -81,6 +78,7 @@ class DetailProductActivity : BaseActivity() {
             Log.e("TAG", "f_reting: -" + ulasan + "-" + rating + "-" + id)
 
             if (!ulasan.isNullOrBlank() && !rating.isNullOrBlank() && id != null) {
+                binding.edtKoment.text = null
                 lifecycleScope.launch {
                     viewModel.reviewProduct(
                         id.toString(),
@@ -108,6 +106,7 @@ class DetailProductActivity : BaseActivity() {
             viewModel.listReview(id_Product)
         }
     }
+
     private fun f_launch(id_Product: Int) {
         lifecycleScope.launch {
             //Log.e("TAG", "onCreate: id product " + data.id_product )
@@ -129,7 +128,7 @@ class DetailProductActivity : BaseActivity() {
         }
 
         viewModel.detailProduct.observe(this) {
-            dataPicture = it.data.pictures!!.toMutableList()
+            dataPicture = it.data.pictures.toMutableList()
             Log.e("TAG", "setupObserver: data " + it)
             Log.e("TAG", "setupObserver: data picture " + dataPicture)
 
@@ -145,7 +144,25 @@ class DetailProductActivity : BaseActivity() {
             binding.tvDesc.text = it.data.product_description
             binding.tvInfo.text = it.data.product_detail_info
             binding.txtPrice.formatPrice(it.data.price.toString())
+            if (it.data.discount.isNullOrBlank()) {
+                binding.txtDisc.visibility = View.INVISIBLE
+            } else {
+                binding.txtDisc.text = "- " + it.data.discount + "%"
+            }
             binding.tvTotal.formatPrice("0")
+            val result = it.data.color_list.toMutableList()
+            for (i: Int in 0 until result.size) {
+                listSpinner.add(it.data.color_list[i])
+            }
+            val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
+            val autoCompleteKategori = binding.isColor
+            autoCompleteKategori.setAdapter(arrayAdapterKategori)
+
+            binding.isColor.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+                idValue = listSpinner.get(position).toString()
+                Log.e("TAG", "f_listSpinner: " + listSpinner.get(position))
+
+            })
         }
 
         cartViewModel.add.observe(this) {
@@ -157,9 +174,10 @@ class DetailProductActivity : BaseActivity() {
 
         viewModel.isReview.observe(this) {
             Toast.makeText(this, "Review dikirim", Toast.LENGTH_LONG).show()
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+            f_listReview(it.data.id_product)
+//            val i = Intent(this, MainActivity::class.java)
+//            startActivity(i)
+//            finish()
             Log.e("TAG", "setupObserver: " + it)
         }
         viewModel.listReview.observe(this) {
@@ -202,6 +220,8 @@ class DetailProductActivity : BaseActivity() {
         binding.btnOrderNow.setOnClickListener {
             if (p_total == 0) {
                 Log.e("TAG", "f_troli: total 0 please add min 1 order")
+                Toast.makeText(this, "Mohon Tambahkan Produk Minimal 1 Order", Toast.LENGTH_LONG)
+                    .show()
             } else if (p_total > 0) {
                 p_name = data.product_name.toString()
                 p_total = p_total
@@ -209,14 +229,22 @@ class DetailProductActivity : BaseActivity() {
                 Log.e("TAG", "f_troli: p_name " + p_name)
                 Log.e("TAG", "f_troli: p_total " + p_total)
                 Log.e("TAG", "f_troli: p_price " + p_price)
-                f_addCart()
+                val color = idValue
+                val id = data.id_product.toString()
+                val total = p_total.toString()
+                if (color.isNullOrBlank()) {
+                    Toast.makeText(
+                        this,
+                        "Mohon Pilih Varian Warna Terlebih Dahulu",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                } else if (!id.isNullOrBlank() && !color.isNullOrBlank() && !total.isNullOrBlank()) {
+                    lifecycleScope.launch {
+                        cartViewModel.addCart(id, total, color)
+                    }
+                }
             }
-        }
-    }
-
-    private fun f_addCart() {
-        lifecycleScope.launch {
-            cartViewModel.addCart(data.id_product.toString(), p_total.toString())
         }
     }
 

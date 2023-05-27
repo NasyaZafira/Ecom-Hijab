@@ -16,6 +16,7 @@ import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityMidtransBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
 import com.fitri.jilbab.ui.splash.Splash
+import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import com.midtrans.sdk.uikit.api.model.TransactionResult
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
@@ -28,27 +29,36 @@ class MidtransActivity : BaseActivity() {
     private lateinit var binding: ActivityMidtransBinding
     private val viewModel: CartViewModel by viewModels()
     private var snapToken = ""
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result?.resultCode == RESULT_OK) {
-            result.data?.let {
-                val transactionResult = it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
-                Toast.makeText(this,"${transactionResult?.status}", Toast.LENGTH_SHORT).show()
-                when (transactionResult?.status) {
-                    "success" -> {
-                        val i = Intent(this, Splash::class.java)
-                        startActivity(i)
-                        finishAffinity()
-                    }
-                    "pending" -> {
-                        initMidtransSdk()
-                    }
-                    else -> {
-                        runData()
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result?.resultCode == RESULT_OK) {
+                result.data?.let {
+                    val transactionResult =
+                        it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
+                    Toast.makeText(this, "${transactionResult?.status}", Toast.LENGTH_SHORT).show()
+                    when (transactionResult?.status) {
+                        "success" -> {
+                            val i = Intent(this, Splash::class.java)
+                            startActivity(i)
+                            finishAffinity()
+                        }
+                        "pending" -> {
+                            initMidtransSdk()
+                        }
+                        "failed" -> {
+                            Toast.makeText(this, "Pembayaran Gagal", Toast.LENGTH_LONG)
+                            val i = Intent(this, Splash::class.java)
+                            startActivity(i)
+                            finish()
+                        }
+                        else -> {
+                            Toast.makeText(this, "Pembayaran Gagal", Toast.LENGTH_LONG)
+//                            runData()
+                        }
                     }
                 }
             }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +104,7 @@ class MidtransActivity : BaseActivity() {
     }
 
     private fun initMidtransSdk() {
+
         UiKitApi.Builder()
             .withMerchantClientKey("SB-Mid-client-tk7UewSkDrTjhV5S") // client_key is mandatory
             .withContext(this) // context is mandatory
@@ -107,6 +118,8 @@ class MidtransActivity : BaseActivity() {
             launcher, // ActivityResultLauncher
             snapToken // Snap Token
         )
+
+        SdkUIFlowBuilder.init()
     }
 
     // function to set the SDK language

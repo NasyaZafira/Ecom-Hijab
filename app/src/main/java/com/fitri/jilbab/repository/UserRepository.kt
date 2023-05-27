@@ -1,7 +1,7 @@
 package com.fitri.jilbab.repository
 
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
-import com.fitri.jilbab.data.model.user.co.CoBody
+import com.fitri.jilbab.data.model.user.newCo.CoBody
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.remote.ApiServices

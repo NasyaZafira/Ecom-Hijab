@@ -21,7 +21,7 @@
                 android:layout_width="0dp"
                 android:layout_height="350dp"
                 android:scaleType="centerCrop"
-                android:src="@color/colorPrimary"
+                android:src="@color/colorGreen"
                 app:iss_auto_cycle="true"
                 app:iss_delay="0"
                 app:iss_error_image="@color/colorAccent"
@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="26dp"
+                    android:text="Memuat..."
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,7 +93,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
-                    android:rating="4"
                     android:theme="@style/RatingBar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -104,7 +104,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:text="Memuat..."
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+                <TextView
+                    android:id="@+id/txtDisc"
+                    style="@style/TextView.Normal14Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Memuat..."
+                    app:layout_constraintStart_toEndOf="@id/txtPrice"
                     app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
                 <TextView
@@ -115,6 +127,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="14dp"
                     android:layout_marginEnd="24dp"
+
+                    android:text="Memuat..."
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
 
@@ -136,8 +150,52 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
+                    android:text="Memuat..."
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/TextView.Normal14Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Pilih Varian Warna:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtColor"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/colorError"
+                    app:hintEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/textView7">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/isColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Pilih Warna"
+                        android:inputType="none"
+                        android:paddingVertical="9dp"
+                        android:paddingStart="13dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

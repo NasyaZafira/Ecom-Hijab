@@ -98,7 +98,21 @@
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="@id/dateOrder"
         app:layout_constraintTop_toTopOf="@id/txtEkspedisi" />
-
+<!--    <Button-->
+<!--        android:id="@+id/btnPaid"-->
+<!--        style="@style/Button.Primary"-->
+<!--        android:textSize="12sp"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:text="Bayar Sekarang"-->
+<!--        android:textAllCaps="false"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/isEkspedisi" />-->
     <Button
         android:id="@+id/btnCheckout"
         style="@style/Button.Primary"

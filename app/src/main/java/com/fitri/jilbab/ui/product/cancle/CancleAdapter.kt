@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.cancle.Data
+import com.fitri.jilbab.data.model.transaction.cancle.newCancle.Data
 
 import com.fitri.jilbab.databinding.ItemOrderUserBinding
 
-class CancleAdapter (
+class CancleAdapter(
     var cancle: MutableList<Data>
 ) : RecyclerView.Adapter<CancleAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemOrderUserBinding) :
@@ -26,23 +26,28 @@ class CancleAdapter (
                 adapter = CoAdapter(a.products.toMutableList())
             }
 
-            var total       = 0
-            var tampungan   = 0
-            var com_1       = 0
-            var com_2       = 0
+            var total = 0
+            var tampungan = 0
+            var com_1 = 0
+            var com_2 = 0
 
-            if (a.products.size > 0){
-                for (i : Int in 0 until a.products.toMutableList().size){
-                    com_1       = a.products.toMutableList()[i].product.price.toInt()
-                    com_2       = a.products.toMutableList()[i].qty
-                    tampungan   = com_1 * com_2
-                    total       = total + tampungan
+            if (a.products.size > 0) {
+                for (i: Int in 0 until a.products.toMutableList().size) {
+                    com_1 = a.products.toMutableList()[i].product.price.toInt()
+                    com_2 = a.products.toMutableList()[i].qty
+                    tampungan = com_1 * com_2
+                    total = total + tampungan
                 }
             }
 
             binding.txtTotalPrice.formatPrice(total.toString())
             binding.isEkspedisi.text = a.courier
-            binding.isResi.text = a.no_resi
+            if (!a.no_resi.isNullOrBlank()) {
+                binding.isResi.text = a.no_resi
+            } else {
+                binding.isResi.text = "-"
+            }
+
         }
     }
 

@@ -31,12 +31,9 @@ class CartActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+          onBackPressed()
         }
         launch()
         button()
@@ -62,7 +59,6 @@ class CartActivity : BaseActivity() {
             if (it) showLoading() else hideLoading()
         }
         viewModel.cart.observe(this) { response ->
-            binding.txtNull.visibility = View.INVISIBLE
             binding.rvCart.visibility = View.VISIBLE
 
             Log.e("TAG", "setupObserver: " + response)
@@ -118,8 +114,6 @@ class CartActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val i = Intent(this, MainActivity::class.java)
-        startActivity(i)
         finish()
     }
 

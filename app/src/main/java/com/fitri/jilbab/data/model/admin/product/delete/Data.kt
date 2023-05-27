@@ -9,7 +9,7 @@ data class Data(
     val is_active: String,
     val price: String,
     val product_description: String,
-    val product_detail_info: Any,
+    val product_detail_info: String,
     val product_name: String,
     val slug_product: String,
     val stock: String,

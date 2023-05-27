@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.sent.Data
+import com.fitri.jilbab.data.model.transaction.sent.newSent.Data
 import com.fitri.jilbab.databinding.ItemCompleteBinding
-import com.fitri.jilbab.databinding.ItemOrderUserBinding
 
 class SentAdapter (
     var sent: MutableList<Data>,

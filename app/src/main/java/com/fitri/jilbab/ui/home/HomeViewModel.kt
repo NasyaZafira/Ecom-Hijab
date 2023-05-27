@@ -2,7 +2,7 @@ package com.fitri.jilbab.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.commer.app.base.BaseViewModel
-import com.fitri.jilbab.data.model.user.DetailProductResponse
+import com.fitri.jilbab.data.model.user.newDt.newDtResponse
 import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.model.user.review.ReviewResponse
 import com.fitri.jilbab.data.model.user.review.list.ListReviewResponse
@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     private val repository: UserRepository
 ) : BaseViewModel() {
 
-    var detailProduct = MutableLiveData<DetailProductResponse>()
+    var detailProduct = MutableLiveData<newDtResponse>()
     var isReview = MutableLiveData<ReviewResponse>()
     var listReview = MutableLiveData<ListReviewResponse>()
 

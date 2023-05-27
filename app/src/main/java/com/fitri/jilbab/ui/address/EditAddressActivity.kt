@@ -33,14 +33,11 @@ class EditAddressActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding = ActivityEditAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, ListAddressActivity::class.java)
-            startActivity(i)
             finish()
         }
 
@@ -185,8 +182,6 @@ class EditAddressActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val i = Intent(this, ListAddressActivity::class.java)
-        startActivity(i)
         finish()
     }
 

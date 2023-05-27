@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.product.listNew.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.ItemProductusrBinding
 
 class PuAdapter (
@@ -28,7 +28,7 @@ class PuAdapter (
                     .into(binding.imgProduct)
             }
 
-            binding.rbFood.rating       = isProduct.rating.toFloat() //3.0f
+            binding.rbFood.rating       = isProduct.rating!!.toFloat() //3.0f
             binding.isName.text         = isProduct.product_name
             binding.isPrice.formatPrice(isProduct.price.toString())
             binding.itemProductUser.setOnClickListener {

@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.product.listNew.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.ActivityEditProductBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,21 +31,21 @@ import java.io.File
 @AndroidEntryPoint
 class EditProductActivity : BaseActivity() {
 
-    private lateinit var binding    : ActivityEditProductBinding
-    private val viewModel           : ProductAdminVm by viewModels()
-    private var selectedFiles       : File? = null
-    private var selectedFiles1      : File? = null
-    private var selectedFiles2      : File? = null
-    private var selectedFiles3      : File? = null
-    private var selectedFiles4      : File? = null
+    private lateinit var binding: ActivityEditProductBinding
+    private val viewModel: ProductAdminVm by viewModels()
+    private var selectedFiles: File? = null
+    private var selectedFiles1: File? = null
+    private var selectedFiles2: File? = null
+    private var selectedFiles3: File? = null
+    private var selectedFiles4: File? = null
 
-    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
 
-    private val listSpinner         : MutableList<String> = ArrayList()
-    private val listId              : MutableList<Int> = ArrayList()
-    private var idValue             : String = " "
+    private val listSpinner: MutableList<String> = ArrayList()
+    private val listId: MutableList<Int> = ArrayList()
+    private var idValue: String = " "
 
     private lateinit var data: Data
 
@@ -53,7 +53,6 @@ class EditProductActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_getContent()
         f_runCategory()
@@ -66,7 +65,7 @@ class EditProductActivity : BaseActivity() {
 
     }
 
-    private fun f_getContent(){
+    private fun f_getContent() {
         intent.extras?.getParcelable<Data>("product")?.let {
             data = it
             binding.etNameProduct.setText(data.product_name)
@@ -77,36 +76,32 @@ class EditProductActivity : BaseActivity() {
             binding.editStock.setText(data.stock)
             binding.editDesc.setText(data.product_description)
             binding.editDescInfo.setText(data.product_detail_info)
-
+            binding.editColor.setText(data.colors)
             idValue = data.category?.id_category.toString()
 
             binding.btnDel.setOnClickListener {
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     viewModel.delProduct(data.id_product!!)
                 }
             }
 
 
-            Log.e("TAG", "f_getContent: " + data.pictures.size)
-            if (data.pictures.size.equals(1)){
+            Log.e("TAG", "f_getContent: " + data.pictures?.size)
+            if (data.pictures?.size?.equals(1) == true) {
                 f_glide_1()
-            }
-            else if (data.pictures.size.equals(2)){
+            } else if (data.pictures?.size?.equals(2) == true) {
                 f_glide_1()
                 f_glide_2()
-            }
-            else if (data.pictures.size.equals(3)){
+            } else if (data.pictures?.size?.equals(3) == true) {
                 f_glide_1()
                 f_glide_2()
                 f_glide_3()
-            }
-            else if (data.pictures.size.equals(4)){
+            } else if (data.pictures?.size?.equals(4) == true) {
                 f_glide_1()
                 f_glide_2()
                 f_glide_3()
                 f_glide_4()
-            }
-            else if (data.pictures.size.equals(5)){
+            } else if (data.pictures?.size?.equals(5) == true) {
                 f_glide_1()
                 f_glide_2()
                 f_glide_3()
@@ -117,9 +112,9 @@ class EditProductActivity : BaseActivity() {
         }
     }
 
-    private fun f_glide_1(){
+    private fun f_glide_1() {
         Glide.with(binding.fixaddreportImage1.context)
-            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[0].picture)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures?.get(0)?.picture)
             .error(R.drawable.white_image)
             .into(binding.fixaddreportImage1)
 
@@ -128,9 +123,9 @@ class EditProductActivity : BaseActivity() {
         //binding.close01.visibility          = View.VISIBLE
     }
 
-    private fun f_glide_2(){
+    private fun f_glide_2() {
         Glide.with(binding.fixaddreportImage2.context)
-            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[1].picture)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures?.get(1)?.picture)
             .error(R.drawable.white_image)
             .into(binding.fixaddreportImage2)
 
@@ -139,9 +134,9 @@ class EditProductActivity : BaseActivity() {
         //binding.close02.visibility          = View.VISIBLE
     }
 
-    private fun f_glide_3(){
+    private fun f_glide_3() {
         Glide.with(binding.fixaddreportImage3.context)
-            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[2].picture)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures?.get(2)?.picture)
             .error(R.drawable.white_image)
             .into(binding.fixaddreportImage3)
 
@@ -150,9 +145,9 @@ class EditProductActivity : BaseActivity() {
         //        binding.close03.visibility          = View.VISIBLE
     }
 
-    private fun f_glide_4(){
+    private fun f_glide_4() {
         Glide.with(binding.fixaddreportImage4.context)
-            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[3].picture)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures?.get(3)?.picture)
             .error(R.drawable.white_image)
             .into(binding.fixaddreportImage4)
 
@@ -161,9 +156,9 @@ class EditProductActivity : BaseActivity() {
         //        binding.close04.visibility          = View.VISIBLE
     }
 
-    private fun f_glide_5(){
+    private fun f_glide_5() {
         Glide.with(binding.fixaddreportImage5.context)
-            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures[4].picture)
+            .load("https://ecom-mobile.spdev.my.id/img/products/" + data.pictures?.get(4)?.picture)
             .error(R.drawable.white_image)
             .into(binding.fixaddreportImage5)
 
@@ -174,38 +169,39 @@ class EditProductActivity : BaseActivity() {
 
     private fun f_continue() {
         binding.btnContinue.setOnClickListener {
-            lifecycleScope.launch {
-                val name = binding.etNameProduct.text.toString().trim()
-                val harga = binding.editPrice.text.toString().trim()
-                val diskon = binding.editDiskon.text.toString().trim()
-                val category = idValue
 
-                //if (data.category == null) {
-                //    idValue
-                //} else {
-                //    binding.autoCompleteTxtKategori.text.toString().trim()
-                //}
+            val name = binding.etNameProduct.text.toString().trim()
+            val harga = binding.editPrice.text.toString().trim()
+            val diskon = binding.editDiskon.text.toString().trim()
+            val category = idValue
+            val berat = binding.editBerat.text.toString().trim()
+            val stok = binding.editStock.text.toString().trim()
+            val desc = binding.editDesc.text.toString().trim()
+            val info = binding.editDescInfo.text.toString().trim()
+            val color = binding.editColor.text.toString().trim()
 
-                val berat = binding.editBerat.text.toString().trim()
-                val stok = binding.editStock.text.toString().trim()
-                val desc = binding.editDesc.text.toString().trim()
-                val info = binding.editDescInfo.text.toString().trim()
-                viewModel.editProduct(
-                    data.id_product!!,
-                    selectedFiles,
-                    selectedFiles1,
-                    selectedFiles2,
-                    selectedFiles3,
-                    selectedFiles4,
-                    name,
-                    harga,
-                    diskon,
-                    category,
-                    berat,
-                    stok,
-                    desc,
-                    info,
-                )
+            if (!name.isNullOrBlank() && !harga.isNullOrBlank() && !diskon.isNullOrBlank() && !category.isNullOrBlank() && !berat.isNullOrBlank() && !stok.isNullOrBlank() && !desc.isNullOrBlank() && !color.isNullOrBlank())
+                lifecycleScope.launch {
+                    viewModel.editProduct(
+                        data.id_product!!,
+                        selectedFiles,
+                        selectedFiles1,
+                        selectedFiles2,
+                        selectedFiles3,
+                        selectedFiles4,
+                        name,
+                        harga,
+                        diskon,
+                        category,
+                        berat,
+                        stok,
+                        desc,
+                        info,
+                        color
+                    )
+                } else {
+                Toast.makeText(this, "Lengkapi data produk", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }
@@ -223,7 +219,7 @@ class EditProductActivity : BaseActivity() {
             if (it) showLoading() else hideLoading()
         }
         viewModel.category.observe(this) {
-            Log.e("TAG", "setupObserver: " + it )
+            Log.e("TAG", "setupObserver: " + it)
             val result = it.data.toMutableList()
             for (i: Int in 0 until result.size) {
                 listSpinner.add(it.data[i].category_name)
@@ -232,13 +228,13 @@ class EditProductActivity : BaseActivity() {
             f_listSpinner()
         }
         viewModel.edit.observe(this) {
-            Log.e("TAG", "setupObserver: hasil " + it )
+            Log.e("TAG", "setupObserver: hasil " + it)
             Toast.makeText(this, "Berhasil Mengubah Produk", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)
             finish()
         }
-        viewModel.del.observe(this){
+        viewModel.del.observe(this) {
             Toast.makeText(this, "Berhasil Menghapus Produk", Toast.LENGTH_LONG).show()
             val i = Intent(this, SuperActivity::class.java)
             startActivity(i)

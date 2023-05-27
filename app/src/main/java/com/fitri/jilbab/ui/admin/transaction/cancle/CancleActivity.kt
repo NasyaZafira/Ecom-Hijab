@@ -28,7 +28,6 @@ class CancleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCancleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, SuperActivity::class.java)

@@ -1,7 +1,6 @@
 package com.fitri.jilbab.ui.admin.product_admin
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -22,7 +21,6 @@ import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityAddProductBinding
-import com.fitri.jilbab.ui.admin.SuperActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
@@ -30,31 +28,30 @@ import java.io.File
 @AndroidEntryPoint
 class AddProductActivity : BaseActivity() {
 
-    private lateinit var binding    : ActivityAddProductBinding
-    private val viewModel           : ProductAdminVm by viewModels()
-    private var selectedFiles       : File? = null
-    private var selectedFiles1      : File? = null
-    private var selectedFiles2      : File? = null
-    private var selectedFiles3      : File? = null
-    private var selectedFiles4      : File? = null
+    private lateinit var binding: ActivityAddProductBinding
+    private val viewModel: ProductAdminVm by viewModels()
+    private var selectedFiles: File? = null
+    private var selectedFiles1: File? = null
+    private var selectedFiles2: File? = null
+    private var selectedFiles3: File? = null
+    private var selectedFiles4: File? = null
 
-    private val File.size get()     = if (!exists()) 0.0 else length().toDouble()
+    private val File.size get() = if (!exists()) 0.0 else length().toDouble()
     private val File.sizeInKb get() = size / 1024
     private val File.sizeInMb get() = sizeInKb / 1024
 
-    private val listSpinner         : MutableList<String> = ArrayList()
-    private val listId              : MutableList<Int> = ArrayList()
-    private var idValue             : String = " "
+    private val listSpinner: MutableList<String> = ArrayList()
+    private val listId: MutableList<Int> = ArrayList()
+    private var idValue: String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_back()
-        f_continue()
         checked()
+        f_continue()
         f_runCategory()
         f_listSpinner()
 
@@ -131,7 +128,7 @@ class AddProductActivity : BaseActivity() {
     private fun checked() {
         binding.etNameProduct.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtNmProduct.error =
+                text.toString().isBlank() -> binding.edtNmProduct.error =
                     "Nama produk tidak boleh kosong"
                 else -> binding.edtNmProduct.error = null
             }
@@ -139,7 +136,7 @@ class AddProductActivity : BaseActivity() {
         }
         binding.editPrice.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtPriceProduct.error =
+                text.toString().isBlank() -> binding.edtPriceProduct.error =
                     "Harga produk tidak boleh kosong"
                 else -> binding.edtPriceProduct.error = null
             }
@@ -147,7 +144,7 @@ class AddProductActivity : BaseActivity() {
         }
         binding.editDiskon.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtDiskon.error =
+                text.toString().isBlank() -> binding.edtDiskon.error =
                     "Diskon produk tidak boleh kosong"
                 else -> binding.edtDiskon.error = null
             }
@@ -155,7 +152,7 @@ class AddProductActivity : BaseActivity() {
         }
         binding.autoCompleteTxtKategori.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtKategori.error =
+                text.toString().isBlank() -> binding.edtKategori.error =
                     "Kategori produk tidak boleh kosong"
                 else -> binding.edtKategori.error = null
             }
@@ -163,7 +160,7 @@ class AddProductActivity : BaseActivity() {
         }
         binding.editBerat.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtBerat.error =
+                text.toString().isBlank() -> binding.edtBerat.error =
                     "Berat produk tidak boleh kosong"
                 else -> binding.edtBerat.error = null
             }
@@ -171,7 +168,7 @@ class AddProductActivity : BaseActivity() {
         }
         binding.editStock.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtStock.error =
+                text.toString().isBlank() -> binding.edtStock.error =
                     "Stok produk tidak boleh kosong"
                 else -> binding.edtStock.error = null
             }
@@ -179,8 +176,16 @@ class AddProductActivity : BaseActivity() {
         }
         binding.editDesc.doOnTextChanged { text, _, _, _ ->
             when {
-                text.toString().isEmpty() -> binding.edtDesc.error =
+                text.toString().isBlank() -> binding.edtDesc.error =
                     "Deskripsi produk tidak boleh kosong"
+                else -> binding.edtDesc.error = null
+            }
+            validateButton()
+        }
+        binding.editColor.doOnTextChanged { text, _, _, _ ->
+            when {
+                text.toString().isBlank() -> binding.edtDesc.error =
+                    "Warna produk tidak boleh kosong"
                 else -> binding.edtDesc.error = null
             }
             validateButton()
@@ -196,8 +201,9 @@ class AddProductActivity : BaseActivity() {
         val beratOk = binding.edtBerat.error == null
         val stokOk = binding.edtStock.error == null
         val descOk = binding.edtDesc.error == null
+        val colorOK = binding.edtColor.error == null
         binding.btnContinue.isEnabled =
-            nameOk && hargaOk && diskonOk && kategoriOk && beratOk && stokOk && descOk
+            nameOk && hargaOk && diskonOk && kategoriOk && beratOk && stokOk && descOk && colorOK
     }
 
     override fun setupObserver() {
@@ -214,9 +220,12 @@ class AddProductActivity : BaseActivity() {
         }
         viewModel.product.observe(this) {
             Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
-            val i = Intent(this, SuperActivity::class.java)
-            startActivity(i)
-            finish()
+            lifecycleScope.launch {
+                viewModel.categoryList()
+            }
+//            val i = Intent(this, SuperActivity::class.java)
+//            startActivity(i)
+//            finish()
         }
     }
 
@@ -233,38 +242,45 @@ class AddProductActivity : BaseActivity() {
 
     private fun f_back() {
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, SuperActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this, SuperActivity::class.java)
+//            startActivity(i)
             finish()
         }
     }
 
     private fun f_continue() {
         binding.btnContinue.setOnClickListener {
-            lifecycleScope.launch {
-                val name = binding.etNameProduct.text.toString().trim()
-                val harga = binding.editPrice.text.toString().trim()
-                val diskon = binding.editDiskon.text.toString().trim()
-                val category = idValue //binding.autoCompleteTxtKategori.text.toString().trim()
-                val berat = binding.editBerat.text.toString().trim()
-                val stok = binding.editStock.text.toString().trim()
-                val desc = binding.editDesc.text.toString().trim()
-                val info = binding.editDescInfo.text.toString().trim()
-                viewModel.addProduct(
-                    selectedFiles,
-                    selectedFiles1,
-                    selectedFiles2,
-                    selectedFiles3,
-                    selectedFiles4,
-                    name,
-                    harga,
-                    diskon,
-                    category,
-                    berat,
-                    stok,
-                    desc,
-                    info,
-                )
+            val name = binding.etNameProduct.text.toString().trim()
+            val harga = binding.editPrice.text.toString().trim()
+            val diskon = binding.editDiskon.text.toString().trim()
+            val category = idValue //binding.autoCompleteTxtKategori.text.toString().trim()
+            val berat = binding.editBerat.text.toString().trim()
+            val stok = binding.editStock.text.toString().trim()
+            val desc = binding.editDesc.text.toString().trim()
+            val info = binding.editDescInfo.text.toString().trim()
+            val color = binding.editColor.text.toString().trim()
+            if (!name.isNullOrBlank() && !harga.isNullOrBlank() && !diskon.isNullOrBlank() && !category.isNullOrBlank() && !berat.isNullOrBlank() && !stok.isNullOrBlank() && !desc.isNullOrBlank() && !color.isNullOrBlank())
+                lifecycleScope.launch {
+                    viewModel.addProduct(
+                        selectedFiles,
+                        selectedFiles1,
+                        selectedFiles2,
+                        selectedFiles3,
+                        selectedFiles4,
+                        name,
+                        harga,
+                        diskon,
+                        category,
+                        berat,
+                        stok,
+                        desc,
+                        info,
+                        color
+                    )
+                }
+            else {
+                Toast.makeText(this, "Lengkapi data produk", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }

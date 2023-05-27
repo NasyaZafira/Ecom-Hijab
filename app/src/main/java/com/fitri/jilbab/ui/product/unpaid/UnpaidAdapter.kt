@@ -5,18 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.data.model.transaction.unpaid.Data
+import com.fitri.jilbab.data.model.transaction.unpaid.newUnpaid.Data
 import com.fitri.jilbab.databinding.ItemUnpaidBinding
 
 class UnpaidAdapter(
     var unpaid: MutableList<Data>,
-    private val onCancle : (Data, Int) -> Unit
+    private val onCancle : (Data, Int) -> Unit,
+//    var paid: (Data) -> Unit
 ) : RecyclerView.Adapter<UnpaidAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemUnpaidBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             userUnpaid: List<Data>,
-            onCancle : (Data, Int) -> Unit
+            onCancle : (Data, Int) -> Unit,
+//            paid: (Data) -> Unit
         ) {
             val a = userUnpaid[adapterPosition]
 
@@ -46,6 +48,9 @@ class UnpaidAdapter(
             binding.btnCheckout.setOnClickListener {
                 onCancle(a, adapterPosition)
             }
+//            binding.btnPaid.setOnClickListener {
+//                paid(a)
+//            }
         }
     }
 
@@ -55,7 +60,7 @@ class UnpaidAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(unpaid, onCancle)
+        holder.bind(unpaid, onCancle)//paid)
     }
 
     override fun getItemCount() = unpaid.size

@@ -11,10 +11,10 @@ import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
 import com.fitri.jilbab.data.model.admin.category.editCat.EditCatResponse
-import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
-import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
-import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
+import com.fitri.jilbab.data.model.admin.product.list.ListPorductResponse
+import com.fitri.jilbab.data.model.admin.product.newAdd.NewAddResponse
+import com.fitri.jilbab.data.model.admin.product.newEdit.NewEditResponse
 import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
@@ -24,30 +24,30 @@ import com.fitri.jilbab.data.model.profile.password.ChangePassResponse
 import com.fitri.jilbab.data.model.profile.picture.ChangePictureResponse
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
-import com.fitri.jilbab.data.model.transaction.complete.CompleteResponse
-import com.fitri.jilbab.data.model.transaction.cancle.CancleResponse
+import com.fitri.jilbab.data.model.transaction.cancle.newCancle.NewCancleResponse
 import com.fitri.jilbab.data.model.transaction.cancle.post.BodyCancleOrder
 import com.fitri.jilbab.data.model.transaction.cancle.post.PostCancleResponse
 import com.fitri.jilbab.data.model.transaction.complete.done.BodyDone
 import com.fitri.jilbab.data.model.transaction.complete.done.DoneResponse
-import com.fitri.jilbab.data.model.transaction.incoming.IncomingResponse
-import com.fitri.jilbab.data.model.transaction.incoming.admin.AdmIncomResponse
+import com.fitri.jilbab.data.model.transaction.complete.response.CompleteResponse
 import com.fitri.jilbab.data.model.transaction.incoming.admin.BodyStatusIncome
-import com.fitri.jilbab.data.model.transaction.packed.PackedResponse
-import com.fitri.jilbab.data.model.transaction.packed.admin.AdPackResponse
+import com.fitri.jilbab.data.model.transaction.incoming.admin.PostIncomingResponse
+import com.fitri.jilbab.data.model.transaction.incoming.newIncoming.NewIncomingResponse
 import com.fitri.jilbab.data.model.transaction.packed.admin.BodyPackedPost
-import com.fitri.jilbab.data.model.transaction.sent.SentResponse
-import com.fitri.jilbab.data.model.transaction.unpaid.UnpaidResponse
-import com.fitri.jilbab.data.model.user.DetailProductResponse
+import com.fitri.jilbab.data.model.transaction.packed.admin.PostPackedResponse
+import com.fitri.jilbab.data.model.transaction.packed.newPacked.NewPackedResponse
+import com.fitri.jilbab.data.model.transaction.sent.newSent.NewSentResponse
+import com.fitri.jilbab.data.model.transaction.unpaid.newUnpaid.NewUnpaidResponse
 import com.fitri.jilbab.data.model.user.cart.add.AddCartResponse
 import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.cat.CatResponse
-import com.fitri.jilbab.data.model.user.checkout.CheckOutResponse
-import com.fitri.jilbab.data.model.user.co.CoBody
+import com.fitri.jilbab.data.model.user.newCo.CoBody
+import com.fitri.jilbab.data.model.user.newCo.NewCoResponse
+import com.fitri.jilbab.data.model.user.newDt.newDtResponse
+import com.fitri.jilbab.data.model.user.newOrder.NewOrderResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
-import com.fitri.jilbab.data.model.user.order.OrderResponse
 import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.model.user.review.ReviewResponse
 import com.fitri.jilbab.data.model.user.review.list.ListReviewResponse
@@ -82,7 +82,7 @@ interface ApiServices {
 
     @GET("product")
     suspend fun listProduct(
-    ): ApiResponse<ProductResponse>
+    ): ApiResponse<ListPorductResponse>
 
     @GET("product-category")
     suspend fun lisCategory(
@@ -91,7 +91,7 @@ interface ApiServices {
     @Multipart
     @POST("product/add")
     suspend fun addProduct(
-        @Part thumbnail: MultipartBody.Part,
+        @Part thumbnail: MultipartBody.Part?,
         @Part productimage1: MultipartBody.Part?,
         @Part productimage2: MultipartBody.Part?,
         @Part productimage3: MultipartBody.Part?,
@@ -103,8 +103,9 @@ interface ApiServices {
         @Part("berat_produk") berat_produk: RequestBody,
         @Part("stock_default") stock_default: RequestBody,
         @Part("deskripsi_produk") deskripsi_produk: RequestBody,
-        @Part("detail_info") detail_info: RequestBody?
-    ): ApiResponse<AddProductResponse>
+        @Part("detail_info") detail_info: RequestBody?,
+        @Part("colors") colors: RequestBody?
+    ): ApiResponse<NewAddResponse>
 
     @Multipart
     @POST("product/update/{id_product}")
@@ -122,8 +123,9 @@ interface ApiServices {
         @Part("berat_produk") berat_produk: RequestBody,
         @Part("stock_default") stock_default: RequestBody,
         @Part("deskripsi_produk") deskripsi_produk: RequestBody,
-        @Part("detail_info") detail_info: RequestBody?
-    ): ApiResponse<EditProductReponse>
+        @Part("detail_info") detail_info: RequestBody?,
+        @Part("colors") colors: RequestBody?
+    ): ApiResponse<NewEditResponse>
 
     @Multipart
     @POST("product-category/add")
@@ -139,7 +141,7 @@ interface ApiServices {
     @GET("product/detail/{id_product}")
     suspend fun detailProduct(
         @Path("id_product") id_product: Int
-    ): ApiResponse<DetailProductResponse>
+    ): ApiResponse<newDtResponse>
 
     @GET("cart/list")
     suspend fun cartProduct(
@@ -158,12 +160,12 @@ interface ApiServices {
     @POST("cart/checkout")
     suspend fun checkout(
         @Body body: CoBody
-    ): ApiResponse<CheckOutResponse>
+    ): ApiResponse<NewCoResponse>
 
     @POST("order/place-order")
     suspend fun placeOrder(
         @Body body: BodyPlaceOrder
-    ): ApiResponse<OrderResponse>
+    ): ApiResponse<NewOrderResponse>
 
     @GET("address/provinces")
     suspend fun listProv(
@@ -235,20 +237,20 @@ interface ApiServices {
 
     @GET("order/unpaid")
     suspend fun getUnpaid(
-    ): ApiResponse<UnpaidResponse>
+    ): ApiResponse<NewUnpaidResponse>
 
     @GET("order/incoming")
     suspend fun getIncoming(
-    ): ApiResponse<IncomingResponse>
+    ): ApiResponse<NewIncomingResponse>
     @GET("order/packed")
     suspend fun getPacked(
-    ): ApiResponse<PackedResponse>
+    ): ApiResponse<NewPackedResponse>
     @GET("order/sent")
     suspend fun getSent(
-    ): ApiResponse<SentResponse>
+    ): ApiResponse<NewSentResponse>
     @GET("order/canceled")
     suspend fun getCanceled(
-    ): ApiResponse<CancleResponse>
+    ): ApiResponse<NewCancleResponse>
     @GET("order/complete")
     suspend fun getComplete(
     ): ApiResponse<CompleteResponse>
@@ -268,10 +270,10 @@ interface ApiServices {
     suspend fun postPacked(
         @Path("id_order") id_order: String,
         @Body body: BodyStatusIncome
-    ): ApiResponse<AdmIncomResponse>
+    ): ApiResponse<PostIncomingResponse>
     @POST("order/change-status/{id_order}")
     suspend fun postSent(
         @Path("id_order") id_order: String,
         @Body body: BodyPackedPost
-    ): ApiResponse<AdPackResponse>
+    ): ApiResponse<PostPackedResponse>
 }

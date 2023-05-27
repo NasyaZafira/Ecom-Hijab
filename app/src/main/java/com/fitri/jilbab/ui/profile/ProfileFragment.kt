@@ -20,6 +20,7 @@ import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.FragmentProfileBinding
 import com.fitri.jilbab.ui.address.ListAddressActivity
 import com.fitri.jilbab.ui.login.LoginActivity
+import com.fitri.jilbab.ui.product.OrderFragment
 import com.fitri.jilbab.ui.profile.edit.EditProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -56,12 +57,10 @@ class ProfileFragment : Fragment() {
             val i = Intent(requireContext(), EditProfileActivity::class.java)
             i.putExtra("data", dataUser)
             startActivity(i)
-            requireActivity().finish()
         }
         binding.layoutAddress.setOnClickListener {
             val i = Intent(requireContext(), ListAddressActivity::class.java)
             startActivity(i)
-            requireActivity().finish()
         }
         binding.layoutLogout.setOnClickListener {
             SharedPref.clear()
@@ -73,6 +72,10 @@ class ProfileFragment : Fragment() {
             val url = "https://bit.ly/3nyqpd6"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
+            startActivity(i)
+        }
+        binding.layoutPP.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.generateprivacypolicy.com/live.php?token=reqS77qPeyFjcMutzxnOAdbh9n0yL8ro"))
             startActivity(i)
         }
 

@@ -29,7 +29,6 @@ class ListAddressActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.btnAddress.setOnClickListener {
             val i = Intent(this, AddAddressActivity::class.java)
@@ -41,9 +40,7 @@ class ListAddressActivity : BaseActivity() {
         }
         setupObserver()
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+          onBackPressed()
         }
     }
 
@@ -72,8 +69,6 @@ class ListAddressActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val i = Intent(this, MainActivity::class.java)
-        startActivity(i)
         finish()
     }
 }

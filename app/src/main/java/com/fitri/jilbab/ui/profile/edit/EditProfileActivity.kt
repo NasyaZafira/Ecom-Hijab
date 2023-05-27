@@ -53,7 +53,6 @@ class EditProfileActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         f_back()
         f_detail()
@@ -67,9 +66,7 @@ class EditProfileActivity : BaseActivity() {
 
     private fun f_back() {
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
+           onBackPressed()
         }
     }
 
@@ -184,8 +181,8 @@ class EditProfileActivity : BaseActivity() {
                 "Berhasil Mengubah Informasi Akun",
                 Toast.LENGTH_LONG
             ).show()
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this, MainActivity::class.java)
+//            startActivity(i)
             finish()
         }
 
@@ -195,8 +192,8 @@ class EditProfileActivity : BaseActivity() {
         viewModel.changeava.observe(this) {
             Log.e("TAG", "setupObserver: " + it)
             Toast.makeText(this, "Berhasil Mengubah Foto Profil", Toast.LENGTH_LONG).show()
-            val i = Intent(this@EditProfileActivity, MainActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this@EditProfileActivity, MainActivity::class.java)
+//            startActivity(i)
             finish()
 
         }
@@ -313,8 +310,6 @@ class EditProfileActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val i = Intent(this, MainActivity::class.java)
-        startActivity(i)
         finish()
     }
 

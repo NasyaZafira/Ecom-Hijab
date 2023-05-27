@@ -41,7 +41,6 @@ class AddCategoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         checked()
         binding.imgCat.setOnClickListener {

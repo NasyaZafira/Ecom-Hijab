@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.checkout.Courier
+import com.fitri.jilbab.data.model.user.newCo.Courier
 import com.fitri.jilbab.databinding.ActivityShippingBinding
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,15 +20,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class ShippingActivity : BaseActivity() {
 
     private lateinit var binding: ActivityShippingBinding
+
     private lateinit var radioGroup: RadioGroup
     private var kurir: String = ""
     private var service: String = ""
     private var price: String = ""
     private var estimate: String = ""
     private lateinit var courier: Courier
-    private lateinit var radioTiki: RadioGroup
-    private lateinit var radioPos : RadioGroup
     private val viewModel: CartViewModel by viewModels()
+    private lateinit var radioTiki: RadioGroup
+    private lateinit var radioPos: RadioGroup
 
     private var text11 = ""
     private var text12 = ""
@@ -39,12 +40,10 @@ class ShippingActivity : BaseActivity() {
     private var text32 = ""
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShippingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         r_intent()
         r_initiation()
@@ -76,33 +75,55 @@ class ShippingActivity : BaseActivity() {
     }
 
     private fun r_intent() {
-        intent.extras!!.getParcelable<Courier>("shipping").let {
+        intent.extras?.getParcelable<Courier>("shipping").let {
             Log.e("TAG", "r_intent: " + it!!)
             courier = it
 
-            binding.txtName.text    = it.jne[0].code
-            binding.txtName2.text   = it.tiki[0].code
-            binding.txtName3.text   = it.pos[0].code
+            binding.txtName.text = it.jne[0].code
+            binding.txtName2.text = it.tiki[0].code
+            binding.txtName3.text = it.pos[0].code
 
-            binding.one.text    = it.jne[0].costs[0].service + "\nOngkos Kirim RP."+ it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
-            binding.two.text    = it.jne[0].costs[1].service + "\nOngkos Kirim RP."+ it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
-            binding.three.text  = it.jne[0].costs[2].service + "\nOngkos Kirim RP."+ it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
 
-            text11              = it.jne[0].costs[0].service + "\nOngkos Kirim RP."+ it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari" //it.jne[0].code + it.jne[0].costs[0].service + it.jne[0].costs[0].cost[0].value
-            text12              = it.jne[0].costs[1].service + "\nOngkos Kirim RP."+ it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
-            text13              = it.jne[0].costs[2].service + "\nOngkos Kirim RP."+ it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
+                binding.one.text =
+                    it.jne[0].costs[0].service + "\nOngkos Kirim IDR." + it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+                binding.two.text =
+                    it.jne[0].costs[1].service + "\nOngkos Kirim IDR." + it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
 
-            binding.one2.text   = it.tiki[0].costs[0].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
-            binding.two2.text   = it.tiki[0].costs[1].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+                binding.one.text =
+                    it.jne[0].costs[0].service + "\nOngkos Kirim IDR." + it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+                binding.two.text =
+                    it.jne[0].costs[1].service + "\nOngkos Kirim IDR." + it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+//                binding.three.visibility = View.VISIBLE
+//                binding.three.text =
+//                    it.jne[0].costs[2].service + "\nOngkos Kirim RP." + it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
 
-            text21              = it.tiki[0].costs[0].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
-            text22              = it.tiki[0].costs[1].service + "\nOngkos Kirim RP."+ it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
 
-            binding.one3.text   = it.pos[0].costs[0].service + "\nOngkos Kirim RP."+ it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
-            binding.two3.text   = it.pos[0].costs[1].service + "\nOngkos Kirim RP."+ it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+            text11 =
+                it.jne[0].costs[0].service + "\nOngkos Kirim IDR." + it.jne[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
+            text12 =
+                it.jne[0].costs[1].service + "\nOngkos Kirim IDR." + it.jne[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+//            text13 =
+//                it.jne[0].costs[2].service + "\nOngkos Kirim RP." + it.jne[0].costs[2].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[2].cost[0].etd + " hari"
 
-            text31              = it.pos[0].costs[0].service + "\nOngkos Kirim RP."+ it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[0].cost[0].etd + " hari"
-            text32              = it.pos[0].costs[1].service + "\nOngkos Kirim RP."+ it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.jne[0].costs[1].cost[0].etd + " hari"
+            binding.one2.text =
+                it.tiki[0].costs[0].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[0].cost[0].etd + " hari"
+            binding.two2.text =
+                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
+
+            text21 =
+                it.tiki[0].costs[0].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[0].cost[0].etd + " hari"
+            text22 =
+                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
+
+            binding.one3.text =
+                it.pos[0].costs[0].service + "\nOngkos Kirim IDR." + it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.pos[0].costs[0].cost[0].etd
+//            binding.two3.text =
+//                it.pos[0].costs[1].service + "\nOngkos Kirim IDR." + it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.pos[0].costs[1].cost[0].etd
+
+            text31 =
+                it.pos[0].costs[0].service + "\nOngkos Kirim IDR." + it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.pos[0].costs[0].cost[0].etd
+//            text32 =
+//                it.pos[0].costs[1].service + "\nOngkos Kirim IDR." + it.pos[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.pos[0].costs[1].cost[0].etd
         }
     }
 
@@ -115,33 +136,29 @@ class ShippingActivity : BaseActivity() {
     private fun r_radioGroup() {
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = group.findViewById(checkedId) as RadioButton
-            if (radioButton.text.equals(text11)){
+            if (radioButton.text.equals(text11)) {
                 r_jne(11)
-            }
-            else if (radioButton.text.equals(text12)){
+            } else if (radioButton.text.equals(text12)) {
                 r_jne(12)
-            }
-            else if (radioButton.text.equals(text13)){
+            } else if (radioButton.text.equals(text13)) {
                 r_jne(13)
             }
         }
         radioTiki.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = group.findViewById(checkedId) as RadioButton
-            if (radioButton.text.equals(text21)){
+            if (radioButton.text.equals(text21)) {
                 r_tiki(21)
-            }
-            else if (radioButton.text.equals(text22)){
+            } else if (radioButton.text.equals(text22)) {
                 r_tiki(22)
             }
         }
         radioPos.setOnCheckedChangeListener { group, chechkedId ->
             val radioButton = group.findViewById(chechkedId) as RadioButton
-            if (radioButton.text.equals(text31)){
-                pos(31)
-            }
-            else if (radioButton.text.equals(text32)){
-                pos(32)
-            }
+            if (radioButton.text.equals(text31)) {
+                pos(31) }
+//            } else if (radioButton.text.equals(text32)) {
+//                pos(32)
+//            }
         }
 
     }
@@ -181,9 +198,9 @@ class ShippingActivity : BaseActivity() {
         }
     }
 
-    private fun pos(id: Int){
+    private fun pos(id: Int) {
         Log.e("TAG", "r_radioGroup: ID -> " + id)
-        if(id.equals(31)){
+        if (id.equals(31)) {
             kurir = courier.pos[0].code
             price = courier.pos[0].costs[0].cost[0].value.toString()
             service = courier.pos[0].costs[0].service

@@ -1,5 +1,4 @@
 package com.fitri.jilbab.data.model.transaction.sent
-
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

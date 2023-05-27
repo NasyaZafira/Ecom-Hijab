@@ -4,8 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.fitri.jilbab.MainActivity
+import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.ActivitySplashBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
@@ -16,7 +19,13 @@ class Splash : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.full_Screen)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val w = this.window
@@ -43,7 +52,7 @@ class Splash : AppCompatActivity() {
             SharedPref.idNav = 1
 
             finish()
-        }, 3500)
+        }, 3000)
     }
 
 

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.admin.product.listNew.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.ItemProductadmBinding
 
 class PaAdapter(

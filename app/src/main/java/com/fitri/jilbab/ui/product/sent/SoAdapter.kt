@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.transaction.sent.Product
+import com.fitri.jilbab.data.model.transaction.sent.newSent.Product
 import com.fitri.jilbab.databinding.ItemOrderBinding
 
 class SoAdapter(
@@ -32,7 +32,9 @@ class SoAdapter(
             }
             binding.tvTitle.text = isOrdered.product.product_name
             binding.tvPrice.formatPrice(isOrdered.product.price)
-            binding.textView14.text = isOrdered.qty.toString() + " Item"
+            binding.textView14.text = isOrdered.color
+            binding.tvCount.text = "x   " + isOrdered.qty.toString() + " Item"
+
 
         }
     }

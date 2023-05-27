@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
-import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.checkout.Data
+import com.fitri.jilbab.data.model.user.newCo.Data
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
 import com.fitri.jilbab.ui.cart.CartActivity
@@ -23,10 +22,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CheckoutActivity : BaseActivity() {
 
-    private lateinit var    binding     : ActivityCheckoutBinding
-    private val             viewModel   : CartViewModel by viewModels()
-    private var             p_total     : Int = 0
-    private lateinit var    data        : Data
+    private lateinit var binding: ActivityCheckoutBinding
+    private val viewModel: CartViewModel by viewModels()
+    private var p_total: Int = 0
+    private lateinit var data: Data
 
     private var courier: String? = ""
     private var courierPackage: String? = ""
@@ -39,7 +38,6 @@ class CheckoutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         r_getIntent()
         setupObserver()
@@ -52,7 +50,7 @@ class CheckoutActivity : BaseActivity() {
     }
 
     private fun r_getIntent() {
-        val idexample   = intent.getStringExtra("data").toString()
+        val idexample = intent.getStringExtra("data").toString()
         lifecycleScope.launch {
             viewModel.checkout(idexample)
         }
@@ -63,8 +61,8 @@ class CheckoutActivity : BaseActivity() {
         viewModel.loading.observe(this) {
             if (it) showLoading() else hideLoading()
         }
-        viewModel.pay.observe(this){
-            Log.e("TAG", "setupObserver: " + it.data )
+        viewModel.pay.observe(this) {
+            Log.e("TAG", "setupObserver: " + it.data)
             data = it.data
 
             binding.rvOrder.apply {
@@ -72,14 +70,15 @@ class CheckoutActivity : BaseActivity() {
                 adapter = itemAdapter(it.data.orders.toMutableList())
             }
 
-            binding.tvName.text      = it.data.shipping_address.name
-            binding.tvPhoneNo.text   = it.data.shipping_address.phone
-            binding.tvAddress.text   = it.data.shipping_address.address
-            binding.tvDetail.text    = it.data.shipping_address.detail_address
+            binding.tvName.text = it.data.shipping_address.name
+            binding.tvPhoneNo.text = it.data.shipping_address.phone
+            binding.tvAddress.text = it.data.shipping_address.address
+            binding.tvDetail.text = it.data.shipping_address.detail_address
             idShippingAddress = it.data.shipping_address.id_ship_address.toString()
 
-            for (i : Int in 0 until it.data.orders.size){
-                p_total = p_total +  ( (it.data.orders[i].product.price.toInt()) * (it.data.orders[i].qty) )
+            for (i: Int in 0 until it.data.orders.size) {
+                p_total =
+                    p_total + ((it.data.orders[i].product.price.toInt()) * (it.data.orders[i].qty))
             }
 
             binding.tvHarga.formatPrice(p_total.toString())
@@ -94,9 +93,9 @@ class CheckoutActivity : BaseActivity() {
 
     private fun r_midranche() {
         binding.textView10.setOnClickListener {
-            val intent : Intent = Intent(this@CheckoutActivity, ShippingActivity::class.java)
+            val intent: Intent = Intent(this@CheckoutActivity, ShippingActivity::class.java)
             intent.putExtra("shipping", data.courier)
-            startActivityForResult(intent , 0)
+            startActivityForResult(intent, 0)
         }
     }
 
@@ -104,9 +103,9 @@ class CheckoutActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode === 0) {
             if (resultCode === RESULT_OK) {
-                val kurir   = data!!.getStringExtra("kurir")
+                val kurir = data!!.getStringExtra("kurir")
                 val service = data!!.getStringExtra("service")
-                val price   = data!!.getStringExtra("price")
+                val price = data!!.getStringExtra("price")
                 Log.e("TAG", "onActivityResult: " + kurir + " " + service + " " + price)
                 binding.textView11.text = kurir
                 binding.tvTax.formatPrice(price.toString())

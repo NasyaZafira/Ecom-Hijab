@@ -40,7 +40,6 @@ class EditCategoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         checked()
         intentExtras()

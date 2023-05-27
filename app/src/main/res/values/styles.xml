@@ -146,7 +146,7 @@
 
     <style name="RatingBar">
         <item name="colorControlNormal">#ECECEC</item>
-        <item name="colorControlActivated">#FCB3A9</item>
+        <item name="colorControlActivated">#EEA2A4</item>
     </style>
 
     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
@@ -158,7 +158,9 @@
     <style name="Theme.FitriJilbab.Home" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/colorBase</item>
         <item name="android:navigationBarColor">@color/colorBase</item>
-
+    </style>
+    <style name="backgroundSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="background">@drawable/bottomsheet_bg</item>
     </style>
 
 </resources>

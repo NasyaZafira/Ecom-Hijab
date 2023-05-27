@@ -7,10 +7,10 @@ import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse
 import com.fitri.jilbab.data.model.admin.category.editCat.EditCatResponse
-import com.fitri.jilbab.data.model.admin.product.add.AddProductResponse
 import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
-import com.fitri.jilbab.data.model.admin.product.edit.EditProductReponse
-import com.fitri.jilbab.data.model.admin.product.listNew.ProductResponse
+import com.fitri.jilbab.data.model.admin.product.list.ListPorductResponse
+import com.fitri.jilbab.data.model.admin.product.newAdd.NewAddResponse
+import com.fitri.jilbab.data.model.admin.product.newEdit.NewEditResponse
 import com.fitri.jilbab.repository.AdminRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MediaType.Companion.toMediaType
@@ -26,10 +26,10 @@ class ProductAdminVm @Inject constructor(
 ) : BaseViewModel() {
 
     val succesLoad = MutableLiveData<String>()
-    val list = MutableLiveData<ProductResponse>()
+    val list = MutableLiveData<ListPorductResponse>()
     val category = MutableLiveData<CategoryListResponse>()
-    val product = MutableLiveData<AddProductResponse>()
-    val edit = MutableLiveData<EditProductReponse>()
+    val product = MutableLiveData<NewAddResponse>()
+    val edit = MutableLiveData<NewEditResponse>()
     val addCat = MutableLiveData<CategoryAddResponse>()
     val del = MutableLiveData<DelProductResponse>()
     val delCat = MutableLiveData<DelCatResponse>()
@@ -71,9 +71,10 @@ class ProductAdminVm @Inject constructor(
             succesLoad.postValue("200")
         }
     }
+
     suspend fun deletecCategory(
         id_category: Int
-    ){
+    ) {
         productRepository.deleteCategory(
             onStart = {
                 _loading.postValue(true)
@@ -85,7 +86,7 @@ class ProductAdminVm @Inject constructor(
 
             },
             id_category
-        ).collect{
+        ).collect {
             delCat.postValue(it)
             succesLoad.postValue("200")
         }
@@ -119,11 +120,12 @@ class ProductAdminVm @Inject constructor(
             id_category,
             nama,
             image
-        ).collect{
+        ).collect {
             editCat.postValue(it)
             succesLoad.postValue("200")
         }
     }
+
     suspend fun categoryList() {
         productRepository.categoryAdmin(
             onStart = {
@@ -187,7 +189,8 @@ class ProductAdminVm @Inject constructor(
         berat_produk: String,
         stock_default: String,
         deskripsi_produk: String,
-        detail_info: String?
+        detail_info: String?,
+        colors: String
     ) {
         // thumbnail
         val thumb = thumbnail?.asRequestBody(
@@ -247,6 +250,7 @@ class ProductAdminVm @Inject constructor(
         val stokBody = stock_default.toRequestBody("text/plain".toMediaType())
         val descBody = deskripsi_produk.toRequestBody("text/plain".toMediaType())
         val detailBody = detail_info?.toRequestBody("text/plain".toMediaType())
+        val colorsBody = colors.toRequestBody("text/plain".toMediaType())
         productRepository.addProductAd(
             onStart = { _loading.postValue(true) },
             onComplete = { _loading.postValue(false) },
@@ -263,7 +267,8 @@ class ProductAdminVm @Inject constructor(
             beratBody,
             stokBody,
             descBody,
-            detailBody
+            detailBody,
+            colorsBody
         ).collect {
             product.postValue(it)
             succesLoad.postValue("200")
@@ -284,7 +289,8 @@ class ProductAdminVm @Inject constructor(
         berat_produk: String,
         stock_default: String,
         deskripsi_produk: String,
-        detail_info: String?
+        detail_info: String?,
+        colors: String
     ) {
         // thumbnail
         val thumb = thumbnail?.asRequestBody(
@@ -344,6 +350,7 @@ class ProductAdminVm @Inject constructor(
         val stokBody = stock_default.toRequestBody("text/plain".toMediaType())
         val descBody = deskripsi_produk.toRequestBody("text/plain".toMediaType())
         val detailBody = detail_info?.toRequestBody("text/plain".toMediaType())
+        val colorsBody = colors.toRequestBody("text/plain".toMediaType())
         productRepository.editroductAd(
             onStart = { _loading.postValue(true) },
             onComplete = { _loading.postValue(false) },
@@ -362,6 +369,7 @@ class ProductAdminVm @Inject constructor(
             stokBody,
             descBody,
             detailBody,
+            colorsBody
         ).collect {
             edit.postValue(it)
             succesLoad.postValue("200")

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.fitri.jilbab.data.local.SharedPref
 import com.fitri.jilbab.databinding.FragmentOrderBinding
 import com.fitri.jilbab.ui.admin.home.HomeAdapter
+import com.fitri.jilbab.ui.home.HomeFragment
 import com.fitri.jilbab.ui.product.cancle.CancleFragment
 import com.fitri.jilbab.ui.product.complete.CompleteFragment
 import com.fitri.jilbab.ui.product.incoming.IncomingFragment
@@ -30,7 +31,6 @@ class OrderFragment : Fragment() {
         _binding = FragmentOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentOrderBinding.bind(view)

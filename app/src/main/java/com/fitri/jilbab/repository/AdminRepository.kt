@@ -139,7 +139,7 @@ class AdminRepository @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit,
-        thumbnail: MultipartBody.Part?,
+        thumbnail: MultipartBody.Part? = null,
         productimage1: MultipartBody.Part? = null,
         productimage2: MultipartBody.Part? = null,
         productimage3: MultipartBody.Part? = null,
@@ -151,10 +151,11 @@ class AdminRepository @Inject constructor(
         berat_produk: RequestBody,
         stock_default: RequestBody,
         deskripsi_produk: RequestBody,
-        detail_info: RequestBody?
+        detail_info: RequestBody?,
+        colors: RequestBody?
     ) = flow {
         val response = apiService.addProduct(
-            thumbnail!!,
+            thumbnail,
             productimage1,
             productimage2,
             productimage3,
@@ -166,7 +167,8 @@ class AdminRepository @Inject constructor(
             berat_produk,
             stock_default,
             deskripsi_produk,
-            detail_info
+            detail_info,
+            colors
         )
         response.suspendOnSuccess {
             emit(data)
@@ -197,7 +199,8 @@ class AdminRepository @Inject constructor(
         berat_produk: RequestBody,
         stock_default: RequestBody,
         deskripsi_produk: RequestBody,
-        detail_info: RequestBody?
+        detail_info: RequestBody?,
+        colors: RequestBody?
     ) = flow {
         val response = apiService.editProduct(
             id_product,
@@ -213,7 +216,8 @@ class AdminRepository @Inject constructor(
             berat_produk,
             stock_default,
             deskripsi_produk,
-            detail_info
+            detail_info,
+            colors
         )
         response.suspendOnSuccess {
             emit(data)

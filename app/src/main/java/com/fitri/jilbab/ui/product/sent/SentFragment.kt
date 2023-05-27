@@ -1,6 +1,5 @@
 package com.fitri.jilbab.ui.product.sent
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.MainActivity
-import com.fitri.jilbab.data.model.transaction.sent.Data
+import com.fitri.jilbab.data.model.transaction.sent.newSent.Data
 import com.fitri.jilbab.databinding.FragmentSentBinding
 import com.fitri.jilbab.ui.product.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +41,24 @@ class SentFragment : Fragment() {
         }
         setupObserver()
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       lifecycleScope.launch {
+            viewModel.lisSent()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+          lifecycleScope.launch {
+            viewModel.lisSent()
+        }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
     private fun intentToDone(content: Data, position: Int){
         lifecycleScope.launch {
             viewModel.postDone(content.id_order, "complete")
@@ -56,11 +72,14 @@ class SentFragment : Fragment() {
             if (it) loading.show() else loading.dismiss()
         }
         viewModel.postDone.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), "Pesanan Berhasil Diterima", Toast.LENGTH_LONG)
+            Toast.makeText(requireContext(), "Pesanan Telah Diterima", Toast.LENGTH_LONG)
                 .show()
-            val i = Intent(requireContext(), MainActivity::class.java)
-            startActivity(i)
-            requireActivity().finish()
+            lifecycleScope.launch {
+                viewModel.lisSent()
+            }
+//            val i = Intent(requireContext(), MainActivity::class.java)
+//            startActivity(i)
+//            requireActivity().finish()
         }
         viewModel.sent.observe(viewLifecycleOwner){
             sentAdapt.sent.clear()

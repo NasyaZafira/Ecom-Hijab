@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_fix_four">
+    android:background="@drawable/user_bg">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -18,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="30dp">
+            android:paddingBottom="50dp">
 
             <TextView
                 android:id="@+id/txtTittle"
@@ -37,7 +43,7 @@
             <TextView
                 android:id="@+id/txtDetail"
                 style="@style/TextView.Normal14Grey"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Ayo cari produk favoritmu"
@@ -120,13 +126,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="90dp"
         android:backgroundTint="@color/colorBase"
         android:visibility="visible"
         app:icon="@drawable/ic_cart"
@@ -134,5 +141,6 @@
         app:iconTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

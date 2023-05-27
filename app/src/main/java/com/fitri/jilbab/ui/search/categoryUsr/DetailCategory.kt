@@ -28,7 +28,6 @@ class DetailCategory : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTheme(R.style.Theme_FitriJilbab_Home)
 
         binding.verifyAcc.setOnClickListener {
             val i = Intent(this, ListCatActivity::class.java)

@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.data.local.SharedPref
-import com.fitri.jilbab.data.model.admin.product.listNew.Data
+import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.FragmentHomeBinding
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm
 import com.fitri.jilbab.ui.cart.CartActivity
@@ -23,14 +23,37 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private var _binding        : FragmentHomeBinding? = null
-    private val binding get()   = _binding!!
-    private val viewModel       : ProductAdminVm by viewModels()
-    private var adapterUsr      = PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: ProductAdminVm by viewModels()
+    private var adapterUsr =
+        PuAdapter(mutableListOf(), onDetailCLick = { data -> intentToDetail(data) })
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.theList()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.theList()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +67,6 @@ class HomeFragment : Fragment() {
         binding.btnCart.setOnClickListener {
             val i = Intent(requireContext(), CartActivity::class.java)
             startActivity(i)
-            requireActivity().finish()
         }
 
         binding.editSearch.setOnClickListener {
@@ -85,7 +107,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 
 
 }

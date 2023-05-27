@@ -4,7 +4,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_fix_five">
+    android:background="@drawable/user_bg">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -180,6 +180,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:id="@+id/LayoutAboutUs"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/layoutPP">
 

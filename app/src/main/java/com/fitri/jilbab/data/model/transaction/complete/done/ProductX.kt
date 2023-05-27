@@ -5,7 +5,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ProductX(
     val archive: String,
-    val category: String,
+    val category: Category,
+    val colors: String,
     val created_at: String,
     val discount: String,
     val id_category: String,
