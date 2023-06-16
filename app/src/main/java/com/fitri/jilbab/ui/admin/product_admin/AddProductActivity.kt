@@ -220,12 +220,12 @@ class AddProductActivity : BaseActivity() {
         }
         viewModel.product.observe(this) {
             Toast.makeText(this, "Berhasil Menambahkan Produk", Toast.LENGTH_LONG).show()
-            lifecycleScope.launch {
-                viewModel.categoryList()
-            }
+//            lifecycleScope.launch {
+//                viewModel.categoryList()
+//            }
 //            val i = Intent(this, SuperActivity::class.java)
 //            startActivity(i)
-//            finish()
+            finish()
         }
     }
 

@@ -68,13 +68,11 @@ class ProductAdmin : Fragment() {
         binding.btnPLus.setOnClickListener {
             val i = Intent(requireContext(), AddProductActivity::class.java)
             startActivity(i)
-            requireActivity().finish()
         }
 
         binding.editSearch.setOnClickListener {
             val i = Intent(requireContext(), SearchActivity::class.java)
             startActivity(i)
-            requireActivity().finish()
         }
         SharedPref.navAdmin = 2
 
