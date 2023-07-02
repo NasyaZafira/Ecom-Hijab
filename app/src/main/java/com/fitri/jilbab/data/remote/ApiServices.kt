@@ -43,9 +43,9 @@ import com.fitri.jilbab.data.model.user.cart.add.BodyCart
 import com.fitri.jilbab.data.model.user.cart.list.CartResponse
 import com.fitri.jilbab.data.model.user.cart.remove.RemoveResponse
 import com.fitri.jilbab.data.model.user.cat.CatResponse
+import com.fitri.jilbab.data.model.user.latestDt.DtLatestResponse
 import com.fitri.jilbab.data.model.user.newCo.CoBody
 import com.fitri.jilbab.data.model.user.newCo.NewCoResponse
-import com.fitri.jilbab.data.model.user.newDt.newDtResponse
 import com.fitri.jilbab.data.model.user.newOrder.NewOrderResponse
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.data.model.user.review.BodyReview
@@ -104,7 +104,8 @@ interface ApiServices {
         @Part("stock_default") stock_default: RequestBody,
         @Part("deskripsi_produk") deskripsi_produk: RequestBody,
         @Part("detail_info") detail_info: RequestBody?,
-        @Part("colors") colors: RequestBody?
+        @Part("colors") colors: RequestBody?,
+        @Part("stok_colors") stok_colors: RequestBody?
     ): ApiResponse<NewAddResponse>
 
     @Multipart
@@ -124,7 +125,9 @@ interface ApiServices {
         @Part("stock_default") stock_default: RequestBody,
         @Part("deskripsi_produk") deskripsi_produk: RequestBody,
         @Part("detail_info") detail_info: RequestBody?,
-        @Part("colors") colors: RequestBody?
+        @Part("colors") colors: RequestBody?,
+        @Part("stok_colors") stok_colors: RequestBody?
+
     ): ApiResponse<NewEditResponse>
 
     @Multipart
@@ -141,7 +144,7 @@ interface ApiServices {
     @GET("product/detail/{id_product}")
     suspend fun detailProduct(
         @Path("id_product") id_product: Int
-    ): ApiResponse<newDtResponse>
+    ): ApiResponse<DtLatestResponse>
 
     @GET("cart/list")
     suspend fun cartProduct(

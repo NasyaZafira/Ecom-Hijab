@@ -77,6 +77,7 @@ class EditProductActivity : BaseActivity() {
             binding.editDesc.setText(data.product_description)
             binding.editDescInfo.setText(data.product_detail_info)
             binding.editColor.setText(data.colors)
+            binding.editStokColor.setText(data.stok_colors)
             idValue = data.category?.id_category.toString()
 
             binding.btnDel.setOnClickListener {
@@ -179,6 +180,7 @@ class EditProductActivity : BaseActivity() {
             val desc = binding.editDesc.text.toString().trim()
             val info = binding.editDescInfo.text.toString().trim()
             val color = binding.editColor.text.toString().trim()
+            val stokColor = binding.editStokColor.text.toString().trim()
 
             if (!name.isNullOrBlank() && !harga.isNullOrBlank() && !diskon.isNullOrBlank() && !category.isNullOrBlank() && !berat.isNullOrBlank() && !stok.isNullOrBlank() && !desc.isNullOrBlank() && !color.isNullOrBlank())
                 lifecycleScope.launch {
@@ -197,7 +199,8 @@ class EditProductActivity : BaseActivity() {
                         stok,
                         desc,
                         info,
-                        color
+                        color,
+                        stokColor
                     )
                 } else {
                 Toast.makeText(this, "Lengkapi data produk", Toast.LENGTH_LONG)

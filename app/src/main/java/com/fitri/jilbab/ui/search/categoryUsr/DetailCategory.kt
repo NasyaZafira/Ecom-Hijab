@@ -80,6 +80,8 @@ class DetailCategory : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val i = Intent(this, ListCatActivity::class.java)
+        startActivity(i)
         finish()
     }
 }

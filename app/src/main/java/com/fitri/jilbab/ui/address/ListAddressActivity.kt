@@ -39,8 +39,9 @@ class ListAddressActivity : BaseActivity() {
             viewModel.isList()
         }
         setupObserver()
+
         binding.verifyAcc.setOnClickListener {
-          onBackPressed()
+          finish()
         }
     }
 

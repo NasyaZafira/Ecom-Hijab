@@ -259,6 +259,7 @@ class AddProductActivity : BaseActivity() {
             val desc = binding.editDesc.text.toString().trim()
             val info = binding.editDescInfo.text.toString().trim()
             val color = binding.editColor.text.toString().trim()
+            val stokColor = binding.editStokColor.text.toString().trim()
             if (!name.isNullOrBlank() && !harga.isNullOrBlank() && !diskon.isNullOrBlank() && !category.isNullOrBlank() && !berat.isNullOrBlank() && !stok.isNullOrBlank() && !desc.isNullOrBlank() && !color.isNullOrBlank())
                 lifecycleScope.launch {
                     viewModel.addProduct(
@@ -275,7 +276,8 @@ class AddProductActivity : BaseActivity() {
                         stok,
                         desc,
                         info,
-                        color
+                        color,
+                        stokColor
                     )
                 }
             else {

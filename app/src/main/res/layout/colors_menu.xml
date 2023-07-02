@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/colorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorBase"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="8dp"
+        android:text="Gender"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/colorStok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorBase"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="8dp"
+        android:text="Gender"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:gravity="end"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

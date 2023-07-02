@@ -81,6 +81,15 @@ class ProfileFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.detailProfile()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
     private fun setupObserver() {
         val loading = CustomLoadingDialog(requireContext())
         viewModel.loading.observe(viewLifecycleOwner) {

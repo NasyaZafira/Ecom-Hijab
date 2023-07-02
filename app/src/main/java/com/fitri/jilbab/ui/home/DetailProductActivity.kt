@@ -16,9 +16,10 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.user.newDt.Data
-import com.fitri.jilbab.data.model.user.newDt.Picture
+import com.fitri.jilbab.data.model.user.latestDt.Data
+import com.fitri.jilbab.data.model.user.latestDt.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
+import com.fitri.jilbab.databinding.ColorsMenuBinding
 import com.fitri.jilbab.ui.cart.CartActivity
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +39,10 @@ class DetailProductActivity : BaseActivity() {
     private var p_total: Int = 0
     private var p_price: Int = 0
     private var reviewAdapter = ReviewAdapter(mutableListOf())
-    private val listSpinner: MutableList<String> = ArrayList()
+    private var listSpinner: MutableList<String> = ArrayList()
     private var idValue: String = " "
+    private var p_colors: MutableList<String> = ArrayList()
+    private var p_stok: MutableList<String> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -153,16 +156,22 @@ class DetailProductActivity : BaseActivity() {
             val result = it.data.color_list.toMutableList()
             for (i: Int in 0 until result.size) {
                 listSpinner.add(it.data.color_list[i])
+//                p_stok.add(it.data.stok_color_list[i])
+
+                val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
+                val autoCompleteKategori = binding.isColor
+                autoCompleteKategori.setAdapter(arrayAdapterKategori)
+
+                binding.isColor.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+                    idValue = listSpinner.get(position)
+                    Log.e("TAG", "f_listSpinner: " + listSpinner.get(position))
+                        if (it.data.stok_color_list[i] < 1.toString()) {
+                            Toast.makeText(this, "Stok Warna Kosong", Toast.LENGTH_LONG).show()
+                            Log.e("TAG", "setupObserver: " + idValue)
+                        }
+
+                })
             }
-            val arrayAdapterKategori = ArrayAdapter(this, R.layout.signup_menu, listSpinner)
-            val autoCompleteKategori = binding.isColor
-            autoCompleteKategori.setAdapter(arrayAdapterKategori)
-
-            binding.isColor.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
-                idValue = listSpinner.get(position).toString()
-                Log.e("TAG", "f_listSpinner: " + listSpinner.get(position))
-
-            })
         }
 
         cartViewModel.add.observe(this) {

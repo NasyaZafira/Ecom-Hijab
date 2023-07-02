@@ -190,7 +190,8 @@ class ProductAdminVm @Inject constructor(
         stock_default: String,
         deskripsi_produk: String,
         detail_info: String?,
-        colors: String
+        colors: String,
+        stok_colors: String
     ) {
         // thumbnail
         val thumb = thumbnail?.asRequestBody(
@@ -251,6 +252,7 @@ class ProductAdminVm @Inject constructor(
         val descBody = deskripsi_produk.toRequestBody("text/plain".toMediaType())
         val detailBody = detail_info?.toRequestBody("text/plain".toMediaType())
         val colorsBody = colors.toRequestBody("text/plain".toMediaType())
+        val stokColorsBody = stok_colors.toRequestBody("text/plain".toMediaType())
         productRepository.addProductAd(
             onStart = { _loading.postValue(true) },
             onComplete = { _loading.postValue(false) },
@@ -268,7 +270,8 @@ class ProductAdminVm @Inject constructor(
             stokBody,
             descBody,
             detailBody,
-            colorsBody
+            colorsBody,
+            stokColorsBody
         ).collect {
             product.postValue(it)
             succesLoad.postValue("200")
@@ -290,7 +293,9 @@ class ProductAdminVm @Inject constructor(
         stock_default: String,
         deskripsi_produk: String,
         detail_info: String?,
-        colors: String
+        colors: String,
+        stok_colors: String
+
     ) {
         // thumbnail
         val thumb = thumbnail?.asRequestBody(
@@ -351,6 +356,7 @@ class ProductAdminVm @Inject constructor(
         val descBody = deskripsi_produk.toRequestBody("text/plain".toMediaType())
         val detailBody = detail_info?.toRequestBody("text/plain".toMediaType())
         val colorsBody = colors.toRequestBody("text/plain".toMediaType())
+        val stokColorsBody = stok_colors.toRequestBody("text/plain".toMediaType())
         productRepository.editroductAd(
             onStart = { _loading.postValue(true) },
             onComplete = { _loading.postValue(false) },
@@ -369,7 +375,8 @@ class ProductAdminVm @Inject constructor(
             stokBody,
             descBody,
             detailBody,
-            colorsBody
+            colorsBody,
+            stokColorsBody
         ).collect {
             edit.postValue(it)
             succesLoad.postValue("200")
