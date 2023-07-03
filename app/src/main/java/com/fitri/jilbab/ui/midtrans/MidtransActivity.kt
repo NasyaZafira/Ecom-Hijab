@@ -33,9 +33,9 @@ class MidtransActivity : BaseActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result?.resultCode == RESULT_OK) {
                 result.data?.let {
-                    val transactionResult = it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
-//                    Toast.makeText(this,"${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
-                    Toast.makeText(this,"${transactionResult?.status}", Toast.LENGTH_SHORT).show()
+                    val transactionResult =
+                        it.getParcelableExtra<TransactionResult>(UiKitConstants.KEY_TRANSACTION_RESULT)
+                    Toast.makeText(this, "${transactionResult?.status}", Toast.LENGTH_SHORT).show()
                     when (transactionResult?.status) {
                         "success" -> {
                             val i = Intent(this, Splash::class.java)
@@ -45,12 +45,23 @@ class MidtransActivity : BaseActivity() {
                         "pending" -> {
                             initMidtransSdk()
                         }
+                        "failed" -> {
+                            Toast.makeText(this, "Pembayaran Gagal", Toast.LENGTH_LONG)
+                            val i = Intent(this, Splash::class.java)
+                            startActivity(i)
+                            finish()
+                        }
                         else -> {
-                            runData()
+                            val i = Intent(this, Splash::class.java)
+                            startActivity(i)
+                            finish()
+//                            Toast.makeText(this, "Pembayaran Gagal", Toast.LENGTH_LONG)
+//                            runData()
                         }
                     }
                 }
             }
+
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {

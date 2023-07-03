@@ -1,7 +1,9 @@
 package com.fitri.jilbab.ui.home
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +21,6 @@ import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.latestDt.Data
 import com.fitri.jilbab.data.model.user.latestDt.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
-import com.fitri.jilbab.databinding.ColorsMenuBinding
 import com.fitri.jilbab.ui.cart.CartActivity
 import com.fitri.jilbab.ui.cart.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -145,7 +146,13 @@ class DetailProductActivity : BaseActivity() {
             binding.ratingBar.rating = it.data.rating.toFloat()
             binding.tvTitle.text = it.data.product_name
             binding.tvDesc.text = it.data.product_description
-            binding.tvInfo.text = it.data.product_detail_info
+//            binding.tvInfo.text = it.data.product_detail_info
+
+            binding.tvInfo.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Html.fromHtml(it.data.product_detail_info, Html.FROM_HTML_MODE_COMPACT)
+            } else {
+                Html.fromHtml(it.data.product_detail_info)
+            }
             binding.txtPrice.formatPrice(it.data.price.toString())
             if (it.data.discount.isNullOrBlank()) {
                 binding.txtDisc.visibility = View.INVISIBLE
@@ -165,10 +172,29 @@ class DetailProductActivity : BaseActivity() {
                 binding.isColor.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
                     idValue = listSpinner.get(position)
                     Log.e("TAG", "f_listSpinner: " + listSpinner.get(position))
-                        if (it.data.stok_color_list[i] < 1.toString()) {
-                            Toast.makeText(this, "Stok Warna Kosong", Toast.LENGTH_LONG).show()
-                            Log.e("TAG", "setupObserver: " + idValue)
+
+                    if (position != null) {
+                        if (it.data.stok_color_list.get(position) < 1.toString()) {
+                            binding.nullColor.visibility = View.VISIBLE
+                            binding.nullColor.setText(
+//                                "Stok warna " + idValue + " tersedia " + it.data.stok_color_list.get(
+//                                    position
+//                                ) + " pcs"
+                                "Stok warna " + idValue + " habis"
+                            )
+
+//                            Toast.makeText(this, "Stok Warna Kosong", Toast.LENGTH_LONG).show()
+//                            Log.e("TAG", "setupObserver: " + idValue)
+                        } else {
+                            binding.nullColor.visibility = View.VISIBLE
+                            binding.nullColor.setText(
+                                "Stok warna " + idValue + " tersedia " + it.data.stok_color_list.get(
+                                    position
+                                ) + " pcs"
+                            )
+
                         }
+                    }
 
                 })
             }
