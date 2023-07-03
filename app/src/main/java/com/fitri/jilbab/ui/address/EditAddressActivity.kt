@@ -137,8 +137,8 @@ class EditAddressActivity : BaseActivity() {
         }
         viewModel.editAddress.observe(this) {
             Toast.makeText(this, "Berhasil Mengubah Alamat", Toast.LENGTH_LONG).show()
-            val i = Intent(this, ListAddressActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this, ListAddressActivity::class.java)
+//            startActivity(i)
             finish()
         }
     }

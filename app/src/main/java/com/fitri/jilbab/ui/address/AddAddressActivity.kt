@@ -43,8 +43,8 @@ class AddAddressActivity : BaseActivity() {
 
     private fun f_verifAcc(){
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, ListAddressActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this, ListAddressActivity::class.java)
+//            startActivity(i)
             finish()
         }
     }
@@ -126,8 +126,8 @@ class AddAddressActivity : BaseActivity() {
         }
         viewModel.addAddress.observe(this) {
             Toast.makeText(this, "Berhasil Menambahkan Alamat", Toast.LENGTH_LONG).show()
-            val i = Intent(this, ListAddressActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this, ListAddressActivity::class.java)
+//            startActivity(i)
             finish()
         }
         viewModel.listCity.observe(this){

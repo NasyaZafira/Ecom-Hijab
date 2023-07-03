@@ -66,6 +66,8 @@ class ListCatActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        val i = Intent(this, SearchActivity::class.java)
+        startActivity(i)
         finish()
     }
 }

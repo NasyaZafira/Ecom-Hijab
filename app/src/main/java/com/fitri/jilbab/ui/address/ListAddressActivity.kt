@@ -14,6 +14,7 @@ import com.fitri.jilbab.data.model.address.Data
 
 import com.fitri.jilbab.databinding.ActivityListAddressBinding
 import com.fitri.jilbab.ui.admin.product_admin.EditProductActivity
+import com.fitri.jilbab.ui.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,7 +34,6 @@ class ListAddressActivity : BaseActivity() {
         binding.btnAddress.setOnClickListener {
             val i = Intent(this, AddAddressActivity::class.java)
             startActivity(i)
-            finish()
         }
         lifecycleScope.launch{
             viewModel.isList()
@@ -41,7 +41,7 @@ class ListAddressActivity : BaseActivity() {
         setupObserver()
 
         binding.verifyAcc.setOnClickListener {
-          finish()
+            finish()
         }
     }
 
