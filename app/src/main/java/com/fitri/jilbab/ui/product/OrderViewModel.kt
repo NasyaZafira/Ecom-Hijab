@@ -1,7 +1,7 @@
 package com.fitri.jilbab.ui.product
 
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.transaction.cancle.newCancle.NewCancleResponse
 import com.fitri.jilbab.data.model.transaction.cancle.post.BodyCancleOrder
 import com.fitri.jilbab.data.model.transaction.cancle.post.PostCancleResponse

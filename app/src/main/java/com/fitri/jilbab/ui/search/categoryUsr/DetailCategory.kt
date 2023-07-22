@@ -6,13 +6,11 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.cat.Data
 import com.fitri.jilbab.databinding.ActivityDetailCategoryBinding
 import com.fitri.jilbab.ui.home.DetailProductActivity
-import com.fitri.jilbab.ui.search.SearchActivity
 import com.fitri.jilbab.ui.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

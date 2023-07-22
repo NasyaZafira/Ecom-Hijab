@@ -1,7 +1,7 @@
 package com.fitri.jilbab.ui.address
 
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.address.ListAddressResponse
 import com.fitri.jilbab.data.model.address.add.AddAddressResponse
 import com.fitri.jilbab.data.model.address.add.BodyAddAddress

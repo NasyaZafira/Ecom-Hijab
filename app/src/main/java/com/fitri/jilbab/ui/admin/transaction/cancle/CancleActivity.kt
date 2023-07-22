@@ -6,9 +6,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityCancleBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.product.OrderViewModel
@@ -49,7 +48,7 @@ class CancleActivity : BaseActivity() {
             admCancle.cancle.clear()
             admCancle.cancle.addAll(it.data)
             binding.rvCategory.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 adapter = admCancle
             }
         }

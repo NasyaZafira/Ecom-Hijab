@@ -22,9 +22,8 @@ import androidx.lifecycle.lifecycleScope
 import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.profile.Data
 import com.fitri.jilbab.databinding.ActivityEditProfileBinding
@@ -175,7 +174,7 @@ class EditProfileActivity : BaseActivity() {
         }
 
         viewModel.updateProfile.observe(this) {
-            Log.e("TAG", "setupObserver: " + it)
+            Log.e("TAG", "setupObserver: " + selectedFiles[0])
             Toast.makeText(
                 this@EditProfileActivity,
                 "Berhasil Mengubah Informasi Akun",

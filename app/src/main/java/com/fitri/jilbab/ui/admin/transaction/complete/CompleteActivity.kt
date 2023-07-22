@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityCompleteBinding
@@ -88,7 +88,7 @@ class CompleteActivity : BaseActivity() {
             theAdapter.complete.clear()
             theAdapter.complete.addAll(it.data)
             binding.rvCategory.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 adapter = CompleteAdapter(it.data.toMutableList())
             }
         }

@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemCart"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/ivPoster"
@@ -16,7 +16,7 @@
         android:layout_marginBottom="12dp"
         android:scaleType="centerCrop"
         android:src="@color/colorPrimary"
-      app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="8dp" />
@@ -53,6 +53,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="x  2 Item"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
+        app:layout_constraintStart_toEndOf="@+id/tvPrice"
+        app:layout_constraintTop_toTopOf="@+id/tvPrice" />
+
+    <TextView
+        android:id="@+id/tvHabis"
+        style="@style/TextView.Normal14Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="x  2 Item"
+        android:visibility="invisible"
+        android:textColor="@color/colorError"
         app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
         app:layout_constraintStart_toEndOf="@+id/tvPrice"
         app:layout_constraintTop_toTopOf="@+id/tvPrice" />
@@ -69,12 +83,12 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:tint="@color/colorError" />
 
-<!--    <View-->
-<!--        android:id="@+id/imgView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="10dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:background="@color/white"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+    <!--    <View-->
+    <!--        android:id="@+id/imgView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="10dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,7 +79,7 @@ class ReportAdmin : Fragment() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val myFormat = "dd-MM-yyyy" // mention the format you need
+                val myFormat = "yyyy-MM-dd" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textview_date.setText(sdf.format(cal.time))
                 Log.e("TAG", "r_dateBirth: " + SimpleDateFormat(myFormat, Locale.US))
@@ -114,7 +114,7 @@ class ReportAdmin : Fragment() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val myFormat = "dd-MM-yyyy" // mention the format you need
+                val myFormat = "yyyy-MM-dd" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textview_date.setText(sdf.format(cal.time))
                 Log.e("TAG", "r_dateBirth: " + SimpleDateFormat(myFormat, Locale.US))

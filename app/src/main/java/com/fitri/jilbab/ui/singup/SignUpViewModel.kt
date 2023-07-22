@@ -1,7 +1,7 @@
 package com.fitri.jilbab.ui.singup
 
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.model.register.SignUpResponse
 import com.fitri.jilbab.repository.AuthRepository

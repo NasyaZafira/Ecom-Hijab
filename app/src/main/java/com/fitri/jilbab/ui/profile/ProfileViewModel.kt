@@ -2,7 +2,7 @@ package com.fitri.jilbab.ui.profile
 
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
 import com.fitri.jilbab.data.model.profile.edit.EditProfileResponse

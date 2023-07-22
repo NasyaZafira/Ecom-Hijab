@@ -8,6 +8,7 @@ import java.util.*
 
 object Helpers {
 
+
     fun TextView.formatPrice(value : String) {
         this.text = getCurrencyIDR(java.lang.Double.parseDouble(value))
     }

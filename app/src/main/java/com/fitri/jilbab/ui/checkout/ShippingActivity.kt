@@ -8,7 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.user.newCo.Courier
@@ -107,13 +107,13 @@ class ShippingActivity : BaseActivity() {
 
             binding.one2.text =
                 it.tiki[0].costs[0].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[0].cost[0].etd + " hari"
-            binding.two2.text =
-                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
+//            binding.two2.text =
+//                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
 
             text21 =
                 it.tiki[0].costs[0].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[0].cost[0].etd + " hari"
-            text22 =
-                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
+//            text22 =
+//                it.tiki[0].costs[1].service + "\nOngkos Kirim IDR." + it.tiki[0].costs[1].cost[0].value + "\nEstimasi kedatangan " + it.tiki[0].costs[1].cost[0].etd + " hari"
 
             binding.one3.text =
                 it.pos[0].costs[0].service + "\nOngkos Kirim IDR." + it.pos[0].costs[0].cost[0].value + "\nEstimasi kedatangan " + it.pos[0].costs[0].cost[0].etd
@@ -147,10 +147,10 @@ class ShippingActivity : BaseActivity() {
         radioTiki.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = group.findViewById(checkedId) as RadioButton
             if (radioButton.text.equals(text21)) {
-                r_tiki(21)
-            } else if (radioButton.text.equals(text22)) {
-                r_tiki(22)
-            }
+                r_tiki(21) }
+//            } else if (radioButton.text.equals(text22)) {
+//                r_tiki(22)
+//            }
         }
         radioPos.setOnCheckedChangeListener { group, chechkedId ->
             val radioButton = group.findViewById(chechkedId) as RadioButton
@@ -189,13 +189,13 @@ class ShippingActivity : BaseActivity() {
             kurir = courier.tiki[0].code
             price = courier.tiki[0].costs[0].cost[0].value.toString()
             service = courier.tiki[0].costs[0].service
-            estimate = courier.tiki[0].costs[0].cost[0].etd
-        } else if (id.equals(22)) {
-            kurir = courier.tiki[0].code
-            price = courier.tiki[0].costs[1].cost[0].value.toString()
-            service = courier.tiki[0].costs[1].service
-            estimate = courier.tiki[0].costs[1].cost[0].etd
-        }
+            estimate = courier.tiki[0].costs[0].cost[0].etd }
+//        } else if (id.equals(22)) {
+//            kurir = courier.tiki[0].code
+//            price = courier.tiki[0].costs[1].cost[0].value.toString()
+//            service = courier.tiki[0].costs[1].service
+//            estimate = courier.tiki[0].costs[1].cost[0].etd
+//        }
     }
 
     private fun pos(id: Int) {

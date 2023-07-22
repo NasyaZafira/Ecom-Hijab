@@ -1,5 +1,6 @@
 package com.fitri.jilbab.repository
 
+import com.fitri.jilbab.data.model.login.LoginBody
 import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.data.remote.ApiServices
 import com.skydoves.sandwich.message
@@ -22,10 +23,9 @@ class AuthRepository @Inject constructor(
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String) -> Unit,
-        email: String,
-        password: String
+        body: LoginBody
     ) = flow {
-        val response = apiService.login(email, password)
+        val response = apiService.login(body)
         response.suspendOnSuccess {
             emit(this.data)
         }.onError {

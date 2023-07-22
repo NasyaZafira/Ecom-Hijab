@@ -7,9 +7,10 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
+import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.data.model.user.newCo.Data
 import com.fitri.jilbab.data.model.user.order.BodyPlaceOrder
 import com.fitri.jilbab.databinding.ActivityCheckoutBinding
@@ -43,9 +44,9 @@ class CheckoutActivity : BaseActivity() {
         setupObserver()
 
         binding.verifyAcc.setOnClickListener {
-            val i = Intent(this, CartActivity::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
-            finish()
+            finishAffinity()
         }
     }
 
@@ -139,9 +140,9 @@ class CheckoutActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val i = Intent(this, CartActivity::class.java)
+        val i = Intent(this, MainActivity::class.java)
         startActivity(i)
-        finish()
+        finishAffinity()
     }
 
 }

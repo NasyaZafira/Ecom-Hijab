@@ -69,7 +69,7 @@ class CancleFragment : Fragment() {
             coAdapt.cancle.clear()
             coAdapt.cancle.addAll(it.data)
             binding.rvCategory.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 adapter = coAdapt
             }
         }

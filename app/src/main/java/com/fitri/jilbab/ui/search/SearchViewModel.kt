@@ -1,7 +1,7 @@
 package com.fitri.jilbab.ui.search
 
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.user.cat.CatResponse
 import com.fitri.jilbab.data.model.user.search.SearchResponse
 import com.fitri.jilbab.repository.UserRepository

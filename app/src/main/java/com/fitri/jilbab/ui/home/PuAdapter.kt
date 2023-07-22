@@ -9,30 +9,35 @@ import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.admin.product.list.Data
 import com.fitri.jilbab.databinding.ItemProductusrBinding
 
-class PuAdapter (
-    var             prUser          : MutableList<Data>,
-    private val     onDetailCLick   : (Data) -> Unit
-): RecyclerView.Adapter<PuAdapter.ViewHolder>() {
+class PuAdapter(
+    var prUser: MutableList<Data>,
+    private val onDetailCLick: (Data) -> Unit
+) : RecyclerView.Adapter<PuAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductusrBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            proUser : List<Data>,
+            proUser: List<Data>,
             onDetailCLick: (Data) -> Unit
         ) {
             val isProduct = proUser[position]
 
-            if (isProduct.is_main == 1 ) {
+            if (isProduct.is_main == 1) {
                 Glide.with(binding.imgProduct.context)
-                    .load("https://ecom-mobile.spdev.my.id/img/products/" + isProduct.picture )
+                    .load("https://ecom-mobile.spdev.my.id/img/products/" + isProduct.picture)
                     .error(R.drawable.white_image)
                     .into(binding.imgProduct)
             }
 
-            binding.rbFood.rating       = isProduct.rating!!.toFloat() //3.0f
-            binding.isName.text         = isProduct.product_name
-            binding.isPrice.formatPrice(isProduct.price.toString())
-            binding.itemProductUser.setOnClickListener {
-                onDetailCLick(isProduct)
+            try {
+                binding.rbFood.rating = isProduct.rating.toFloat() //3.0f
+
+                binding.isName.text = isProduct.product_name
+                binding.isPrice.formatPrice(isProduct.price)
+                binding.itemProductUser.setOnClickListener {
+                    onDetailCLick(isProduct)
+                }
+            } catch (e: NullPointerException) {
+                print("Caught the NullPointerException")
             }
 
         }
@@ -47,5 +52,6 @@ class PuAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(prUser, onDetailCLick)
     }
+
     override fun getItemCount() = prUser.size
 }

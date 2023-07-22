@@ -16,9 +16,8 @@ import androidx.lifecycle.lifecycleScope
 import com.anilokcun.uwmediapicker.UwMediaPicker
 import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaType
 import com.bumptech.glide.Glide
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityAddCategoryBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.admin.product_admin.ProductAdminVm

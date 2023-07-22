@@ -2,7 +2,7 @@ package com.fitri.jilbab.ui.admin.product_admin
 
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.admin.category.CategoryListResponse
 import com.fitri.jilbab.data.model.admin.category.add.CategoryAddResponse
 import com.fitri.jilbab.data.model.admin.category.delete.DelCatResponse

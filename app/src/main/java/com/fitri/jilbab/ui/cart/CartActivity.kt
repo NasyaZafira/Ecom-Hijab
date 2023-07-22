@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.MainActivity
-import com.fitri.jilbab.R
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.databinding.ActivityCartBinding
 import com.fitri.jilbab.ui.checkout.CheckoutActivity
@@ -33,10 +32,10 @@ class CartActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.verifyAcc.setOnClickListener {
-          onBackPressed()
+            onBackPressed()
         }
         launch()
-        button()
+//        button()
 
     }
 
@@ -80,6 +79,16 @@ class CartActivity : BaseActivity() {
                     }
                 }
 
+            }
+
+            for (i: Int in 0 until response.data.cart.size) {
+                if (response.data.cart[i].product.stock < 1.toString()) {
+                    binding.btnCheckout.setOnClickListener {
+                        Toast.makeText(this, "Salah satu produk habis", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    button()
+                }
             }
 
 

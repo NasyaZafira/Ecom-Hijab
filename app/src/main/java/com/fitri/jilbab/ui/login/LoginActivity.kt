@@ -10,16 +10,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.local.SharedPref
-import com.fitri.jilbab.data.model.login.LoginBody
 import com.fitri.jilbab.databinding.ActivitySigninBinding
 import com.fitri.jilbab.ui.admin.SuperActivity
 import com.fitri.jilbab.ui.singup.SignUpActivity
@@ -69,8 +67,8 @@ class LoginActivity : BaseActivity() {
         binding.btnSignin.setOnClickListener {
             lifecycleScope.launch {
                 viewModel.login(
-                    binding.etEmail.text.toString().trim(),
-                    binding.etPssword.text.toString().trim()
+                    email = binding.etEmail.text.toString().trim(),
+                    password = binding.etPssword.text.toString().trim()
                 )
             }
         }

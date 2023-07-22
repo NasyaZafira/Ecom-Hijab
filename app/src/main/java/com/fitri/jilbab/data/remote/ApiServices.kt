@@ -15,6 +15,7 @@ import com.fitri.jilbab.data.model.admin.product.delete.DelProductResponse
 import com.fitri.jilbab.data.model.admin.product.list.ListPorductResponse
 import com.fitri.jilbab.data.model.admin.product.newAdd.NewAddResponse
 import com.fitri.jilbab.data.model.admin.product.newEdit.NewEditResponse
+import com.fitri.jilbab.data.model.login.LoginBody
 import com.fitri.jilbab.data.model.login.LoginResponse
 import com.fitri.jilbab.data.model.profile.DetailProfileResponse
 import com.fitri.jilbab.data.model.profile.edit.EditProfileBody
@@ -59,11 +60,10 @@ import retrofit2.http.*
 
 interface ApiServices {
 
-    @FormUrlEncoded
+
     @POST("auth/login")
     suspend fun login(
-        @Field("email") email: String,
-        @Field("password") password: String
+      @Body body: LoginBody
     ): ApiResponse<LoginResponse>
 
     @POST("auth/register")

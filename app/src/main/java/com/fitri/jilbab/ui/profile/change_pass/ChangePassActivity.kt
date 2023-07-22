@@ -1,18 +1,15 @@
 package com.fitri.jilbab.ui.profile.change_pass
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.MainActivity
-import com.fitri.jilbab.R
 import com.fitri.jilbab.databinding.ActivityChangePassBinding
-import com.fitri.jilbab.databinding.ActivityEditProfileBinding
 import com.fitri.jilbab.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

@@ -1,7 +1,7 @@
 package com.fitri.jilbab.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import com.commer.app.base.BaseViewModel
+import com.fitri.jilbab.base.BaseViewModel
 import com.fitri.jilbab.data.model.user.latestDt.DtLatestResponse
 import com.fitri.jilbab.data.model.user.review.BodyReview
 import com.fitri.jilbab.data.model.user.review.ReviewResponse

@@ -14,10 +14,9 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
-import com.fitri.jilbab.data.model.register.SignUpBody
 import com.fitri.jilbab.databinding.ActivitySignupBinding
 import com.fitri.jilbab.ui.login.LoginActivity
 import com.google.android.material.textfield.TextInputEditText

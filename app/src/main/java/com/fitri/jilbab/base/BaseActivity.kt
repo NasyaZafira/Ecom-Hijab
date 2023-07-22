@@ -1,4 +1,4 @@
-package com.commer.app.base
+package com.fitri.jilbab.base
 
 import android.os.Bundle
 import android.os.PersistableBundle

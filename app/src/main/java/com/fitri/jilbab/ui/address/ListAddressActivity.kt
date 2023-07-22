@@ -6,15 +6,11 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
-import com.fitri.jilbab.MainActivity
-import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.address.Data
 
 import com.fitri.jilbab.databinding.ActivityListAddressBinding
-import com.fitri.jilbab.ui.admin.product_admin.EditProductActivity
-import com.fitri.jilbab.ui.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -45,6 +41,15 @@ class ListAddressActivity : BaseActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding.swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch {
+                viewModel.isList()
+            }
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
     private fun intentToDetail(content: Data, pos: Int) {
         targetPosition = pos
         val i = Intent(this, EditAddressActivity::class.java)

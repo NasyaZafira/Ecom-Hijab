@@ -122,6 +122,13 @@
         <item name="android:background">@drawable/shape_rectangle_8_ffc700</item>
     </style>
 
+    <style name="Button.Disabled">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/shape_rectangle_8_ffc701</item>
+    </style>
+
     <style name="Button.Secondary">
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/colorBase</item>

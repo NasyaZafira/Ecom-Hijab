@@ -69,7 +69,7 @@ class CompleteFragment : Fragment() {
             theAdapter.complete.clear()
             theAdapter.complete.addAll(it.data)
             binding.rvProductItem.apply {
-                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
+                layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                 adapter = CompleteAdapter(it.data.toMutableList())
             }
         }

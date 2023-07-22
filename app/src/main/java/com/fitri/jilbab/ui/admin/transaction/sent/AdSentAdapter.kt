@@ -7,18 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.data.model.transaction.sent.newSent.Data
 import com.fitri.jilbab.databinding.ItemCompleteBinding
+import com.fitri.jilbab.databinding.ItemOrderUserBinding
 import com.fitri.jilbab.ui.product.sent.SoAdapter
 
 class AdSentAdapter(
     var sent: MutableList<Data>,
-    private val onDone: (Data, Int) -> Unit,
+//    private val onDone: (Data, Int) -> Unit,
     var detail: (Data) -> Unit
 ) : RecyclerView.Adapter<AdSentAdapter.ViewHolder>() {
-    inner class ViewHolder(val binding: ItemCompleteBinding) :
+    inner class ViewHolder(val binding: ItemOrderUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             ispacked: List<Data>,
-            onDone: (Data, Int) -> Unit,
+//            onDone: (Data, Int) -> Unit,
             detail: (Data) -> Unit
         ) {
             val a = ispacked[adapterPosition]
@@ -47,9 +48,9 @@ class AdSentAdapter(
             binding.txtTotalPrice.formatPrice(total.toString())
             binding.isEkspedisi.text = a.courier
             binding.isResi.text = a.no_resi
-            binding.btnCheckout.setOnClickListener {
-                onDone(a, adapterPosition)
-            }
+//            binding.btnCheckout.setOnClickListener {
+//                onDone(a, adapterPosition)
+//            }
             binding.itemOrderUser.setOnClickListener {
                 detail(a)
             }
@@ -57,12 +58,12 @@ class AdSentAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ItemCompleteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemOrderUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(sent, onDone, detail)
+        holder.bind(sent, detail)
     }
 
     override fun getItemCount() = sent.size

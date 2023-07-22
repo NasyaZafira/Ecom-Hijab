@@ -1,19 +1,15 @@
 package com.fitri.jilbab.ui.admin.transaction.sent
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.commer.app.base.BaseActivity
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.R
 import com.fitri.jilbab.data.model.transaction.sent.newSent.Data
@@ -35,7 +31,7 @@ class SentActivity : BaseActivity() {
     private lateinit var sheetBinding: BottomSheetAdminBinding
 
     private var adSentAdapt =
-        AdSentAdapter(mutableListOf(), onDone = { data, position -> intentToDone(data, position) })
+        AdSentAdapter(mutableListOf()) //onDone = { data, position -> intentToDone(data, position) })
         {
             sheetDialog.apply {
                 Log.e("TAG", "bottomsheet: show")

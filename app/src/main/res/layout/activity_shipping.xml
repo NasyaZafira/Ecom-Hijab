@@ -203,19 +203,19 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/colorPrimary" />
 
-                <RadioButton
-                    android:id="@+id/two2"
-                    style="@style/TextView.Normal14Grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />
+<!--                <RadioButton-->
+<!--                    android:id="@+id/two2"-->
+<!--                    style="@style/TextView.Normal14Grey"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:text="REG (Layanan Reguler) \n\n Rp. 7000 \n\n Estimasi Pengiriman 1-2 Hari" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/colorPrimary" />
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:background="@color/colorPrimary" />-->
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

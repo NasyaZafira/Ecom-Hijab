@@ -12,12 +12,12 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.commer.app.base.BaseActivity
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.fitri.jilbab.CustomLoadingDialog
 import com.fitri.jilbab.Helpers.formatPrice
 import com.fitri.jilbab.R
+import com.fitri.jilbab.base.BaseActivity
 import com.fitri.jilbab.data.model.user.latestDt.Data
 import com.fitri.jilbab.data.model.user.latestDt.Picture
 import com.fitri.jilbab.databinding.ActivityDetailProductBinding
@@ -43,7 +43,7 @@ class DetailProductActivity : BaseActivity() {
     private var listSpinner: MutableList<String> = ArrayList()
     private var idValue: String = " "
     private var p_colors: MutableList<String> = ArrayList()
-    private var p_stok: MutableList<String> = ArrayList()
+    private var p_stok: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,7 @@ class DetailProductActivity : BaseActivity() {
         f_reting()
         f_back()
         f_total()
-        f_troli()
+//        f_troli()
 
 
     }
@@ -147,6 +147,7 @@ class DetailProductActivity : BaseActivity() {
             binding.tvTitle.text = it.data.product_name
             binding.tvDesc.text = it.data.product_description
 //            binding.tvInfo.text = it.data.product_detail_info
+            p_stok = it.data.stock
 
             binding.tvInfo.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 Html.fromHtml(it.data.product_detail_info, Html.FROM_HTML_MODE_COMPACT)
@@ -197,6 +198,14 @@ class DetailProductActivity : BaseActivity() {
                     }
 
                 })
+            }
+
+            if (data.stock < 1.toString()) {
+                binding.btnHabis.visibility = View.VISIBLE
+                binding.btnOrderNow.visibility = View.INVISIBLE
+//                Toast.makeText(this, "Stok Habis", Toast.LENGTH_LONG).show()
+            } else {
+                f_troli()
             }
         }
 
@@ -252,6 +261,8 @@ class DetailProductActivity : BaseActivity() {
     }
 
     private fun f_troli() {
+        binding.btnHabis.visibility = View.INVISIBLE
+        binding.btnOrderNow.visibility = View.VISIBLE
         binding.btnOrderNow.setOnClickListener {
             if (p_total == 0) {
                 Log.e("TAG", "f_troli: total 0 please add min 1 order")
@@ -274,6 +285,8 @@ class DetailProductActivity : BaseActivity() {
                         Toast.LENGTH_LONG
                     )
                         .show()
+                } else if (p_total.toString() > p_stok){
+                    Toast.makeText(this, "Jumlah melebihi ketersediaan, produk tersisa $p_stok", Toast.LENGTH_LONG).show()
                 } else if (!id.isNullOrBlank() && !color.isNullOrBlank() && !total.isNullOrBlank()) {
                     lifecycleScope.launch {
                         cartViewModel.addCart(id, total, color)

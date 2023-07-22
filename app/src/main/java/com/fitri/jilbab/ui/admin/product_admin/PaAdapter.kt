@@ -12,26 +12,30 @@ import com.fitri.jilbab.databinding.ItemProductadmBinding
 class PaAdapter(
     var prAdmin: MutableList<Data>,
     private val onDetail: (Data, Int) -> Unit
-): RecyclerView.Adapter<PaAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<PaAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemProductadmBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            proAdmin : List<Data>,
+            proAdmin: List<Data>,
             onDetail: (Data, Int) -> Unit
         ) {
             val isProduct = proAdmin[adapterPosition]
 
-            if (isProduct.is_main == 1 ) {
-            Glide.with(binding.imgProduct.context)
-                .load("https://ecom-mobile.spdev.my.id/img/products/" + isProduct.picture )
-                .error(R.drawable.white_image)
-                .into(binding.imgProduct)
-            }
-            binding.isName.text = isProduct.product_name
-            binding.isPrice.formatPrice(isProduct.price.toString())
-            binding.isStock.text = "Sisa stok : " + isProduct.stock
-            binding.btnEdit.setOnClickListener {
-                onDetail(isProduct, adapterPosition)
+            if (isProduct.is_main == 1) {
+                    Glide.with(binding.imgProduct.context)
+                        .load("https://ecom-mobile.spdev.my.id/img/products/" + isProduct.picture)
+                        .error(R.drawable.white_image)
+                        .into(binding.imgProduct)
+                }
+            try {
+                binding.isName.text = isProduct.product_name
+                binding.isPrice.formatPrice(isProduct.price)
+                binding.isStock.text = "Sisa stok : " + isProduct.stock
+                binding.btnEdit.setOnClickListener {
+                    onDetail(isProduct, adapterPosition)
+                }
+            } catch (e: NullPointerException) {
+                print("Caught the NullPointerException")
             }
         }
     }
@@ -43,7 +47,8 @@ class PaAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-      holder.bind(prAdmin, onDetail)
+        holder.bind(prAdmin, onDetail)
     }
+
     override fun getItemCount() = prAdmin.size
 }

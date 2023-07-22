@@ -30,7 +30,8 @@ class itemAdapter(
             }
             binding.tvTitle.text = isOrdered.product.product_name
             binding.tvPrice.formatPrice(isOrdered.product.price)
-            binding.textView14.text = isOrdered.qty.toString() + " Item"
+            binding.tvCount.text = isOrdered.qty.toString() + " Item"
+            binding.textView14.text = isOrdered.color
 
         }
     }

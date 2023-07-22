@@ -1,6 +1,7 @@
 package com.fitri.jilbab.ui.cart
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -10,26 +11,34 @@ import com.fitri.jilbab.data.model.user.cart.list.Cart
 import com.fitri.jilbab.databinding.ItemCartBinding
 
 class CartAdapter(
-    var cart                : MutableList<Cart>,
-    private val onRemove    : (Cart, Int) -> Unit
+    var cart: MutableList<Cart>,
+    private val onRemove: (Cart, Int) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            userCart : List<Cart>,
-            onRemove    : (Cart, Int) -> Unit
-        ){
+            userCart: List<Cart>,
+            onRemove: (Cart, Int) -> Unit
+        ) {
             val isCart = userCart[absoluteAdapterPosition]
 
-            if (isCart.product.mainpicture.is_main == 1 ) {
+            if (isCart.product.mainpicture.is_main == 1) {
                 Glide.with(binding.ivPoster.context)
-                    .load("https://ecom-mobile.spdev.my.id/img/products/" + isCart.product.mainpicture.picture )
+                    .load("https://ecom-mobile.spdev.my.id/img/products/" + isCart.product.mainpicture.picture)
                     .error(R.drawable.white_image)
                     .into(binding.ivPoster)
             }
             binding.tvTitle.text = isCart.product.product_name
             binding.tvPrice.formatPrice(isCart.product.price)
-            binding.tvCount.text = "x " + isCart.qty.toString() + "Item"
+            if (isCart.product.stock < 1.toString()) {
+                binding.tvHabis.text = "Stok Habis"
+                binding.tvHabis.visibility = View.VISIBLE
+                binding.tvCount.visibility = View.INVISIBLE
+            } else {
+                binding.tvCount.text = "x " + isCart.qty.toString() + "Item"
+                binding.tvCount.visibility = View.VISIBLE
+                binding.tvHabis.visibility = View.INVISIBLE
+            }
             binding.btnClose.setOnClickListener {
                 onRemove(isCart, adapterPosition)
             }
@@ -44,5 +53,6 @@ class CartAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cart, onRemove)
     }
+
     override fun getItemCount() = cart.size
 }
