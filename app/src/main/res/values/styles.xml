@@ -1,0 +1,173 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="TextView"/>
+
+    <style name="TextView.Normal32Black">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="TextView.Normal16Black">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+<style name="TextView.Medium16Black">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextView.Medium22Black">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextView.Normal22Black">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextView.Normal20Black">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextView.Normal18Black">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextView.Normal14Black">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextView.Medium14Green">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#1ABC9C</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextView.Normal14Green">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#1ABC9C</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextView.Normal14Grey">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextView.Normal13Grey">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextView.Normal10Grey">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#8D92A3</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextView.Normal10Red">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">#D9435E</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextView.Medium14Black">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#020202</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditText"/>
+
+    <style name="EditText.Medium14Grey">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Button"/>
+
+    <style name="Button.Primary">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#202020</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/shape_rectangle_8_ffc700</item>
+    </style>
+
+    <style name="Button.Disabled">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/shape_rectangle_8_ffc701</item>
+    </style>
+
+    <style name="Button.Secondary">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/colorBase</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/shape_rectangle_8_8d92a3</item>
+    </style>
+
+    <style name="Button.Cancelled">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/shape_rectangle_8_d9435e</item>
+    </style>
+
+    <style name="Tab">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">#8D92A3</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="RatingBar">
+        <item name="colorControlNormal">#ECECEC</item>
+        <item name="colorControlActivated">#EEA2A4</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Theme.FitriJilbab.Home" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/colorBase</item>
+        <item name="android:navigationBarColor">@color/colorBase</item>
+    </style>
+    <style name="backgroundSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="background">@drawable/bottomsheet_bg</item>
+    </style>
+
+</resources>

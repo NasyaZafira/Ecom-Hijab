@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_three"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Masuk"
+        android:textColor="@color/abu"
+        android:textSize="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDesc"
+        style="@style/TextView.Normal16Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="Temukan produk hijab terbaikmu"
+        android:textColor="@color/colorBase"
+        app:layout_constraintTop_toBottomOf="@id/txtSignIn" />
+
+
+    <TextView
+        android:id="@+id/txtEmail"
+        style="@style/TextView.Medium16Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="5dp"
+        android:text="Alamat Email"
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toTopOf="@id/boxMail" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/boxMail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:endIconMode="custom"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/colorError"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/txtPassword">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="masukan email"
+            android:inputType="text"
+            android:paddingVertical="9dp"
+            android:paddingStart="13dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txtPassword"
+        style="@style/TextView.Medium16Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="5dp"
+        android:text="Kata Sandi"
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toTopOf="@id/boxPassword" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/boxPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:errorTextColor="@color/colorError"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/btnSignin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPssword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="masukan kata sandi"
+            android:inputType="textPassword"
+            android:paddingVertical="9dp"
+            android:paddingStart="13dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignin"
+        style="@style/Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="Masuk"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btnSignup" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignup"
+        style="@style/Button.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="Buat akun baru"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/warningError" />
+
+    <TextView
+        android:id="@+id/warningError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorError"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Can't login, incorrect email or password "
+        android:textColor="@color/colorBase"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

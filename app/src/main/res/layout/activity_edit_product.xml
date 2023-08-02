@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/admin_bg"
+    tools:context=".ui.admin.product_admin.AddProductActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp">
+
+
+            <ImageView
+                android:id="@+id/verifyAcc"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toTopOf="@id/layoutOne"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTittle"
+                style="@style/TextView.Medium22Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Ubah Produk"
+                app:layout_constraintBottom_toTopOf="@id/txtDetail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+            <TextView
+                android:id="@+id/txtDetail"
+                style="@style/TextView.Normal14Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Luncurkan produk barumu"
+                app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+                app:layout_constraintStart_toEndOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtTittle" />
+
+            <View
+                android:id="@+id/layoutOne"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorLine"
+                app:layout_constraintTop_toBottomOf="@id/txtDetail" />
+
+            <TextView
+                android:id="@+id/nameProduct"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Nama Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/layoutOne" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtNmProduct"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/nameProduct">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNameProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Masukan nama"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtPrice"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Harga Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtNmProduct" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtPriceProduct"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtPrice">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Harga Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/txtDiskon"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Diskon Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtPriceProduct" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtDiskon"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtDiskon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editDiskon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Diskon Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtKategori"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Kategori Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtDiskon" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtKategori"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtKategori">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTxtKategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Pilih Kategori"
+                    android:inputType="none"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtBerat"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Berat Produk (Gram)"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtKategori" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtBerat"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtBerat">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editBerat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Berat Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtStock"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Stok Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtBerat" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtStock"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtStock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editStock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Stok Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtDesc"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtStock" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtDesc"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtDesc">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Deskripsi Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtDescInfo"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Detail Info Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtDesc" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtDescInfo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtDescInfo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editDescInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Detail Info Produk"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtColor"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Warna Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtDescInfo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtColor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="ct: Merah,Hijau,Polkadot"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtStokColor"
+                style="@style/TextView.Normal14Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Stock Warna Produk"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/edtColor" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtStokColor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:endIconMode="custom"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/colorError"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/txtTittle"
+                app:layout_constraintStart_toStartOf="@id/verifyAcc"
+                app:layout_constraintTop_toBottomOf="@id/txtStokColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editStokColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="ct: 10,20,30"
+                    android:inputType="text"
+                    android:paddingVertical="9dp"
+                    android:paddingStart="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtStokColor">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/fixaddreport_image1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/bg_roundyellowt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_roundyellowt"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_corner_radius="4dp" />
+
+                        <TextView
+                            android:id="@+id/fixaddreport_txt_1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:background="@drawable/background_about_logo"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image1"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image1"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_image1"
+                            app:layout_constraintTop_toTopOf="@+id/fixaddreport_image1" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Thumbnail Foto Produk"
+                            android:textColor="@color/colorBase"
+                            android:textSize="8sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_1"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_1"
+                            app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_1" />
+
+
+                        <ImageView
+                            android:id="@+id/close01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_24"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimaryDark" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout1"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/fixaddreport_image2"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/bg_roundyellowt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_roundyellowt"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_corner_radius="@dimen/_4sdp" />
+
+                        <TextView
+                            android:id="@+id/fixaddreport_txt_2"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:background="@drawable/background_about_logo"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image2"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image2"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_image2"
+                            app:layout_constraintTop_toTopOf="@+id/fixaddreport_image2" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Foto Produk"
+                            android:textColor="@color/colorBase"
+                            android:textSize="@dimen/_8ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_2"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_2"
+                            app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_2" />
+
+                        <ImageView
+                            android:id="@+id/close02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_24"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimaryDark" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/fixaddreport_image3"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/bg_roundyellowt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_roundyellowt"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_corner_radius="@dimen/_4sdp" />
+
+                        <TextView
+                            android:id="@+id/fixaddreport_txt_3"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:background="@drawable/background_about_logo"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image3"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image3"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_image3"
+                            app:layout_constraintTop_toTopOf="@+id/fixaddreport_image3" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Foto Produk"
+                            android:textColor="@color/colorBase"
+                            android:textSize="@dimen/_8ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_3"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_3"
+                            app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_3" />
+
+                        <ImageView
+                            android:id="@+id/close03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_24"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimaryDark" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout3"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/fixaddreport_image4"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/bg_roundyellowt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_roundyellowt"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_corner_radius="@dimen/_4sdp" />
+
+                        <TextView
+                            android:id="@+id/fixaddreport_txt_4"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:background="@drawable/background_about_logo"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image4"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image4"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_image4"
+                            app:layout_constraintTop_toTopOf="@+id/fixaddreport_image4" />
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Foto Produk"
+                            android:textColor="@color/colorBase"
+                            android:textSize="@dimen/_8ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_4"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_4"
+                            app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_4" />
+
+                        <ImageView
+                            android:id="@+id/close04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_24"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimaryDark" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/layout4"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/fixaddreport_image5"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:background="@drawable/bg_roundyellowt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_roundyellowt"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_corner_radius="@dimen/_4sdp" />
+
+                        <TextView
+                            android:id="@+id/fixaddreport_txt_5"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:background="@drawable/background_about_logo"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/fixaddreport_image5"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_image5"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_image5"
+                            app:layout_constraintTop_toTopOf="@+id/fixaddreport_image5" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Foto Produk"
+                            android:textColor="@color/colorBase"
+                            android:textSize="@dimen/_8ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@+id/fixaddreport_txt_5"
+                            app:layout_constraintStart_toStartOf="@+id/fixaddreport_txt_5"
+                            app:layout_constraintTop_toBottomOf="@+id/fixaddreport_txt_5" />
+
+                        <ImageView
+                            android:id="@+id/close05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_24"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimaryDark" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </HorizontalScrollView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContinue"
+                style="@style/Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="24dp"
+                android:text="Tambahkan"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBase"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
+
+            <View
+                android:id="@+id/view01"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/btnContinue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDel"
+                style="@style/Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="18dp"
+                android:backgroundTint="@color/colorError"
+                android:text="Hapus Produk"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBase"
+                app:layout_constraintTop_toBottomOf="@id/view01" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

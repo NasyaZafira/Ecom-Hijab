@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/user_bg"
+    tools:context=".ui.admin.product_admin.AddProductActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_8_fff"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/verifyAcc"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTittle"
+            style="@style/TextView.Medium22Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:text="Ubah Kata Sandi"
+            app:layout_constraintBottom_toBottomOf="@id/verifyAcc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/verifyAcc"
+            app:layout_constraintTop_toTopOf="@id/verifyAcc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/shape_rectangle_8_fff"
+        app:layout_constraintTop_toBottomOf="@id/layoutOne">
+
+        <TextView
+            android:id="@+id/txtPassLatest"
+            style="@style/TextView.Normal14Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="Kata Sandi Saat Ini"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPassLatest"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/txtPassLatest">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/isPassLatest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan kata sandi saat ini"
+                android:inputType="text"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/edtPassNew"
+            style="@style/TextView.Normal14Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Kata Sandi Baru"
+            app:layout_constraintStart_toStartOf="@id/txtPassLatest"
+            app:layout_constraintTop_toBottomOf="@id/edtPassLatest" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPasswordNew"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/txtPassLatest"
+            app:layout_constraintTop_toBottomOf="@id/edtPassNew">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/isPassNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan kata sandi baru"
+                android:inputType="text"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txtDetailAddress"
+            style="@style/TextView.Normal14Black"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi kata Sandi Baru"
+            app:layout_constraintStart_toStartOf="@id/txtPassLatest"
+            app:layout_constraintTop_toBottomOf="@id/edtPasswordNew" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtRepass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/colorPrimaryDark"
+            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/txtPassLatest"
+            app:layout_constraintTop_toBottomOf="@id/txtDetailAddress">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/isRepas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Konfirmasi kata sandi baru"
+                android:inputType="text"
+                android:paddingVertical="9dp"
+                android:paddingStart="13dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinue"
+        style="@style/Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Simpan"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
